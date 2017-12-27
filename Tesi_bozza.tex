@@ -11,8 +11,13 @@
 \usepackage{makeidx}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{graphicx}
 
 \hypersetup{colorlinks=true,linkcolor=black}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definizione}
+\newtheorem{thm}{Teorema}
 
 \begin{document}
 
@@ -23,7 +28,7 @@
 \renewcommand{\footrulewidth}{0.4pt}
 
 %%%% L'indice dinamico mi porta in posti sbagliati...
-%%%% Bibliografia e Sito grafia: rendere i collegamenti dinamici...
+%%%% Bibliografia e Sitografia: rendere i collegamenti dinamici...
 %%%% Frontespizio
 %%%% Aggiustare le formule con il grassetto 
 
@@ -44,21 +49,21 @@
 
 Questo lavoro di tesi si propone lo scopo di progettare ed implementare un programma in grado di acquisire, processare ed estrarre i contenuti di file di testo provenienti dalla rete. Particolare cura è stata dedicata alla costruzione dell'algoritmo e alla scelta del caso di studio: nel primo, in modo particolare, si fondono diversi strumenti, tutti Open Source e tutti accomunati dallo stesso linguaggio e ambiente di programmazione, che consentono sia di gestire un gran numero di dati e sia, soprattuto, di eseguire una parte computazionalmente rilevante del codice in modo distribuito, permettendo un abbattimento notevole dei tempi di esecuzione. 
 
-I temi trattati in questo elaborato sono molteplici, ma possiamo suddividerli in due macro-aree: in primo luogo ci si pone il problema di estrarre l'informazione contenuta in una collezione di file di testo, sviluppando metodi e modelli statistici per l'estrapolazione dei termini e dei concetti chiave in modo da clusterizzare un certo numero di documenti secondo l'argomento trattato; in secondo luogo, si affronta la questione di gestire grosse moli di dati, architettare procedure di analisi testuale efficienti con gli strumenti a disposizione e rendere l'intero processo sufficientemente veloce da poter essere generalizzato e suscettibile di future applicazioni.
+I temi trattati in questo elaborato sono molteplici, ma possiamo suddividerli in due macro-aree: in primo luogo ci si pone il problema di estrarre l'informazione contenuta in una collezione di file di testo, sviluppando metodi e modelli statistici per l'estrapolazione dei termini e, verosimilmente, dei concetti chiave; in secondo luogo, si affronta la questione di gestire grosse moli di dati, architettare procedure di analisi testuale efficienti con gli strumenti a disposizione e rendere l'intero processo sufficientemente veloce e automatizzato da poter essere generalizzato e suscettibile di future applicazioni.
 
-A culmine di tutta l'opera viene presentato un caso di studio che permette di testare l'intera procedura costruita; in particolare i file di testo analizzati sono costituiti da articoli di una selezione di testate giornalistiche con l'obiettivo di classificarne i contenuti sulla base dei temi maggiormente trattati durante il periodo di raccolta dati.
+A culmine di tutta l'opera viene presentato un caso di studio che permette di testare l'intera procedura costruita; in particolare, i file di testo analizzati sono costituiti da articoli di una selezione di testate giornalistiche. L'obiettivo è quello di classificarne i contenuti sulla base dei temi maggiormente trattati durante il periodo di raccolta dati.
 
 Il dettaglio degli argomenti presentati è il seguente.
 
-Nel Capitolo 1 si fornisce una visione generale del problema affrontato. In esso non mancano riferimenti e indicazioni per generalizzazioni e possibili applicazioni. Si cerca inoltre di contestualizzare la procedura, sottolineando la necessità di analisi efficienti in una realtà dove la produzione dei dati è così elevata che la necessità di coadiuvarsi con il calcolatore è ormai una verità apodittica.
+Nel Capitolo 1 si fornisce una visione generale del problema affrontato. In esso non mancano riferimenti e indicazioni per generalizzazioni e possibili applicazioni. Si cerca inoltre di contestualizzare la procedura, sottolineando la necessità di analisi efficienti in una realtà dove la produzione dei dati è così elevata che la necessità di coadiuvarsi con il calcolatore è ormai un fatto scontato.
 
-Nel Capitolo 2 vengono presentati i principali topic model: di essi si analizzano i dettagli tecnici, si dànno cenni degli algoritmi di implementazione e si fanno, naturalmente, confronti critici per comprendere i punti di forza di ciascuno.
+Nel Capitolo 2 vengono presentati i principali modelli: di essi si analizzano i dettagli tecnici, si dànno cenni degli algoritmi di implementazione e si fanno, naturalmente, confronti critici per comprendere i punti di forza di ciascuno.
 
-Nel Capitolo 3 si presentano uno per uno i software utilizzati per l'intero studio, se ne specificano le funzionalità e le motivazioni di utilizzo. Particolare enfasi si pone sulla questione dell'unitarietà dell'intera procedura, garantita dall'uso di un solo linguaggio di programmazione che opera a tutti i livelli, e sulla gestione dell'algoritmo a livello distribuito. 
+Nel Capitolo 3 si analizza l'apparato software utilizzato durante l'intero studio, se ne specificano le funzionalità e le motivazioni di utilizzo. Particolare enfasi si pone sulla questione dell'unitarietà dell'intera procedura, garantita dall'uso di un solo linguaggio di programmazione che opera a tutti i livelli, e sulla gestione parallela dei compiti da parte dell'algoritmo 
 
-Nel Capitolo 4 si dànno dettagli circa la costruzione dell'intera procedura. In esso si manifesta il contributo originale della tesi: la fusione delle due principali metodologie studiate e l'implementazione di un algoritmo distribuito di clusterizzazione interamente non supervisionata.
+Nel Capitolo 4 si dànno dettagli circa la costruzione dell'intera procedura. In esso si manifesta il contributo originale della tesi: la fusione delle due principali metodologie studiate e l'implementazione di un algoritmo distribuito.
 
-Nel Capitolo 5, infine, si mostrano i risultati dell'analisi compiuta sul caso particolare delle testate giornalistiche: si esegue il codice su una selezione di notizie provenienti da alcuni siti di testate giornalistiche.
+Nel Capitolo 5, infine, si mostrano i risultati dell'analisi compiuta nel caso particolare delle testate giornalistiche: si esegue il codice su una selezione di notizie provenienti da alcuni siti di testate giornalistiche prescelte.
 
 Nell'Appendice A si parlerà dell'acquisizione dei dati provenienti dai social network e si darà il dettaglio della procedura nel caso particolare di Facebook.
 
@@ -68,260 +73,93 @@ I codici usati sono interamente disponibili in rete, nella repository Github all
 $$
 \href{https://github.com/DavideGambocci/Social-Media-Analysis}{https://github.com/DavideGambocci/Social-Media-Analysis}
 $$
-Nota: talvolta gli output sono stati modificati nel layout per facilitarne l'impaginazione.
+Nota: talvolta gli output sono stati modificati per facilitarne l'impaginazione.
 
 \clearpage
 
 % Capitolo1
-\chapter{Il problema trattato}
+\chapter{Tematiche affrontate}
+\chaptermark{Tematiche affrontate} 
 
-Secondo uno studio dell'Università di Berkeley [], nel 2003 sono stati prodotti ``...  \emph{25 TB\footnote{1 Terabyte = 1000 Gigabyte} di file di testo relativi ai giornali, 10 TB relativi alle riviste in genere ... e 195 TB di documenti d'ufficio. Si stima che siano state inviate 610 miliardi di e-mail, per un totale di 11000 T}B ``; inoltre, un recente reportage [] stimava che dal 2005 al 2020 la produzione totale di informazione presente in rete sarebbe cresciuta di un fattore di scala pari a 300, previsione che, ad oggi, si è rivelata corretta []. % Aggiungere dati qui...
+Secondo uno studio dell'Università di Berkeley \cite{Lym03}, nel 2003 sono stati prodotti ``...  \emph{25 TB\footnote{1 Terabyte = 1000 Gigabyte} di file di testo relativi ai giornali, 10 TB relativi alle riviste in genere ... e 195 TB di documenti d'ufficio. Si stima che siano state inviate 610 miliardi di e-mail, per un totale di 11000 T}B ``; nel 2010 il solo numero di mail è salito alla enorme cifra di $107\times 10^12$ secondo \cite{Roe12} e, venendo a dati più recenti, si stima che nel 2017 la media di e-mail inviate sia stata di 269 miliardi al giorno \cite{Rad17}. Nel 2003, inoltre, non era ancora affermata la realtà social, per cui nel conteggio dell'informazione prodotta oggi dobbiamo aggiungere anche file testuali di nuova generazione come \emph{post}, \emph{commenti} e \emph{tweet}: di questi ultimi, nel 2017, ne sono stati prodotti circa 300 miliardi (\cite{IntLS}). 
+% Possiamo aggiungere ancora qualcos'altro?
 
-Queste informazioni sollevano diverse riflessioni. Si impone la necessità di gestire un tale flusso di dati, che, dato l'enorme volume che li caratterizza, sono stati definiti dalla letteratura con l'aggettivo \emph{big}: i \emph{big data} rappresentano un punto di svolta nell'analisi dei dati e, in una certa misura, una sfida sia per la loro gestione e sia per la loro interpretazione.
+Insomma la crescita è stata esponenziale in tutte le direzioni: ciò solleva diverse riflessioni e questioni e tocca diverse tematiche importanti. Con l'obiettivo di voler implementare un algoritmo in grado di eseguire tutte le fasi dell'analisi testuale di file provenienti dalla rete (dall'estrazione dati all'applicazione di topi model), dobbiamo avere una panoramica di tali questioni e comprendere quali sono le possibili applicazioni e i limiti della procedura che costruiremo. Innanzitutto, è evidente che una così massiccia produzione di dati, può contenere informazioni di valore per diverse tipologie di analisi, da quelle di mercato a indagini di tipo sociologico. Un altro punto interessante è l'immediatezza con cui questi dati sono reperibili: in passato, per molte analisi, raccogliere i dati necessari poteva essere un'operazione che comportava lunghe attese. Chiaramente, e lo sottolineeremo anche in seguito, non è detto che tutti i dati siano di ottima qualità, anche se spesso ciò dipende anche dal tipo di analisi che si vuole condurre. Un tale flusso di dati, consente in molti casi analisi accurate anche se non risolve certamente tutti i problemi, al contrario, l'aspetto interessante è che ne genera di nuovi, legati soprattutto alla gestione e al processing di questi enormi flussi di dati.
 
-\section{Problematiche legate ai big data}
+\section{I \emph{big data} e l'analisi testuale}
+\sectionmark{Big Data}
 
-È facile intuire quali siano le problematiche legate ai big data. Riconoscendo che, da un lato, un tale flusso di informazione non può essere ignorato e, dall'altro, per un essere umano singolo è impensabile portare a termine un analisi efficiente in tempi accettabili, si comprende la necessità del sostegno informatico in questo compito. 
+Dati del genere appena esaminato, visto l'enorme volume che li caratterizza, sono stati definiti con l'aggettivo \emph{big}: i \emph{big data} rappresentano un punto di svolta nell'analisi dei dati ed è doveroso capire come gestirli, pulirli e processarli. Il confronto con la realtà dei \emph{big data} avviene, chiaramente, nella fase di estrazione delle informazioni dalla rete, una fase che possiamo definire di raccolta delle informazioni. Riconosciamo subito che, se da un lato un tale flusso di dati non può essere ignorato perché potenzialmente carico di informazioni interessanti, dall'altro, per un essere umano singolo è impensabile portare a termine un'analisi efficiente in tempi accettabili: il sostegno del calcolatore è necessario, motivo per cui concetti rilevanti di programmazione saranno comunque toccati. Vediamo nel dettaglio con quali sono le questioni principali da risolvere. 
 
-Prima di tutto si presenta una difficoltà di gestione: si ha necessità di tecnologie in grado sia di memorizzare i dati in formati adeguati e sia in modalità che ne consentano un'elaborazione computazionalmente sostenibile. La soluzione consiste nella scelta accurata di un database, che, eventualmente, abbia caratteristiche che consentano di gestire efficacemente la mole di informazioni in modo rapido e sostenibile (cfr. Cap. 3).
+È facile intuire quali siano le problematiche legate ai big data: prima di tutto si presenta una difficoltà di gestione: si ha necessità di tecnologie in grado sia di memorizzare i dati in formati adeguati e sia in modalità che ne consentano un'elaborazione computazionalmente sostenibile. La soluzione consiste nella scelta accurata di un database, che, eventualmente, abbia caratteristiche che consentano di gestire efficacemente la mole di informazioni in modo rapido e sostenibile (cfr. Cap. 3).
 
 Le difficoltà computazionali, tuttavia, non si esauriscono esclusivamente nella fase gestionale: esse si palesano anche nell'applicazione dell'algoritmo operativo che deve essere strutturato in modo da gestire l'esecuzione nel modo più efficiente possibile. Sembrerebbe che la crescita della tecnologia hardware, che permette di avere a disposizione piattaforme con specifiche tecniche sempre più avanzate, rappresenti la soluzione al problema, ma ci si convince facilmente del contrario osservando che l'avanzamento tecnologico va di pari passo con l'aumento di produzione dei dati, anzi in molti casi quest'ultima prevale sulla prima che dunque, da sola, non è sufficiente. Occorre  \emph{parallelizzare} l'esecuzione: questo vuol dire strutturare il codice in modo che esegua diverse operazioni contemporaneamente (magari interessando diversi core di un processore) con conseguente riduzione dei tempi dovuta alla suddivisione dei compiti eseguiti.
 
-Un'ultima importante  questione legata all'aspetto più squisitamente analitico: i big data, se non processati correttamente, portano a conclusioni inevitabilmente distorte []. Di questa importante tematica non ci occuperemo in questa sede e l'abbiamo enunciata solamente per completezza. Per approfondimenti si rimanda a [][].
+Un'ultima importante  questione legata all'aspetto più squisitamente analitico: i \emph{big data} rappresentano una potenziale miniera di informazioni, tuttavia spesso possono portare a conclusioni inevitabilmente distorte, qualora non vengano usati con criterio.  Di questa importante tematica non ci occuperemo direttamente e l'abbiamo enunciata solamente per completezza. Per un esempio interessante di uso distorto dei \emph{big data} e per utili strategie di pianificazione, si può consultare \cite{Con12}.
+
+Una volta conclusa l'operazione di raccolta, occorre operare il cosiddetto \emph{information retrieval}, ovvero il recupero delle informazioni. Durante questa fase si estrae dai dati in memoria, una quantità più piccola di dati rilevanti ai fini dell'analisi finale. Ad esempio, è possibile che durante la memorizzazione dei file si accumuli del codice sorgente della pagina che ospitava il contenuto: tale codice può e deve, naturalmente essere eliminato.   
+
+I dati che analizzeremo saranno, ribadiamo, file testuali: l'informazione che da essi vogliamo estrarre rappresenta una sintesi, in qualche senso, del loro contenuto. Ovviamente in tali documenti, l'informazione sarà veicolata mediante uno specifico linguaggio umano, il quale deve essere poi processato dal computer. Si intuisce chiaramente l'insorgenza di un problema molto spinoso: quello di consentire alla macchina di processare tale linguaggio.
 
 \section{Il linguaggio naturale}
 
-% Scrivere qualcosa sul linguaggio naturale? NLP?... ci sono molte cose da dire al riguardo
+È generalmente facile per un essere umano comprendere il contenuto di un testo, rilevarne il concetti principali e sintetizzarlo o rielaborarlo. Per una macchina l'intero processo è più lontano dalle sue  funzioni: occorre istruirla alla comprensione del \emph{linguaggio naturale} e alla sua elaborazione, definita anche \emph{Natural Language Processing} (NLP). L'NLP viene suddiviso in diversi sottoprocessi che simulano i livelli di apprendimento umano, i principali (per ulteriori approfondimenti si veda [Zha16]) sono i seguenti
 
-È generalmente facile per un essere umano comprendere il contenuto di un testo, rilevarne il concetti principali e sintetizzarlo o rielaborarlo. Per una macchina l'intero processo è più lontano dalle sue naturali funzioni: occorre istruirla alla comprensione del \emph{linguaggio naturale}. Allo stato attuale non è possibile insegnare a un computer a comprendere profondamente un testo, percepire l'ironia o trarre conclusioni critiche, tuttavia, con l'ausilio della probabilità e della statistica, la macchina riesce a riconoscere i termini di maggiore rilevanza, i costrutti latenti e concetti più complessi come la sinonimia.
+\begin{itemize}
+\item \textbf{Analisi lessicale}: mediante la quale si scompone il discorso nei suoi costituenti principali (\emph{tokenizzazione}) e si assegna loro un ruolo. Per l'italiano, la componente atomica di una frase è costituita dalla parola; in generale, per lingue come il Cinese o le lingue agglutinanti è più difficile scomporre il discorso in quanto non sempre esiste una separazione netta per le parole;
 
-Per comprendere come si possa istruire un computer a far ciò, occorre fare uno sforzo e immaginare in che modo sia possibile comprendere un testo in al modo delle macchine, avulso, cioè, dall'uso delle facoltà di interpretazione propriamente umane. Il modo più facile di figurarsi ciò è quello di considerare come indicativa solo l'occorrenza delle parole nel testo: i concetti presenti si palesano nei nomi, verbi e aggettivi utilizzati nel discorso e dunque è tra le occorrenze di questi ultimi che bisogna scorgere la sintesi dei contenuti. In generale, intuitivamente, più una parola sarà ripetuta e più è plausibile che essa sarà rilevante ai fini della comprensione di quel testo. Questo approccio è ancora molto grezzo: articoli e congiunzioni ad esempio si ripetono spesso con notevole frequenza all'interno di un discorso, eppure la loro funzione non ha niente a che fare con l'argomento di cui si sta parlando. Occorre dunque limitare l'analisi solamente ad una categoria selezionata di parole ed è quello che si vedrà in seguito. Quest'idea, seppure molto semplice, di considerare unicamente le parole e la loro frequenza come veicoli del concetto è esattamente la medesima che sta alla base dei modelli che useremo. Due concetti importanti si possono già si intravedono: in questo approccio il ruolo principale spetta alle parole in quanto tali e l'\emph{ordine} con cui esse sono trascritte è perfettamente trascurabile. Un algoritmo che segue una simile linea di pensiero, si dice essere di tipo \emph{bag-of-words}. Il \emph{Latent Semantic Indexing} possiede esattamente tutte le caratteristiche appena enunciate: le sue specifiche tecniche saranno analizzate in seguito. È importante, invece, capire come un siffatto approccio si può migliorare, cercando di cogliere qualche aspetto più complesso che un metodo così concettualmente semplice non è in grado di cogliere. Ci si accorge subito che tale modello poggia su presupposti non sempre verificati: non sempre, infatti, le parole più diffuse sono rappresentative dei concetti centrali di un testo. Per oltrepassare questo limite, si ragiona in questo modo: supponiamo, per un testo, l'esistenza di alcuni concetti \emph{latenti} (detti \emph{topic}). A partire da essi si può generare la distribuzione delle restanti parole, sicché i topic rappresentano l'archetipo generativo della forma finale del testo. Tale idea è alla base del Latent Dirichlet Allocation che, oltre ad essere anch'esso un modello di tipo bag-of-word, rileva l'aspetto distribuzionale insito nella composizione di un testo.
+\item \textbf{Analisi sintattica}: che si occupa di stabilire la funzione logica di una parola all'interno della frase;
 
-Un modello come il Latent Semantic Indexing o come il Latent Dirichlet Allocation, in quanto metodo per l'estrazione di contenuto informativo presente in un testo, si definisce \emph{topic model}.
+\item \textbf{Analisi semantica}: che consiste nella comprensione del significato proprio di ciascuna parola, anche in relazione alla radice etimologica e al contesto in cui essa si trova. L'obiettivo è quello di comprendere il significato dell'intero discorso analizzato. Specialmente in questa fase si avvertono maggiormente le ambiguità che una lingua presenta e, in contesti molto estremi come le interpretazioni di scritti sacri o antichi, può essere un compito difficile anche per l'essere umano.
+\end{itemize} 
 
-I topic model sono dunque gli strumenti matematico-statistici che abbiamo a disposizione per lo scopo che ci proponiamo di raggiungere.
+Prendiamo come esempio la seguente frase
 
-\section{La scelta del caso di studio}
-I contenuti testuali presenti in rete sono moltissimi e disparati e vanno dalle mail ai tweet, dai blog ai siti istituzionali. In particolare, la nostra scelta è ricaduta sul settore dell'editoria giornalistica i cui contenuti vengono messi a disposizione in rete: essi rappresentano una parte molto rilevante della categoria più generale dei \emph{social media}, dove con questa locuzione si intende estendere alla rete la realtà una volta esclusiva dei \emph{mass media}. In questo senso il giornalismo rappresenta una forma di contatto tra queste due dimensioni, tuttavia le motivazioni della nostra scelta sono diverse e molteplici. Innanzitutto, il giornalismo produce articoli ad un ritmo costante, il che è fondamentale per le rilevazioni: nel caso di tweet o mail, i contenuti possono essere postati in modo occasionale e dunque non è scontato che si riesca ad accumulare un sufficiente numero di dati in tempo fissato. A differenza delle pagine sui social o dei blog, inoltre, i giornali appaiono come entità più solide: accade di frequente che i blog vengano presi di mira da attacchi informatici o che le pagine Facebook chiudano spontaneamente, mentre è rarissimo che un giornale di punto in bianco smetta di esistere. Per di più, le conclusioni che possiamo trarre dall'analisi degli articoli di giornale hanno un interesse di pubblico rilievo e sono suscettibili di diverse e interessanti generalizzazioni. 
+\begin{center}
+\emph{Il bambino gioca con un giocattolo}
+\end{center}
 
-Nel caso esaminato, ci preoccuperemo di enucleare gli argomenti principali di ciascuna testata giornalistica analizzata, allo scopo di classificarla sulla base degli argomenti trattati, tuttavia nulla vieta che la procedura sviluppata possa essere riutilizzata per altri scopi. Sebbene non ci spingeremo oltre i nostri propositi, possiamo suggerire qualche scenario, sulla base anche di alcune idee [][] % Aggiungere.... 
 
-% In generale qualsiasi processazione di documenti di testo provenienti dalla rete 
+Nell'ottica dell'analisi lessicale la frase si scomporrebbe nel modo seguente
+$$
+\underbrace{Il}_{art.} \hspace{0.1cm} \underbrace{bambino}_{nome} \hspace{0.1cm} \underbrace{gioca}_{verbo}\hspace{0.1cm} \underbrace{con}_{prep.} \hspace{0.1cm} \underbrace{un}_{art.} \hspace{0.1cm} \underbrace{giocattolo}_{nome};
+$$
 
+per l'analisi sintattica invece si avrebbe
+$$
+\underbrace{Il\hspace{0.07cm}bambino}_{soggetto} \hspace{0.1cm} \underbrace{gioca}_{predicato}\hspace{0.1cm} \underbrace{con\hspace{0.07cm} un \hspace{0.07cm} giocattolo}_{complemento}.
+$$
+
+Con l'analisi semantica, invece, si scoprirebbe che \emph{gioco} e\emph{giocattolo} hanno la stessa radice e lo stesso significato e che, probabilmente, quest'ultimo è il tema centrale della frase.
+ 
+In generale, ogni analisi aumenta la comprensione del discorso e più livelli si esaminano, maggiore sarà la precisione della macchina nell'individuare il significato del testo che le si chiede di analizzare. Per ciascun sottoprocesso sarebbe opportuno costruire un insieme di strumenti in grado di consentire l'analisi a quel livello. Generalmente, anche se non il solo, lo strumento maggiormente utilizzato è il \emph{dizionario}: la creazione di dizionari appositi consente di comprendere se una parola rappresenta un nome piuttosto che un aggettivo, se possiede un significato affine ad un altro termine in una frase e così via. 
+
+La fase successiva è rappresentata dalla capacità del computer di elaborare queste informazioni, estraendone, eventualmente, una sintesi: tale fase è chiamata \emph{text mining}, ovvero la ricerca dei principali gruppi tematici all'interno di file di testo.
+
+Allo stato attuale non è possibile insegnare a un computer a comprendere profondamente un testo, percepire l'ironia o trarre conclusioni critiche, tuttavia, con l'ausilio di alcuni rudimenti di NLP, della probabilità e della statistica, la macchina riesce a riconoscere i termini di maggiore rilevanza, diversi costrutti latenti e strutture più complesse come la sinonimia.
+
+In qualche senso, occorre immaginare in che maniera un computer, che non comprende il linguaggio naturale, possa comunque riuscire a trattarlo. Il modo più semplice è quello di considerare come indicativa solo l'occorrenza delle parole nel testo: i concetti presenti si palesano nei nomi, verbi e aggettivi utilizzati nel discorso e dunque è tra le occorrenze di questi ultimi che bisogna scorgere la sintesi dei contenuti. In generale, intuitivamente, più una parola sarà ripetuta e più è plausibile che essa sarà rilevante ai fini della comprensione di quel testo. Questo approccio è ancora molto grezzo: articoli e congiunzioni ad esempio si ripetono spesso con notevole frequenza all'interno di un discorso, eppure la loro funzione non ha niente a che fare con l'argomento di cui si sta parlando. Occorre dunque limitare l'analisi solamente ad una categoria selezionata di parole ed è quello che si vedrà in seguito. Quest'idea, seppure molto semplice, di considerare unicamente le parole e la loro frequenza come veicoli del concetto è esattamente la medesima che sta alla base dei modelli che useremo. Due concetti importanti si possono già evidenziare: in questo approccio il ruolo principale spetta alle parole in quanto tali e l'\emph{ordine} con cui esse sono trascritte è perfettamente trascurabile. Un algoritmo che segue una simile linea di pensiero, si dice essere di tipo \emph{bag-of-words}. Il \emph{Latent Semantic Indexing} possiede esattamente tutte le caratteristiche appena enunciate: le sue specifiche tecniche saranno analizzate nel capitolo successivo. È importante, invece, capire come un siffatto approccio si possa migliorare, cercando di cogliere qualche aspetto più complesso che un metodo così concettualmente semplice non è in grado di cogliere. Ci si accorge subito che tale modello poggia su presupposti non sempre verificati: non sempre, infatti, le parole più diffuse sono rappresentative dei concetti centrali di un testo. Per oltrepassare questo limite, si ragiona in questo modo: supponiamo, per un testo, l'esistenza di alcuni concetti \emph{latenti} (detti \emph{topic}). A partire da essi si può generare la distribuzione delle restanti parole, sicché i \emph{topic} rappresentano gli archetipi generativi della forma finale del testo. Tale idea è alla base del \emph{Latent Dirichlet Allocation} che, oltre ad essere anch'esso un modello di tipo \emph{bag-of-word}, rileva l'aspetto distribuzionale, e dunque statistico, insito nella composizione di un testo.
+
+Un modello come il \emph{Latent Semantic Indexing} o come il \emph{Latent Dirichlet Allocation}, in quanto metodo per l'estrazione di contenuto informativo presente in un testo, si definisce \emph{topic model} o modello di \emph{topic extraction}.
+
+I \emph{topic model} sono dunque gli strumenti matematico-statistici che abbiamo a disposizione per lo scopo che ci proponiamo di raggiungere. 
+
+\section[La procedura e la scelta del caso di studio]{La procedura e la scelta del caso di studio
+	\sectionmark{Procedura e case study}}
+\sectionmark{Procedura e case study}
+
+A questo punto, dopo aver esaminato il contesto che giustifica l'implementazione della nostra procedura, risultano delineati tre aspetti centrali del nostro studio: i \emph{big data}, il processing del linguaggio naturale e i \emph{topic model}. Si comincia a comprendere quali possano essere i requisiti dell'algoritmo da implementare. Innanzitutto si richiede che esso sia in grado di reperire i file testuali dalla rete, di memorizzarli e gestirli e poi di ripulirli dal superfluo di cui inevitabilmente sono carichi. Successivamente, occorre analizzare i file così processati in modo che il computer comprenda quali sono le parti fondamentali del discorso e se ci sono affinità di significato tra i termini incontrati. Infine, si applicano i modelli di \emph{topic extraction}. Resta da motivare la scelta del caso di studio per testare l'algoritmo.
+
+I contenuti testuali presenti in rete, come abbiamo visto, sono moltissimi e disparati e vanno dalle mail ai tweet, dai blog ai siti istituzionali. In particolare, ci sembra rilevante soffermarci sul  settore dell'editoria giornalistica, i cui contenuti sono oggigiorno quasi interamente fruibili in rete Tale settore rappresenta una parte molto importante della categoria più generale dei \emph{social media}. Con quest'ultima locuzione si intende quel complesso di tecnologie e pratiche che le persone adottano per lo scambio di informazioni in Internet ed estende alla rete quella dimensione una volta esclusiva dei \emph{mass media}. In questo senso il giornalismo rappresenta una forma di contatto tra questi due aspetti, tuttavia le motivazioni della nostra scelta vanno ben oltre. Innanzitutto, il giornalismo produce articoli ad un ritmo costante, il che è fondamentale per le rilevazioni: nel caso di tweet specifici o mail, i contenuti possono essere postati in modo occasionale e dunque non è scontato che si riesca ad accumulare un sufficiente numero di dati in tempo fissato; gli articoli possiedono, per di più, un'estensione non ridotta e che si presta bene alle analisi dei topic model. A differenza delle pagine sui social o dei blog, inoltre, i giornali appaiono come entità più solide: accade di frequente che i blog vengano presi di mira da attacchi informatici o che le pagine dei social chiudano spontaneamente, mentre è rarissimo che un giornale di punto in bianco smetta di esistere. Per di più, le conclusioni che possiamo trarre dall'analisi degli articoli di giornale hanno, potenzialmente, un interesse di pubblico rilievo e sono suscettibili di diverse e interessanti generalizzazioni. 
+
+Nel caso esaminato, ci preoccuperemo di enucleare gli argomenti principali di ciascuna testata giornalistica analizzata, allo scopo di classificarla sulla base degli argomenti trattati. 
+
+Come più volte sottolineato, l'algoritmo si può adattare anche ad altri contesti: basta, ad esempio, modificare la sorgente dei dati acquisiti (nell'appendice finale si vedrà come estrarre anche dati dai social). Gli studi che si possono condurre sono svariati, con applicazioni che vanno dalla \emph{sentiment analysis} alle ricerche in campo sociologico. 
+
+Noi ci occuperemo, come più volte ribadito, solo della procedura. Anche le conclusioni del caso di studio saranno solo indicative e non hanno valore di una ricerca scientifica.
 \clearpage
 
 % Capitolo 2
-\chapter{Modelli di Topic Extraction. LSI e LDA.}
-\chaptermark{Topic extraction} % Supervised and unsupervised classification... 
-
-Il fulcro dell'analisi che andremo a svolgere è costituito dalla capacità di estrarre dai testi analizzati informazioni concernenti il loro contenuto. Un algoritmo in grado di effettuare una tale operazione viene definito \emph{topic model}. Ci concentreremo principalmente su due topic model, il Latent Semantic Indexing ed il Latent Dirichlet Allocation (di seguito abbreviati LSI e LDA) focalizzandoci, per quanto concerne il case study, principalmente sul secondo.
-
-Storicamente, l'LSI rappresenta il capostipite dei topic model: tra la fine degli anni '80 e l'inizio dei '90, nell'ambito del cosiddetto \emph{Information Retrieval} (Recupero delle Informazioni), viene definito il \emph{Latent Semantic Indexing} da Deerwester et al. []. Tale metodologia è stata adottata in modo pressoché incontrastato fino alla fine del secolo scorso nell'ambito dei motori di ricerca []. Successivamente, Hoffman [] nel 1999, ha generalizzato la procedura implementando il \emph{Probabilistic Latent Semantic Indexing} (pLSI) di cui daremo qualche cenno. Infine, nel 2003, Blei et al. [] hanno realizzato l'algoritmo di LDA, che ha raggiunto grande fama e diffusione.
-
-\section{Latent Semantic Indexing.}
-Il \emph{Latent Semantic Indexing}, spesso chiamato anche \emph{Latent Semantic Analysis}, segue un approccio \emph{bag of words} e consiste in una riduzione dimensionale di una matrice parole-documenti che vedremo in dettaglio. 
-
-% Cosa sono corpus, documenti, termini
-
-\subsection{Schema  \emph{tfidf}.} 
-Definiamo la seguente matrice 
-$$
-DTM\footnote{Sta per \emph{Document Term Matrix}} = \left\{w_{ij}\right\}_{i = 1, 2, \cdots, T; j = 1, 2, \cdots, D}
-$$
-ove $T$ rappresenta il numero totale dei termini presenti in tutti i documenti e $D$ il numero di tali documenti. Pertanto l'elemento $w_{ij}$ rappresenta il peso che riveste il termine $i$ nel documento $j$. Come sistema di pesi, si potrebbe adottare la semplice frequenza di un termine nel documento, tuttavia si ricorre nella maggior parte dei casi, all'utilizzo della funzione \emph{tfidf}\footnote{Che sta per term frequency-inverse document frequency} nella forma:
-$$
-w_{ij} = tfidf(i, j) = n_{ij} \cdot \log\left(\frac{D}{n_j}\right)
-$$
-anche se sovente si preferisce un'analoga formula normalizzata di tipo coseno (che ricorda il prodotto scalare)
-$$
-w_{ij} = \frac{tfidf(i,j)}{\sqrt{\sum_{t=1}^T}tfidf^2(i,j)}.
-$$
-In ogni caso, $n_{ij}$ rappresenta la frequenza relativa del termine $i$-esimo nel documento $j$-esimo e $n_j$ è il numero di documenti che contengono il termine $i$-esimo; Ciò vuol dire che il peso (o la \emph{rilevanza}) di un termine per un documento è direttamente proporzionale alla sua frequenza in quel documento e inversamente proporzionale alla sua frequenza nell'intera collezione di documenti. 
-
-In generale lo schema tfidf non riesce a rilevare aspetti del linguaggio naturale, anche se riesce ad enucleare i termini maggiormente esplicativi nei documenti.
-
-
-\subsection{Descrizione del modello LSI}
-A questo punto si opera la riduzione dimensionale della matrice $DTM$ in modo da identificare un sottospazio lineare in grado di spiegare il più possibile dell'intera varianza del corpus di documenti.
-Si dimostra,infatti, che è sempre possibile scrivere la matrice DTM come:
-$$
-DTM = U\Sigma V^t
-$$
-dove U, e V sono matrici ortogonali  e $\Sigma$ è la matrice diagonale dei valori singolari di DTM:
-$$
-\begin{bmatrix}
-    \sigma_1 & 0 & 0 & \dots  & 0 \\
-    0 & \sigma_2 & 0 & \dots  & 0 \\
-    \vdots & \vdots & \vdots & \ddots & \vdots \\
-    0 & 0 & 0 & \dots  & \sigma_r
-\end{bmatrix}
-$$
-con $r$ rango di DTM e $\sigma_1 \ge \sigma_2 \ge \dots, \sigma_r$.
-Sostituendo alla matrice $\Sigma$, un'altra matrice diagonale $\Sigma^*$ che contiene  soltanto i primi $k$ valori singolari più elevati, con $k \le r$,  e annullando i rimanenti, si effettua un'approssimazione di DTM che consiste in una proiezione ortogonale di DTM su un
-sottospazio lineare di dimensione inferiore.
-
-In formule  
-$$
-DTM^* = U\Sigma^* V^t \sim U\Sigma V^t = DTM
-$$
-
-L'approssimazione DTM* ha rango $k$. 
-
-Con l'LSI si riescono a cogliere anche alcuni aspetti importanti del linguaggio naturale, come la sinonimia e la polisemia e in generale costrutti semantici latenti (da cui il nome della procedura), oltre che notevoli compressioni dei documenti originali, tuttavia l'LSI non modellizza la genesi dei dati. 
-
-
-\subsection{Un esempio di applicazione}
-
-% Wikipedia...
-
-\subsection{Cenni al \emph{pLSI}}
-
-Pur senza addentrarci nei dettagli, enucleiamo i punti principali del pLSI in quanto esso rappresenta un passo intermedio tra l'LSI e l'LDA.
-
-Come abbiamo visto, il modello LSI consente di cogliere un nucleo conoscitivo di un documento o di una collezione di documenti ma non è un medello generativo, nel senso che non coglie l'aspetto statistico della distribuzione delle parole nel documento.
-
-Il modello pLSI, anch'esso basato sull'approccio bag-of words, consente di risolvere questo problema aggiungendo, di fatto, un modello generativo all'LSI:  si vuole assegnare una distribuzione di probabilità congiunta alla coppia documento-parola e, per far ciò, si considera un'ulteriore variabile, poniamo $z$,  condizionatamente alla quale la probabilità congiunta si decompone nel prodotto della distribuzione sui documenti e sulle parole. 
-
-Con queste assunzioni, ne risulta un modello generativo dei parametri (documento, \emph{z} e parola); l'inferenza sui parametri si ottiene massimizzando la funzione di log-verosimiglianza mediante l'algoritmo EM.
-
-\section{Latent Dirichlet Allocation}
-
-Il modello LDA è di tipo  Bayesiano, gerarchico su tre livelli, adatto in particolare al processing di file di testo, ma più in generale in grado di processare dati discreti. Così come l'LSI si tratta anch'esso di un algoritmo di tipo bag-of-words, ma al contrario di quest'ultimo, non si concentra sull'aspetto di riduzione dimensionale di una matrice di parole-documenti, bensì cerca, in qualche senso che sarà più chiaro in seguito, di ricostruire la struttura di un documento sulla base di topic supposti latenti, in numero fissato e con una distribuzione predefinita.
-
-\subsection{Definizioni e formalizzazione.}
-Sia $v$ un vettore , in seguito $v^1$ indicherà la prima componente, $v^2$ la seconda, $v^i$ la \emph{i}-esima e così via.
-
-Sebbene in precedenza abbiamo omesso definizioni di concetti quali parola, documento e corpus, lasciando  all'intuito il compito di chiarirli, nel prosieguo, con l'obiettivo di una maggiore profondità e di un maggiore dettaglio, è necessario fornire le seguenti definizioni:
-
-
-\begin{enumerate}
-\item Un dizionario è un insieme finito del tipo $\left\{1, \dots, V \right\}$, dove $V$ ne rappresenta anche la lunghezza;
-\item Una \emph{parola} è un'unità del dato discreto. La parola \emph{i}-esima si indica con un vettore binario di lunghezza \emph{V}, ovvero, indicando la parola con \emph{w}, l' indice \emph{i} è tale per cui $w^i=1$ mentre per ogni $j\neq i$ $w^j = 0$ .
-
-Due differenti parole hanno, chiaramente, diversi vettori associati.
-
-\item Un \emph{documento} è una sequenza di $N$ parole e lo si denota con $\textbf{w} = (w_1, w_2, w_N)$, dove con $w_n$ si intende l'n-esima parola della sequenza.
-
-\item Un \emph{corpus} è un insieme di $M$ documenti e lo indichiamo con D =$\left\{w_1, w_2, \dots, w_M \right\}$
-
-\end{enumerate}
-
-Passiamo ora alla formalizzazione del modello: per ogni documento \textbf{w} in un corpo $D$ valgono le seguenti assunzioni:
-\begin{enumerate}
-\item Sia $\theta \sim Dir(\alpha)$
-\item Per ognuna delle $N$ parole $w_n$:
-
-\begin{itemize}
-\item Si scelga un topic $z_n \sim Mult(\theta)$;
-\item Si scelga una parola $w_n$ da $p(w_n| z_n, \beta)$, ovvero una distribuzione multinomiale condizionata a $z_n$ 
-\end{itemize}
-
-In generale assegnare una particolare distribuzione al numero di parole $N$ non è vincolante per il prosieguo, tuttavia per fissare le idee poniamo
-
-\item $N \sim Poiss(\eta)$
-\end{enumerate}
-
-In sostanza, riassumendo, abbiamo un modello che concepisce i documenti come misture di topic che sono latenti e ciascun topic, a sua volta, è inteso come una distribuzione multinomiale sui 
-termini del dizionario V. Tale modellizzazione agisce su tre livelli, come avevamo specificato in precedenza, che analizziamo più nel dettaglio.
-
-Il primo livello è rappresentato dalle parole nel documento, a ciascuna delle quali è associata una classe latente $z_n \in Z = \left\{1, 2, \cdots, K \right\}$, chiamata anche 
-\textit{topic assignment} nella relazione 3b:
-
-$$
-w_n \sim p(w_n|z_n, \beta) \equiv Mult(\beta_{zn})
-$$
-
-In cui  \textbf{$\beta$} è una matrice di topic tale per cui $\beta_{kj} = p(w^j = 1|z=k)$
- e che ha dimensione $K\times V$. Nella relazione dunque, la variabile multinomiale ha come parametro 
-il vettore riga corrispondente a $z_n$. La matrice $\beta$ nel nostro modello rappresenta un parametro da stimare, inoltre osserviamo che il numero di topic K è fissato.
-
-Il secondo livello è rappresentato dal documento stesso, la cui relazione specificata è quella al punto 3a. Il parametro $\theta$ viene indicato anche con il nome di 
-\textit{topic proportions}.
-
-Il terzo e ultimo livello consiste nel corpus dei documenti. Per ogni documento $\textbf{w} \in D$ abbiamo visto che $\theta$ viene generato secondo una distribuzione di Dirichlet di 
-parametro $\alpha$ la cui forma esplicita è la seguente:
-
-$$
-p(\theta|\alpha) = \frac{\Gamma (\sum_{k = 1}^K \alpha_k)}{\prod_{k = 1}^K \Gamma(\alpha_k)}\dot \theta_1^{a_1 - 1}\dot \theta_2^{a_2 - 1} \cdots \dot \theta_K^{a_K - 1}.
-$$
-
-La scelta della distribuzione di Dirichlet è giustificata dal fatto che appartiene alla famiglia esponenziale, ha un buon comportamento sui simplessi di dimensione $K - 1$ (
-abbiamo $\theta \geq 0$ e $\sum \theta = 1$),
-ha statistiche sufficienti di dimensione finita ed è coniugata alla distribuzione multinomiale; pertanto risulta una scelta efficace dal punto di vista dell'implementazione sia teorica che pratica.
-Notiamo infine, che in questo modo  proporzioni dei topic all'interno di ogni documento sono generate indipendentemente dal documento stesso e questo comporta sì la stima di un 
-parametro aggiuntivo, ma consente di liberarsi dall'etichettatura dei documenti.
-
-La seguente figura riassume quanto esposto.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  FIGURA
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-La distribuzione congiunta della topic proportion $\theta$, dell'insieme di N topic $z$ e dell'insieme di N parole $w$, dati i parametri $\alpha$ e $\beta$ è la seguente:
-$$
-p(\theta, z, w|\alpha, \beta) = p(\theta|\alpha)\prod_{n=1}^N p(z_n|\theta)p(w_n|z_n, \beta)
-$$
-dove $p(z_n|\theta)$ è semplicemente $\theta_i$ per quell'unico indice per cui anche $z_n^i = 1$. Integrando rispetto a $\theta$ abbiamo la marginale
-
-$$
-p(w|\alpha, \beta) = \int p(\theta|\alpha)\left( \prod_{n=1}^N \sum_{z_n}p(z_n|\theta)p(w_n|z_n, \beta) \right)d\theta
-$$
-
-Infine, otteniamo la probabilità del corpus è data dalla produttoria delle marginali:
-$$
-p(D|\alpha, \beta) = \prod_{d=1}^M \int p(\theta_d|\alpha)\left(\prod_{n=1}^{N_d}\sum_{z_n}p(z_{dn}|\theta_d)p(w_{dn}|z_{dn}, \beta)  \right) d\theta_d
-$$
-
-Quest'ultima relazione è il punto di partenza da cui si costruisce la funzione di verosimiglianza da massimizzare per fare inferenza sui parametri di interesse.
-
-
-\subsection{Inferenza sui parametri.}
-Il nocciolo del problema è rappresentato dal fatto che la massimizzazione della log-verosimiglianza 
-$$
-\sum_{v = 1}^V log p(w_v|\alpha, \beta),
-$$
-è sostanzialmente intrattabile dal punto di vista computazionale in quanto, scrivendo diversamente la marginale, abbiamo che 
-$$
-p(w|\alpha, \beta) = \frac{\Gamma(\sum_i \alpha_i)}{\prod_i \Gamma(\alpha_i)} \int \left(\prod_{i = 1}^k \theta_i^{\alpha_i - 1}  \right)\left(\prod_{n = 1}^N \sum_{i=1}^k \prod_{j = 1}^V (\theta_i \beta_{ij}^{w_n^i}) \right)d\theta
-$$
-e si dimostra che la presenza del prodotto delle variabili $\theta$ e $\beta$ non consente una soluzione.
- 
-Per ovviare a questa impossibilità, data la convessità delle funzioni in gioco, si ricerca un limite inferiore della funzione di log-verosimiglianza e si ricorre
-all'algoritmo VEM (Variational Expevtation Maximization); il lower bound è costituito da un'approssimazione della distribuzione a posteriori sulle variabili latenti che appartiene 
-alla seguente famiglia
-$$
-q(\theta,z|\gamma, \phi) = q(\theta|\gamma)\prod_{n=1}^N q(z_n|\phi_n)
-$$
-
-A questo punto l'algoritmo VEM consta di due passaggi 
-
-\begin{enumerate}
-\item E-step: Per ogni documento d in D si trovano i valori ottimali dei parametri $\gamma*$ e $\phi*$  minimizzando la divergenza di Kullback -Leibler tra la distribuzione variazionale e la distribuzione a 
-posteriori vera, in simboli
-$$
-(\gamma^*, \phi^*) = \min_{\gamma, \phi} D(q(\theta,z|\gamma, \phi)||p(\theta, z|w, \alpha, beta))
-$$
-
-\item M-step: si massimizza rispetto ad $\alpha$ e $\beta$ il lower-bound trovato al passo
-precedente.
-
-\end{enumerate}
-
-Questi due passi sono ripetuti fino a quando l'algoritmo converge ad un massimo locale
-della funzione di log-verosimiglianza.
-
-% Possiamo aggiungere altri confronti/ algoritmi dall'articolo di Blei...
-
-\subsection{Considerazioni e confronti.}
-
-% Confronto con altri modelli sia precedenti che non esaminati come il dirichlet cluster
-
-% Rispetto all'LSI è un modello non deterministico. Cosa fa di più? Perché non limitarci all'LSI? Confronta output di Blei...
-
-
-\clearpage
-
-% Capitolo3
 \chapter{Tecnologie per la gestione dei Big Data e l'analisi testuale}
 \chaptermark{Big Data e NLP}
 
@@ -418,6 +256,255 @@ Viceversa la procedura LSA è interamente eseguita all'interno dell'ambiente Spar
 
 % L'interfaccia OS?
 
+
+\clearpage
+
+% Capitolo 3
+\chapter{Modelli di Topic Extraction. LSI e LDA.}
+\chaptermark{Topic extraction} % Supervised and unsupervised classification... 
+
+Il fulcro dell'analisi che andremo a svolgere è costituito dalla capacità di estrarre dai testi analizzati informazioni concernenti il loro contenuto: tale è il compito dei \emph{topic model} Ci concentreremo principalmente su due estrattori, il \emph{Latent Semantic Indexing} ed il \emph{Latent Dirichlet Allocation}, di seguito abbreviati LSI e LDA.
+
+Storicamente, l'LSI rappresenta il capostipite dei \emph{topic model}: tra la fine degli anni '80 e l'inizio dei '90, nell'ambito del cosiddetto \emph{Information Retrieval} (Recupero delle Informazioni), viene definito il \emph{Latent Semantic Indexing} da Deerwester et al. \cite{Der90}. Tale metodologia è stata adottata fino alla fine del secolo scorso nell'ambito dei motori di ricerca. Successivamente, Hofmann \cite{Hof99} nel 1999, ha generalizzato la procedura implementando il \emph{Probabilistic Latent Semantic Indexing} (pLSI) di cui daremo qualche cenno. Infine, nel 2003, Blei et al. \cite{Ble03} hanno realizzato l'algoritmo di LDA, che ha raggiunto grande fama e diffusione.
+
+Definiamo gli strumenti principali che utilizzeremo in entrambe le analisi.
+
+Sia $v$ un vettore, in seguito $v^1$ indicherà la prima componente, $v^2$ la seconda, $v^i$ la \emph{i}-esima e così via.
+
+\begin{enumerate}
+\item Un dizionario è un insieme finito del tipo $\left\{1, \dots, V \right\}$, dove $V$ ne rappresenta anche la lunghezza;
+\item Una \emph{parola} è un'unità del dato discreto. La parola \emph{i}-esima si indica con un vettore binario di lunghezza \emph{V}, ovvero, indicando la parola con \emph{w}, l' indice \emph{i} è tale per cui $w^i=1$ mentre per ogni $j\neq i$ $w^j = 0$ .
+
+Due differenti parole hanno, chiaramente, diversi vettori associati.
+
+\item Un \emph{documento} è una sequenza di $N$ parole e lo si denota con $\mathbf{w} = (w_1, w_2, w_N)$, dove con $w_n$ si intende l'n-esima parola della sequenza.
+
+\item Un \emph{corpus} è un insieme di $M$ documenti e lo indichiamo con la scrittura D =$\left\{\mathbf{w_1}, \mathbf{w_2}, \dots, \mathbf{w_M} \right\}.$
+
+\end{enumerate}
+
+\section{Latent Semantic Indexing.}
+Il \emph{Latent Semantic Indexing}, spesso chiamato anche \emph{Latent Semantic Analysis}, è una metodologia di tipo \emph{bag of words} che consiste nella riduzione dimensionale di una matrice parole-documenti.
+
+\subsection{Schema  \emph{tfidf}.} 
+Definiamo la seguente matrice 
+$$
+DTM\footnote{Sta per \emph{Document Term Matrix}} = \left\{u_{ij}\right\}_{i = 1, 2, \cdots, V; j = 1, 2, \cdots, M}
+$$
+ove $V$ rappresenta il numero totale dei termini presenti in tutti i documenti e $M$ il numero di tali documenti. Pertanto l'elemento $u_{ij}$ rappresenta il peso che riveste il termine $i$ nel documento $j$. Come sistema di pesi, si potrebbe adottare la semplice frequenza di un termine nel documento, tuttavia si ricorre nella maggior parte dei casi, all'utilizzo della funzione \emph{tfidf}\footnote{Che sta per term frequency-inverse document frequency}, definita per la prima volta in \cite{Sal88}, che ha la seguente forma:
+$$
+u_{ij} = tfidf(i, j) = n_{ij} \cdot \log\left(\frac{M}{n_j}\right)
+$$
+anche se sovente si preferisce un'analoga formula normalizzata di tipo coseno (che ricorda il prodotto scalare)
+$$
+u_{ij} = \frac{tfidf(i,j)}{\sqrt{\sum_{t=1}^Ttfidf^2(i,j)}}.
+$$
+In ogni caso, $n_{ij}$ rappresenta la frequenza relativa del termine $i$-esimo nel documento $j$-esimo e $n_j$ è il numero di documenti che contengono il termine $i$-esimo; Ciò vuol dire che il peso (o la \emph{rilevanza}) di un termine per un documento è direttamente proporzionale alla sua frequenza in quel documento e inversamente proporzionale alla sua frequenza nell'intera collezione di documenti. 
+
+In generale lo schema tfidf pesa maggiormente i termini più rilevanti nei documenti.
+
+\subsection{Descrizione del modello LSI}
+A questo punto si opera la riduzione dimensionale della matrice $DTM$ in modo da identificare un sottospazio lineare in grado di spiegare il più possibile dell'intera varianza del corpus di documenti.
+Si dimostra,infatti, che è sempre possibile scrivere la matrice DTM come:
+$$
+DTM = U\Sigma V^t
+$$
+dove U, e V sono matrici ortogonali  e $\Sigma$ è la matrice diagonale dei valori singolari di DTM:
+$$
+\begin{bmatrix}
+    \sigma_1 & 0 & 0 & \dots  & 0 \\
+    0 & \sigma_2 & 0 & \dots  & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \dots  & \sigma_r
+\end{bmatrix}
+$$
+con $r$ rango di DTM e $\sigma_1 \ge \sigma_2 \ge \dots, \sigma_r$.
+Sostituendo alla matrice $\Sigma$, un'altra matrice diagonale $\Sigma^*$ che contiene  soltanto i primi $k$ valori singolari più elevati, con $k \le r$,  e annullando i rimanenti, si effettua un'approssimazione di DTM che consiste in una proiezione ortogonale di DTM su un
+sottospazio lineare di dimensione inferiore.
+
+In formule  
+$$
+DTM^* = U\Sigma^* V^t \sim U\Sigma V^t = DTM
+$$
+
+L'approssimazione DTM* ha rango $k$. 
+
+Con l'LSI si riescono a cogliere anche alcuni aspetti importanti del linguaggio naturale, come la sinonimia e la polisemia e in generale costrutti semantici latenti (da cui il nome della procedura), oltre che notevoli compressioni dei documenti originali, tuttavia l'LSI non modellizza la genesi dei dati. 
+
+\subsection{Un esempio di applicazione}
+
+% Newton
+
+% Non serve parlare dell'algoritmo SVD?
+
+\subsection{Cenni al \emph{pLSI}}
+
+Pur senza addentrarci nei dettagli, diamo qualche cenno del pLSI, in quanto esso rappresenta un passo intermedio tra l'LSI e l'LDA.
+
+Come abbiamo visto, il modello LSI consente di cogliere un nucleo conoscitivo di un documento o di una collezione di documenti ma non è un modello generativo, nel senso che non coglie l'aspetto statistico della distribuzione delle parole nel documento.
+
+Il modello pLSI, anch'esso basato sull'approccio \emph{bag-of words}, consente di risolvere questo problema aggiungendo, di fatto, un modello generativo all'LSI:  si vuole assegnare una distribuzione di probabilità congiunta alla coppia documento-parola, in particolare si suppone che ogni parola sia generata indipendentemente dalle altre da un modello di mistura. Per far ciò, si considera un'ulteriore variabile, poniamo $z$ (che rappresenta la classe latente),  condizionatamente alla quale la probabilità congiunta si decompone nel prodotto della distribuzione sui documenti e sulle parole. 
+
+Con queste assunzioni, ne risulta un modello generativo dei parametri (documento, \emph{z} e parola); l'inferenza sui parametri si ottiene massimizzando la funzione di log-verosimiglianza mediante l'algoritmo EM.
+
+Sebbene il pLSI sia un primo passo importante nella direzione dei modelli probabilistici, esso possiede ancora un ampio margine di miglioramento, considerato che il modello probabilistico non arriva al livello dei documenti. In sostanza il pLSI associa ad ogni documento una lista di valori, che sono le proporzioni di mistura per i topic e dunque non c'è nessun modello generativo per questi valori. Da un lato questo implica una crescita delle proporzioni di mistura che è lineare rispetto alla dimensione del corpus, dall'altro lascia nell'incertezza sull'assegnazione delle probabilità a un documento esterno al dataset di training.
+
+Tali problemi sono superati dal LDA come vedremo in seguito.
+
+\section{Latent Dirichlet Allocation}
+
+Il modello LDA è di tipo  Bayesiano, gerarchico su tre livelli, adatto in particolare al processing di file di testo, ma più in generale in grado di processare dati discreti. Così come l'LSI si tratta anch'esso di un algoritmo di tipo \emph{bag-of-words}, ma al contrario di quest'ultimo, non si concentra sull'aspetto di riduzione dimensionale di una matrice di parole-documenti, bensì cerca, in qualche senso che sarà più chiaro in seguito, di ricostruire la struttura di un documento sulla base di topic supposti latenti, in numero fissato e con una distribuzione predefinita.
+
+\subsection{Formalizzazione del modello.}
+
+Per ogni documento \textbf{w} in un corpo $D$ valgono le seguenti assunzioni:
+
+\begin{enumerate}
+\item Sia $\theta \sim Dir(\alpha)$
+\item Per ognuna delle $N$ parole $w_n$:
+
+\begin{itemize}
+\item Si scelga un topic $z_n \sim Mult(\theta)$;
+\item Si scelga una parola $w_n$ da $p(w_n| z_n, \beta)$, ovvero una distribuzione Multinomiale condizionata a $z_n$ 
+\end{itemize}
+
+In generale assegnare una particolare distribuzione al numero di parole $N$ non è vincolante per il prosieguo, tuttavia per fissare le idee poniamo
+
+\item $N \sim Poiss(\eta)$
+\end{enumerate}
+
+In sostanza, riassumendo, abbiamo un modello che concepisce i documenti come misture di topic che sono latenti e ciascun topic, a sua volta, è inteso come una distribuzione Multinomiale sui 
+termini del dizionario V. Tale modellizzazione agisce su tre livelli, come avevamo specificato in precedenza, che analizziamo più nel dettaglio.
+
+Il primo livello è rappresentato dalle parole nel documento, a ciascuna delle quali è associata una classe latente $z_n \in Z = \left\{1, 2, \cdots, K \right\}$, chiamata anche 
+\textit{topic assignment} nella relazione 3b:
+
+$$
+w_n \sim p(w_n|z_n, \beta) \equiv Mult(\beta_{zn})
+$$
+
+In cui  \textbf{$\beta$} è una matrice di topic tale per cui $\beta_{ij} = p(w^j = 1|z^i=1)$
+ e che ha dimensione $K\times V$. Nella relazione dunque, la variabile multinomiale ha come parametro 
+il vettore riga corrispondente a $z_n$. La matrice $\mathbf{\beta}$ nel nostro modello rappresenta un parametro da stimare, inoltre osserviamo che il numero di topic K è fissato.
+
+Il secondo livello è rappresentato dal documento stesso, la cui relazione specificata è quella al punto 3a. Il parametro $\mathbf{\theta}$ viene indicato anche con il nome di \textit{topic proportions}.
+
+Il terzo e ultimo livello consiste nel corpus dei documenti. Per ogni documento $\textbf{w} \in D$ abbiamo visto che $\mathbf{\theta}$ viene generato secondo una distribuzione di Dirichlet di 
+parametro $\alpha$ la cui forma esplicita è la seguente:
+
+$$
+p(\mathbf{\theta}|\mathbf{\alpha}) = \frac{\Gamma (\sum_{k = 1}^K \alpha_k)}{\prod_{k = 1}^K \Gamma(\alpha_k)}\theta_1^{a_1 - 1} \theta_2^{a_2 - 1} \cdots \theta_K^{a_K - 1}.
+$$
+
+La scelta della distribuzione di Dirichlet è giustificata dal fatto che appartiene alla famiglia esponenziale, ha un buon comportamento sui simplessi di dimensione $K - 1$ (abbiamo $\theta \geq 0$ e $\sum \theta = 1$), ha statistiche sufficienti di dimensione finita ed è coniugata alla distribuzione Multinomiale; pertanto risulta una scelta efficace dal punto di vista dell'implementazione sia teorica che pratica.
+Notiamo infine, che in questo modo  proporzioni dei topic all'interno di ogni documento sono generate indipendentemente dal documento stesso e questo comporta sì la stima di un 
+parametro aggiuntivo, ma consente di liberarsi dall'etichettatura dei documenti.
+
+Nella figura 3.1 è riassunto il processo generativo appena esposto.
+
+\begin{figure}
+\centering
+\includegraphics[width=.7\textwidth]{LDA}
+\caption{Struttura generativa dell'LDA}
+\label{fig:subfig}
+\end{figure}
+
+
+La distribuzione congiunta della topic proportion $\mathbf{\theta}$, dell'insieme di N topic $\mathbf{z}$ e dell'insieme di N parole $w$, dati i parametri $\alpha$ e $\beta$ è la seguente:
+$$
+p(\mathbf{\theta}, \mathbf{z}, \mathbf{w}|\mathbf{\alpha}, \mathbf{\beta}) = p(\mathbf{\theta}|\mathbf{\alpha})\prod_{n=1}^N p(z_n|\mathbf{\theta})p(w_n|z_n, \mathbf{\beta})
+$$
+dove $p(z_n|\mathbf{\theta})$ è semplicemente $\theta_i$ per quell'unico indice per cui anche $z_n^i = 1$. Integrando rispetto a $\mathbf{\theta}$ abbiamo la marginale
+
+$$
+p(\mathbf{\theta}|\mathbf{\alpha},\mathbf{\beta}) = \int p(\mathbf{\theta}|\mathbf{\alpha})\left( \prod_{n=1}^N \sum_{z_n}p(z_n|\mathbf{\theta})p(w_n|z_n,  \mathbf{\beta}) \right)d\mathbf{\theta}
+$$
+
+Infine, otteniamo la probabilità del corpus è data dalla produttoria delle marginali:
+$$
+p(D|\mathbf{\alpha},\mathbf{\beta}) = \prod_{d=1}^M \int p(\theta_d|\mathbf{\alpha})\left(\prod_{n=1}^{N_d}\sum_{z_n}p(z_{dn}|\theta_d)p(w_{dn}|z_{dn}, \mathbf{\beta})  \right) d\theta_d
+$$
+
+Quest'ultima relazione è il punto di partenza da cui si costruisce la funzione di verosimiglianza da massimizzare per fare inferenza sui parametri di interesse.
+
+
+\subsection{Inferenza sui parametri.}
+Il nocciolo del problema è rappresentato dal fatto che la massimizzazione della log-verosimiglianza 
+$$
+\sum_{v = 1}^V log p(w_v|\mathbf{\alpha},\mathbf{\beta}),
+$$
+è sostanzialmente intrattabile dal punto di vista computazionale in quanto, scrivendo diversamente la marginale, abbiamo che 
+$$
+p(\mathbf{w}|\mathbf{\alpha},\mathbf{\beta}) = \frac{\Gamma(\sum_i \alpha_i)}{\prod_i \Gamma(\alpha_i)} \int \left(\prod_{i = 1}^k \theta_i^{\alpha_i - 1}  \right)\left(\prod_{n = 1}^N \sum_{i=1}^k \prod_{j = 1}^V (\theta_i \beta_{ij}^{w_n^i}) \right)d\theta
+$$
+e si dimostra che la presenza del prodotto delle variabili $\mathbf{\theta}$ e $\mathbf{\beta}$ non consente una soluzione.
+ 
+Per ovviare a questa impossibilità, data la convessità delle funzioni in gioco, si ricerca un limite inferiore della funzione di log-verosimiglianza e si ricorre
+all'algoritmo VEM (Variational Expectation Maximization); il lower bound è costituito da un'approssimazione della distribuzione a posteriori sulle variabili latenti che appartiene 
+alla seguente famiglia
+$$
+q(\mathbf{\theta},z|\gamma, \mathbf{\varphi}) = q(\mathbf{\theta}|\gamma)\prod_{n=1}^N q(z_n|\varphi_n)
+$$
+
+A questo punto l'algoritmo VEM consta di due passaggi 
+
+\begin{enumerate}
+\item E-step: Per ogni documento d in D si trovano i valori ottimali dei parametri $\gamma*$ e $\phi*$  minimizzando la divergenza di Kullback -Leibler tra la distribuzione variazionale e la distribuzione a 
+posteriori vera, in simboli
+$$
+(\gamma^*, \mathbf{\varphi}^*) = \min_{\gamma, \mathbf{\varphi}} D(q(\mathbf{\theta},z|\gamma, \mathbf{\varphi})||p(\mathbf{\theta}, \mathbf{z}|\mathbf{w}, \mathbf{\alpha},\mathbf{\beta}))
+$$
+
+\item M-step: si massimizza rispetto ad $\mathbf{\alpha}$ e $\mathbf{\beta}$ il lower-bound trovato al passo precedente.
+
+\end{enumerate}
+
+Questi due passi sono ripetuti fino a quando l'algoritmo converge ad un massimo locale
+della funzione di log-verosimiglianza.
+
+% Possiamo aggiungere altri confronti/ algoritmi dall'articolo di Blei...
+
+\subsection{Esempio di applicazione.}
+
+Il risultato dell'analisi LDA sarà simile al seguente (caso $n$ = 10 e $k$ = 2):
+\begin{verbatim}
+Topic 1:
+matem  0.009560573221092942
+scuol  0.00808030602233562
+post  0.007174175578550224
+vuot  0.00701157776472776
+quas  0.006984416666260308
+capac  0.006773406498557413
+istr  0.0066294229384543345
+ben  0.006600503209852239
+aver  0.006556311017571411
+reclut  0.0065142697691635085
+
+
+Topic 2:
+frut  0.00755124839871547
+vorag  0.007512074134983625
+lombar  0.007231254609200753
+profession  0.007015777869361581
+fedel  0.006789730066915294
+dat  0.006683804983393134
+minis  0.006668940226489626
+confr  0.0066030669225653794
+fa  0.00660271421692034
+par  0.006571353930747912
+\end{verbatim}
+
+Come si vede ciascuna parola è affiancata da una probabilità che è tanto più alta quanto più, secondo il modello, quella parola ha affinità con il topic.
+
+\subsection{Considerazioni e confronti.}
+
+% Confronto con altri modelli sia precedenti che non esaminati come il dirichlet cluster possiamo anche fare riferimento al probabilistic LDA
+
+% Rispetto all'LSI è un modello non deterministico. Cosa fa di più? Perché non limitarci all'LSI? Confronta output di Blei...
+
+% Bag -of- words and exengeability
+
+
 \clearpage
 
 % Capitolo 4
@@ -508,38 +595,9 @@ Il testo così processato può finalmente essere analizzato dai modelli di topic e
 
 \section{Fusione dei modelli e salvataggio}
 
-Il modello LDA è già stato discusso nell'ambito delle sue caratteristiche teoriche; nell'algoritmo esso è stato implementato all'interno dell'ambiente \emph{Spark Context} richiamato dalla libreria \emph{pyspark}. È all'LDA che spetta il processo del grosso dei file di testo, pertanto è in questa sede che occorre sperimentare i vantaggi della parallelizzazione che si ottengono con Spark. L'algoritmo dell'LDA estrae i principali concetti presenti in un testo ripulito, elencando un certo numero di parole fissato per ciascun concetto a priori prima di lanciare il programma. In sostanza abbiamo due parametri liberi: il numero dei topic, poniamo $k$, e il numero delle parole per ciascun topic, poniamo $n$. Il loro valore deve essere fissato prima di lanciare l'esecuzione e dipende fortemente dal tipo di file che si sta analizzando. Se ad esempio ci occupiamo di analizzare un racconto in formato testuale, il numero di topic $k$ potrebbe essere elevato, viceversa, nel caso di un testo di breve estensione è più opportuno regolare il numero di topic su un valore più contenuto. Per quanto riguarda il parametro che indica il numero di parole per ogni topic, valgono in generale ragionamenti analoghi, anche se l'esperienza mostra che topic con un numero $n$ compreso tra 10 e 20 generalmente consente di comprendere sufficientemente a fondo il concetto analizzato. È su base empirica che si effettua questa regolazione, detto \emph{tuning}, dei parametri: occorre effettuare diverse prove per comprendere i valori ottimali nel caso specifico che si sta analizzando. Il risultato dell'analisi LDA sarà simile al seguente (caso $n$ = 10 e $k$ = 2):
-\begin{verbatim}
-Topic 1:
-matem  0.009560573221092942
-scuol  0.00808030602233562
-post  0.007174175578550224
-vuot  0.00701157776472776
-quas  0.006984416666260308
-capac  0.006773406498557413
-istr  0.0066294229384543345
-ben  0.006600503209852239
-aver  0.006556311017571411
-reclut  0.0065142697691635085
-
-
-Topic 2:
-frut  0.00755124839871547
-vorag  0.007512074134983625
-lombar  0.007231254609200753
-profession  0.007015777869361581
-fedel  0.006789730066915294
-dat  0.006683804983393134
-minis  0.006668940226489626
-confr  0.0066030669225653794
-fa  0.00660271421692034
-par  0.006571353930747912
-\end{verbatim}
-
-Come si vede ciascuna parola è affiancata da una probabilità che è tanto più alta quanto più, secondo il modello, quella parola ha affinità con il topic.
-
+Il modello LDA è già stato discusso nell'ambito delle sue caratteristiche teoriche; nell'algoritmo esso è stato implementato all'interno dell'ambiente \emph{Spark Context} richiamato dalla libreria \emph{pyspark}. È all'LDA che spetta il processo del grosso dei file di testo, pertanto è in questa sede che occorre sperimentare i vantaggi della parallelizzazione che si ottengono con Spark. L'algoritmo dell'LDA estrae i principali concetti presenti in un testo ripulito, elencando un certo numero di parole fissato per ciascun concetto a priori prima di lanciare il programma. In sostanza abbiamo due parametri liberi: il numero dei topic, poniamo $k$, e il numero delle parole per ciascun topic, poniamo $n$. Il loro valore deve essere fissato prima di lanciare l'esecuzione e dipende fortemente dal tipo di file che si sta analizzando. Se ad esempio ci occupiamo di analizzare un racconto in formato testuale, il numero di topic $k$ potrebbe essere elevato, viceversa, nel caso di un testo di breve estensione è più opportuno regolare il numero di topic su un valore più contenuto. Per quanto riguarda il parametro che indica il numero di parole per ogni topic, valgono in generale ragionamenti analoghi, anche se l'esperienza mostra che topic con un numero $n$ compreso tra 10 e 20 generalmente consente di comprendere sufficientemente a fondo il concetto analizzato. È su base empirica che si effettua questa regolazione, detto \emph{tuning}, dei parametri: occorre effettuare diverse prove per comprendere i valori ottimali nel caso specifico che si sta analizzando. 
 Poiché l'obiettivo finale è quello di una classificazione di un intero corpus di argomenti secondo i temi in essa trattati, dobbiamo immaginare che diversi output del genere vengano memorizzati, ciascuno per ogni documento che viene sottoposto all'LDA. Il file completo di tutti questi output viene passato all'ultimo blocco del codice, quello che applicherà la metodologia LSI, non prima però che venga effettuata un'ultima operazione.
-Essa consiste nella rimozione di ulteriori categorie di parole. Per comprendere la necessità di quest'ulteriore scrematura, dobbiamo fare qualche passo avanti. Ci aspettiamo che l'output finale sia composto da diversi cluser di parole, ciascuno dei quali può simboleggiare un concetto importante nella collezione. La provenienza di questi termini è ciascun topic che proviene dall'LDA. Si nota, nell'output appena mostrato, che ci sono parole come 'quas' (che sta per 'quasi') nel primo topic, o 'fa' (dal verbo 'fare') nel secondo. Queste categorie di forme verbali e avverbi sono molto comuni a tutti i documenti e dunque è plausibile che molti cluster finali siano 'contaminati' dalla presenza di queste parole che non portano con sé significato. Si immagini ad esempio un cluster di soli avverbi: quale contenuto potrebbe significare? Eppure, si sperimenta, che cluster di questo tipo tendono effettivamente a formarsi dato il numero di occorrenze elevato in molti topic di queste categorie di parole. Ecco perché queste parole vanno eliminate con l'uso di un'ulteriore operazione di \emph{stopwords removing} eseguita con un dizionario \emph{ad hoc}. A questo punto si può invocare il modello LSI per la clusterizzazione finale. L'output sarà simile al seguente:
+Essa consiste nella rimozione di ulteriori categorie di parole. Per comprendere la necessità di quest'ulteriore scrematura, dobbiamo fare qualche passo avanti. Ci aspettiamo che l'output finale sia composto da diversi cluster di parole, ciascuno dei quali può simboleggiare un concetto importante nella collezione. La provenienza di questi termini è ciascun topic che proviene dall'LDA. Si nota, nell'output appena mostrato, che ci sono parole come 'quas' (che sta per 'quasi') nel primo topic, o 'fa' (dal verbo 'fare') nel secondo. Queste categorie di forme verbali e avverbi sono molto comuni a tutti i documenti e dunque è plausibile che molti cluster finali siano 'contaminati' dalla presenza di queste parole che non portano con sé significato. Si immagini ad esempio un cluster di soli avverbi: quale contenuto potrebbe significare? Eppure, si sperimenta, che cluster di questo tipo tendono effettivamente a formarsi dato il numero di occorrenze elevato in molti topic di queste categorie di parole. Ecco perché queste parole vanno eliminate con l'uso di un'ulteriore operazione di \emph{stopwords removing} eseguita con un dizionario \emph{ad hoc}. A questo punto si può invocare il modello LSI per la clusterizzazione finale. L'output sarà simile al seguente:
 \begin{verbatim}
 ...
 ...
@@ -677,17 +735,230 @@ grafo['comments']['data']['message']
 per i commenti.
 
 
-% Richiamare il codice 
+% Richiamare il codice . Gestione dei duplicati senza le impostazioni di Scrapy
 
 % Appendice B
-\chapter{Richiami di probabilità e statistica.}
-\chaptermark{Probabilità}
+\chapter{Richiami di teoria.}
+\chaptermark{Teoria}
 
 % Statistiche sufficienti, minimali, distribuzioni in particolare quella di Dirichlet e multinomiale,  famiglia esponenziale 
 
-Uno spazio di probabilità è una terna della forma $(\Omega, \mathcal{A}, P)$, dove $\Omega$ rappresenta lo spazio campione, $\mathcal{A}$ la $\sigma$-algebra di eventi su $\Omega$ e la funzione $P:\Omega \rightarrow [0, 1]$ ha le seguenti proprietà
+In questa appendice saranno richiamate le principali nozioni utili alla comprensione dei modelli illustrati nel capitolo 2. 
 
+\section{Probabilità e statistica di base}
+Associamo ad un esperimento casuale un insieme $\Omega$ che definiamo \emph{spazio campione}. Siamo interessati a definire su una collezione di elementi di $\Omega$ una misura della loro probabilità di occorrenza. Per rendere rigoroso il concetto di collezione di elementi di interesse dobbiamo riferirci alla seguente definizione:
+\theoremstyle{definition}
+\begin{definition}
+Una famiglia $\mathcal{F}$ di parti di $\Omega$ costituisce una $\sigma$-algebra su tale insieme, se soddisfa i seguenti requisiti:
+\begin{enumerate}
+\item $\Omega \in \mathcal{F}$;
+\item se $A \in \mathcal{F} \Rightarrow \bar{A} \in \mathcal{F}$;
+\item $\forall n \in \mathbb{N}, A_n \in \mathcal{F} \Rightarrow \bigcup_{n = 1}^{\infty}A_n \in \mathcal{F}$. 
+\end{enumerate}
+\end{definition}
+Gli elementi di $\mathcal{F}$ saranno chiamati \emph{eventi} e la coppia ordinata $(\Omega, \mathcal{F})$ si definisce spazio probabilizzabile. È sempre possibile, per ogni insieme $\Omega$ non vuoto, definire su di esso almeno una $\sigma$-algebra\footnote{Si pensi ai casi estremi di $\mathcal{F} = \left\{\emptyset, \Omega \right\}$ o $\mathcal{F} = 2^{\Omega}$.}. Si può sempre definire la più piccola $\sigma$-algebra (nel senso dell'inclusione insiemistica) che contiene fissati sottoinsiemi di $\Omega$: tale $\sigma$-algebra si dice \emph{generata} da questi eventi selezionati, che si definiscono a loro volta \emph{generatori}.
+
+Riveste particolare importanza la seguente $\sigma$-algebra:
+\begin{definition}
+Sia $\Omega = \mathbb{R}$ e si scelga come insieme di generatori quello costituito dagli insiemi aperti di $\mathbb{R}$ secondo la topologia naturale: la $\sigma$-algebra da essi generata si chiama $\sigma$-algebra \emph{di Borel} e i suoi elementi si dicono \emph{Boreliani}.
+\end{definition}
+
+Diamo la seguente, cruciale, definizione:
+\begin{definition}
+Sia assegnato uno spazio probabilizzabile $(\Omega, \mathcal{F})$. Una funzione $\mathbb{P}: \mathcal{F} \rightarrow \mathbb{R}$ si chiama \emph{misura di probabilità} su $(\Omega, \mathcal{F})$ se soddisfa le seguenti proprietà:
+\begin{enumerate}
+\item $\forall A \in \mathcal{F}, \mathbb{P}(A)\ge 0$;
+\item $\mathbb{P}(\Omega) = 1$;
+\item (Numerabile Additività) per ogni successione $\left\{A_n\right\}_{n\in\mathbb{B}}$ di eventi incompatibili\footnote{$A_i \cap A_j = \emptyset$ per ogni $i \neq j$.} si ha 
+$$
+\mathbb{P}\left(\bigcup_{n=1}^{\infty}A_n \right) = \sum_{n=1}^{\infty}\mathbb{P}(A_n).
+$$
+\end{enumerate}
+\end{definition}
+
+La terna $(\Omega, \mathcal{F}, \mathbb{P})$ si definisce \emph{spazio di probabilità}.
+
+In generale possiamo avere interesse a considerare la probabilità di un evento \emph{condizionatamente} ad un altro. Vale la seguente definizione
+\begin{definition}
+Sia fissato  $(\Omega, \mathcal{F}, \mathbb{P})$. Sia dato, inoltre, $B\in \mathcal{F}$ un evento a probabilità non nulla e $A\in \mathcal{F}$ un evento fissato. La seguente espressione
+$$
+\mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+$$
+si chiama \emph{probabilità di A condizionata a B} e si verifica essere un'altra misura di probabilità su $(\Omega, \mathcal{F})$.
+
+Se vale $\mathbb{P}(A|B) = \mathbb{P}(A)$, gli eventi $A$ e $B$ si dicono \emph{indipendenti}.
+\end{definition}
+
+Con questa definizione possiamo enunciare, senza dimostrazione, il teorema di Bayes
+\begin{thm}
+Sia $\left\{H_1, H_2, \cdots, H_k\right\}$ una partizione di $\Omega$ e sia $B$ un evento a probabilità non nulla. Vale la seguente relazione
+$$
+\mathbb{P}(H_i|B) = \frac{\mathbb{P}(H_i)\mathbb{P}(B|H_i)}{\sum_{j = 1}^k \mathbb{P}(H_j)\mathbb{P}(B|H_j)}
+$$
+\end{thm}
+Il Teorema di Bayes, generalmente, si interpreta come un meccanismo si aggiornamento della conoscenza circa un evento, dato che un altro evento B si è verificato. Il vettore delle probabilità $(\mathbb{P}(H_1), \mathbb{P}(H_2), \cdots, \mathbb{P}(H_k))$ è il chiamato vettore delle probabilità a \emph{iniziali} o a \emph{priori}, mentre il vettore $(\mathbb{P}(H_1|B),\mathbb{P}(H_2|B),\cdots, \mathbb{P}(H_k|B))$ contiene le probabilità a \emph{posteriori} o \emph{finali}.
+Ci concentriamo ora sul concetto fondamentale di \emph{variabile aleatoria}. Diamo la seguente definizione
+
+\begin{definition}
+Sia $H$ un insieme, $\mathcal{H}$ una $\sigma$-algebra su $H$ e $g$ un'applicazione di $H$ in $\mathbb{R}$. Se la controimmagine mediante $g$ di ogni insieme di Borel di $\mathbb{R}$ è un elemento di $\mathcal{H}$, allora si dice che $g$ è $\mathcal{H}$-misurabile. 
+\end{definition}
+
+L'appellativo di \emph{variabile}  può trarre in inganno, in quanto la variabile aleatoria è in realtà una \emph{funzione}, come mostra la seguente definizione:
+\begin{definition}
+Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$, una funzione $X:\Omega \Rightarrow \mathbb{R}$ si chiama \emph{variabile aleatoria} se essa è $\mathcal{F}$-misurabile.
+\end{definition}
+
+Supponendo fissato lo spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ con associato una variabile aleatoria $X$ definiamo:
+\begin{definition}
+Si chiama \emph{funzione di distribuzione} della variabile aleatoria $X$ l'applicazione $F_X:\mathbb{R}\rightarrow [0,1]$ definita come segue:
+$$
+\forall x \in \mathbb{R}, F(x) := \mathbb{P}(]-\infty, x]) \equiv \mathbb{P}(X\le x)  
+$$
+\end{definition}
+% Generalizzare a distribuzioni multiple. Media e Varianza?
+
+Esaminiamo le due funzioni di distribuzione principali a cui ci riferiamo nei modelli: la distribuzione Multinomiale e quella di Dirichlet. La prima è una distribuzione discreta, la seconda è assolutamente continua ed entrambi sono distribuzioni multiple. Definiamo innanzitutto questi ultimi concetti prima di scrivere esplicitamente le distribuzioni.
+
+\begin{definition}
+Sia $X$ una variabile aleatoria e $F(x)$ la sua funzione di distribuzione. Si dice che $X$ è una variabile aleatoria discreta se il suo supporto è finito o numerabile e se esiste una funzione $p:X\Rightarrow [0, 1]$, detta \emph{massa} di probabilità, tale che
+$$
+F(\bar{x}) = \sum_{x \le \bar{x}} p(x) 
+$$
+in particolare, la funzione di ripartizione si presenta come una funzione costante a tratti.
+\end{definition}
+
+Vale la seguente
+
+\begin{definition}
+Sia $X$ una variabile aleatoria e $F(x)$ la sua funzione di distribuzione. Si dice che $X$ è una variabile aleatoria assolutamente continua e lo stesso si dice di $F(x)$, se esiste una funzione non negativa $f$, detta \emph{densità}, tale che:
+$$
+F(x) = \int_{-\infty}^x f(t)dt \hspace{1cm} \forall x \in \mathbb{R}
+$$
+\end{definition}
+
+Le definizioni di variabile aleatoria e funzione di ripartizione, sono state date nel caso  monodimensionale che è il più semplice e il meno generale. Tali definizioni, però, si estendono con facilità anche a più dimensioni e si ottengono così le  variabili aleatorie multiple. Intuitivamente, le variabili aleatorie avranno come codominio $\mathbb{R}^n$,  Non entreremo nei dettagli di questa estensione e delle problematiche che solleva rispetto al caso di dimensione singola. Per approfondimenti rimandiamo a [].
+
+Una variabile aleatoria $X$ che si distribuisca come una Multinomiale, si scrive $X\sim Mu(\nu, \theta_1, \theta_2, \cdots, \theta_k)$ ed ha funzione di massa pari a
+$$
+p(x_1, x_2, \cdots, x_k) = \frac{\nu !}{x_1!, x_2! \cdots x_n!} \theta_1^{x_1}\theta_2^{x_2}\cdots\theta_k^{x_k}
+$$
+dove $x_i = 0, 1, \cdots, \nu$, $\sum x_i = \nu$ e $\sum \theta_i = 1$ con $\theta_i > 0 $ per ogni indice.
+
+% Una variabile aleatoria \emph{X} si distribuisce secondo una \emph{normale} di media $\mu$ e varianza $\sigma^2$, e si scrive $X \sim N(\mu, \sigma^2)$, se possiede la seguente densità di probabilità
+% $$
+% f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+% $$
+% con $x \in \mathbb{R}$.
+
+% Se $\mu = 0$  e $\sigma = 1$ la variabile aleatoria si dice \emph{normale standard}.
+
+La densità della distribuzione di Dirichlet è la seguente:
+$$
+f(x_1, x_2, \cdots, x_k) = \frac{\sum_{i = 1}^k a_i}{\prod_{i = 1}^k \Gamma(a_k)}x_1^{a_1-1} x_2^{a_2-1}\cdots x_k^{a_k-1}
+$$
+dove ciascun $x_i$ è non-negativo, $\sum_{i = 1}^k x_i = 1$ e ciascun $a_i$ è strettamente positivo. Tale formula va riguardata come una densità con supporto $k-1$-dimensionale per via della restrizione alla somma delle $x_i$.
+
+Rammentiamo che la funzione \emph{Gamma} ha la seguente forma:
+$$
+\Gamma(x) = \int_0^\infty t^{x-1}e^t dt , \mbox{ con } x>0.
+$$  
+
+Sia $S\subset \mathbb{R}^m$ con $m\ge 1$; una classe $\left\{f_{\theta}, \theta \in I \right\}$ di funzioni di densità indicizzate da un parametro e con supporto $S$ si dice essere una \emph{famiglia esponenziale} se si può scrivere:
+$$
+f_{\theta}(\mathbf{x}) = h(x)\exp\left\{\eta(\theta) T(\mathbf{x}) - B(\theta)\right\} \hspace{1cm} \mathbf{x}\in S
+$$
+per una opportuna scelta delle funzioni $A, B, h, \eta$.
+
+Si verifica facilmente che la distribuzione di Dirichlet è di tipo esponenziale, ponendo:
+$$
+h(x) = 1
+$$
+
+$$
+\eta(\theta) = \alpha - 1
+$$
+
+$$
+T(x) = \log x % grassetto 
+$$
+$$
+B(\theta) = \left(\sum_k \log \Gamma(\theta_k) - \log \Gamma\left(\sum_k \theta_k \right) \right)
+$$
+% Da verificare
+\section{Statistica di base}
+%  Dimostrazione che Dirichlet è coniugata alla multinomiale. Famiglia esponenziale e teorema di ... per la limitatezza della statistica sufficiente
+
+È centrale la nozione di esperimento statistico, definito dalla seguente
+\begin{definition}
+Un esperimento statistico è una famiglia di spazi di probabilità $e = \left\{(\Omega, \mathcal{F}, \mathbb{P}_{\theta}), \theta \in I \right\}$
+\end{definition}
+
+L'insieme $I$ rappresenta lo spazio delle ipotesi: in esso si suppone di trovare il 'vero' valore di $\theta$, ovvero quello che meglio è in grado di modellizzare l'esperimento. La ricerca di $\theta$ avviene sulla base di realizzazioni dell'esperimento, ciascuna delle quali si indica con $\omega$ è appartiene all'insieme $\Omega$.
+
+Dato un esperimento statistico assegnato, una qualsiasi applicazione misurabile $T:\Omega \rightarrow \mathcal{T}$ se $\mathcal{T}$ è misurabile, si dice \emph{statistica}. Ogni statistica può essere riguardata come una variabile aleatoria e dunque possiederà una propria distribuzione di probabilità, detta in questo caso \emph{campionaria}.
+
+Il valore assunto da una statistica, che è utilizzata per la ricerca dell'ipotesi vera (detta procedura di \emph{inferenza} puntuale su $\theta$), si chiama \emph{stima puntuale} e la statistica in questione viene detta \emph{stimatore puntuale}.
+
+Per le analisi dell'esperimento, inoltre, la funzione di verosimiglianza rappresenta uno strumento fondamentale per lo studio dei risultati statistici; ne diamo una definizione nel caso discreto, ma è facile estenderla al caso continuo.
+\begin{definition}
+Sia dato un esperimento statistico $e = \left\{(\Omega, \mathcal{F}, \mathbb{P}_{\theta}), \theta \in I \right\}$ tale che $\mathbb{P}_{\theta}$ sia discreta per ogni $\theta$, si chiama funzione di \emph{verosimiglianza} associata al risultato $\omega_0 \in \Omega$ la funzione $l:I \Rightarrow [0, 1]$ definita da:
+$$
+l:\theta \rightarrow \mathbb{P}_{\theta}(\omega_0)
+$$
+\end{definition}
+
+La verosimiglianza di un'ipotesi è dunque la probabilità che si assegnerebbe a priori al risultato $\omega_0$ se $\theta$ fosse assunta come ipotesi vera.
+
+Essa possiede diverse proprietà, la più importante delle quali è che  al crescere della dimensione del campione $\omega$,  la funzione di verosimiglianza converge in probabilità al valore vero dell'ipotesi. 
+
+Diamo adesso una definizione di statistica sufficiente
+\begin{definition}
+Dato un esperimento statistico $e = \left\{(\Omega, \mathcal{F}, \mathbb{P}_{\theta}), \theta \in I \right\}$, si dice che la statistica $T:\Omega \rightarrow \mathcal{T}$ è \emph{sufficiente} se la funzione di verosimiglianza si decompone nel seguente modo:
+$$
+l(\theta;\omega) = \gamma(\omega) \cdot \varphi(\theta, T(\omega)) \forall (\theta, \omega) \in I\times \Omega
+$$
+dove $\gamma: \Omega \Rightarrow \mathbb{R}$ e $\varphi: I \times \mathcal{T} \rightarrow \mathbb{R}$
+
+\end{definition}
+
+La statistica sufficiente, dunque, concentra in essa una sintesi dell'intera informazione dell'esperimento circa l'ipotesi da determinare.
+
+Il teorema di Pitman-Koopman-Darmois [], asserisce che le famiglie esponenziali sono le sole per cui le statistiche sufficienti restano limitate anche se la numerosità del campione tende all'infinito. Questa è una proprietà anche della distribuzione di Dirichlet in quanto abbiamo visto in precedenza che essa appartiene alla famiglia esponenziale.
+ 
+Resta un ultimo concetto da chiarire: quello di modello bayesiano. Tale aggettivo viene usato riguardo ad ogni metodo di analisi statistica in cui si presuppone un'assegnazione di probabilità a ogni evento incerto. Nel caso dell'esperimento statistico, lo spazio a cui ci si riferisce da un punto di vista del modello di impostazione bayesiana, è il seguente: $(I \times\Omega, \mathcal{F}_{I \times\Omega}, \mathbb{P}_{I \times\Omega})$, ossia anche lo spazio delle ipotesi è probabilizzato. In risposta ad ogni problema inferenziale, nel modello bayesiano, si otterrà una legge di probabilità. Lo schema operativo è dettato dal teorema 1, che riproponiamo adesso in versione continua e con una notazione leggermente differente ma più congeniale alla spiegazione che ne daremo in seguito.
+
+Lo schema è il seguente:
+$$
+\pi(\theta;\omega) = \frac{\pi(\theta)f_{\theta}(\omega)}{\int_I \pi(\theta)f_{\theta}(\omega)d\theta}
+$$
+dove $f_{\theta}$ è la densità associata a $\mathbb{P}_{\theta}$, $\pi(\cdot)$ viene definita legge di probabilità a \emph{priori} e $\pi(\cdot;\omega)$ e la legge di probabilità a \emph{posteriori} di $\Theta$ condizionata a $\Omega = \omega$.
+
+Una tale impostazione ha carattere dinamico: assegnata una probabilità a priori, da questa si ottiene una a posteriori, la quale può essere reinserita di nuovo nel meccanismo come una densità a priori dato un nuovo esperimento e così via, aggiornando continuamente al crescere dell'informazione.
+
+In quest'ottica, la seguente definizione riveste particolare importanza
+\begin{definition}
+Dato il modello $e = \left\{(\Omega, \mathcal{F}, \mathbb{P}_{\theta}), \theta \in I \right\}$, una classe di distribuzione su $I$ si dice \emph{coniugata} al modello se, prendendo in tale classe la distribuzione iniziale, anche la distribuzione iniziale, qualunque sia $\omega \in \Omega$, vi appartiene.
+\end{definition}
+
+In conclusione, mostriamo come la distribuzione Multinomiale , sia coniugata a quella  di Dirichlet.
+Ciò si vede facilmente in quanto, abbiamo che, scegliendo $\pi(\theta) \sim Dir(\mathbf{\theta}|\alpha)$ e $f_{\theta}\sim Mu(\nu, \mathbf{\theta})$, a meno di un fattore indipendente da $\theta$ si ha:
+$$
+Mu(\nu, \mathbf{\theta}) Dir(\theta)  \sim \prod_{k = 1}^m \theta_k^{x_k} \prod_{k = 1}^m \theta_k^{\alpha_k - 1} 
+$$
+$$
+\sim \prod_{k = 1}^m \theta_k^{ x_k + \alpha_k - 1} = Dir(x + \alpha)
+$$
+
+%\section{Decomposizione spettrale}
+
+
+%\section{Algoritmo EM}
+
+
+%  Kullback Liebler?
 \clearpage
+
+% È il caso di inserire un'altra appendice con l'algebra lineare e l'algoritmo EM all'interno? Magari per allungare il brodo...
 
 % Ringraziamenti
 \chapter*{Ringraziamenti}
@@ -696,12 +967,38 @@ Uno spazio di probabilità è una terna della forma $(\Omega, \mathcal{A}, P)$, do
 % Aggiungere anche una Sitografia
 
 \clearpage
-\addcontentsline{toc}{chapter}{Bibliografia}
-\begin{thebibliography}{9}
+\addcontentsline{toc}{chapter}{Bibliografia e Sitografia}
+\begin{thebibliography}{100} % 100 is a random guess of the total number of references
 
-\bibitem{} Blei David M., Ng Andrew Y., Jordan Michael I. \emph{Latent Dirichlet Allocation}.  Journal of Machine Learning Research, 2003.
+\addtolength{\leftmargin}{0.2in} % sets up alignment with the following line.
+\setlength{\itemindent}{-0.2in}
 
-\bibitem{} Sandy Ryza, Uri Laserson, Josh Wills, Sean Owen \emph{Advanced Analytics with Spark}.   O'Reilly Media Research, 2015.
+\bibitem[Ble03]{Ble03} Blei David M., Ng Andrew Y., Jordan Michael I. \emph{Latent Dirichlet Allocation},  Journal of Machine Learning Research, pp. 993-1022, 2003.
+
+\bibitem[Con12]{Con12} P.L. Conti, D. Marella, \emph{Campionamento da popolazioni finite}, Springer, 2012
+
+\bibitem[Der90]{Der90} Deerwester S., Dumais, S. T., Furnas, G. W., Landauer, T. K.,  Harshman, R., \emph{Indexing by latent semantic analysis}, Journal of the American Society for Information Science 41(6), 391-407, 1990.
+
+\bibitem[Hof99]{Hof99} Hofmann, T. , \emph{Probabilistic latent semantic indexing}, Proceedings of the
+Twenty-Second Annual International SIGIR Conference, 1999.
+
+\bibitem[IntLS]{IntLS} Internet Live Stats, \emph{Twitter Usage Statistics}, \href{http://www.internetlivestats.com/twitter-statistics/}{http://www.internetlivestats.com/twitter-statistics/}
+
+\bibitem[Lym03]{Lym03} P. Lyman, H. R. Varian, K. Swearingen, P. Charles, N. Good, L.L. Jordan, and J. Pal, \emph{How much information?}, \href{http://www2.sims.berkeley.edu/research/projects/
+how-much-info-2003}{http://www2.sims.berkeley.edu/research/projects/
+how-much-info-2003}, 2003
+
+\bibitem[Rad17]{Rad17} The Radicati Group Inc. \emph{Email Statistics Report, 2017-2021}, \href{http://www.radicati.com}{http://www.radicati.com/wp/wp-content/uploads/2017/01/Email-Statistics-Report-2017-2021-Executive-Summary.pdf}, 2017
+
+\bibitem[Roe12]{Roe12} C. Roe, \emph{The growth of unstructured data: what to do with all those zettabytes?}, \href{http://www.dataversity.net/the-growth-of-unstructured-data-what-are-we-going-to-do-with-all-those-zettabytes/}{http://www.dataversity.net/the-growth-of-unstructured-data-what-are-we-going-to-do-with-all-those-zettabytes/}, 2012
+
+\bibitem[San15]{San15} Sandy Ryza, Uri Laserson, Josh Wills, Sean Owen \emph{Advanced Analytics with Spark}, O'Reilly Media Research, 2015.
+
+\bibitem[Sal88]{Sal88} G. Salton, C. Bucley, \emph{Term-weighting approaches in automatic text
+retrieval}, Inform. Process. Man. 24(5), 513-523. , 1988
+\bibitem[Zha16]{Zha16} C.X. Zhai, S. Massung \emph{Text Data Management and Analysis: A Practical Introduction to Information Retrieval and Text Mining }, Acm Books, 2016.
+
 \end{thebibliography}
+
 
 \end{document}
