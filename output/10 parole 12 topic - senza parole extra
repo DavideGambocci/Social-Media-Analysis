@@ -1,0 +1,373 @@
+Tempo : 740 articoli, per un totale di 2260.488632440567 sec per l'LDA e 5.724430799484253 per l'LSI
+
+Topic 1
+1) stat
+[['stato', 752], ['stata', 419], ['stati', 257], ['state', 98], ['statuto', 3]]
+   
+2) part
+[['parte', 366], ['partito', 95], ['partire', 57], ['partita', 53], ['parti', 33], ['partiti', 24], ['partite', 22], ['partendo', 8], ['parto', 6], ['partono', 4], ['partirà', 3], ['partiva', 2], ['partirono', 2], ['partivano', 2], ['partirebbe', 1], ['parta', 1], ['partano', 1]]
+   
+3) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], ['italico', 2], ['italiche', 1]]
+   
+4) lavor
+[['lavoro', 301], ['lavoratori', 59], ['lavorare', 48], ['lavori', 43], ['lavorato', 36], ['lavora', 34], ['lavorando', 20], ['lavorano', 15], ['lavorava', 10], ['lavoravano', 4], ['lavoratrici', 4], ['lavorativo', 3], ['lavoratore', 3], ['lavoratrice', 3], ['lavorati', 3], ['lavoravo', 2], ['lavorativa', 2], ['lavorazione', 2], ['lavorative', 1], ['lavoriamo', 1], ['lavorerà', 1], ['lavorò', 1]]
+   
+5) mil
+[['milano', 253], ['mila', 210], ['milita', 4]]
+   
+6) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+7) donn
+[['donna', 187], ['donne', 149]]
+   
+8) person
+[['persone', 281], ['persona', 79]]
+   
+9) parl
+[['parla', 89], ['parlare', 82], ['parlato', 46], ['parlamento', 38], ['parlando', 18], ['parlano', 16], ['parliamo', 13], ['parlava', 9], ['parlerà', 7], ['parlarne', 6], ['parlo', 6], ['parli', 4], ['parlavano', 3], ['parlò', 3], ['parlarsi', 3], ['parlarci', 2], ['parlandogli', 2], ['parlate', 1], ['parlandone', 1], ['parlar', 1], ['parlargli', 1]]
+   
+10) vit
+[['vita', 351], ['vite', 12], ['vito', 2]]
+   
+Topic 2
+1) part
+[['parte', 366], ['partito', 95], ['partire', 57], ['partita', 53], ['parti', 33], ['partiti', 24], ['partite', 22], ['partendo', 8], ['parto', 6], ['partono', 4], ['partirà', 3], ['partiva', 2], ['partirono', 2], ['partivano', 2], ['partirebbe', 1], ['parta', 1], ['partano', 1]]
+   
+2) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], ['italico', 2], ['italiche', 1]]
+   
+3) ministr
+[['ministro', 95], ['ministri', 29], ['ministra', 17]]
+   
+4) paes
+[['paese', 192], ['paesi', 75]]
+   
+5) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+6) lavor
+[['lavoro', 301], ['lavoratori', 59], ['lavorare', 48], ['lavori', 43], ['lavorato', 36], ['lavora', 34], ['lavorando', 20], ['lavorano', 15], ['lavorava', 10], ['lavoravano', 4], ['lavoratrici', 4], ['lavorativo', 3], ['lavoratore', 3], ['lavoratrice', 3], ['lavorati', 3], ['lavoravo', 2], ['lavorativa', 2], ['lavorazione', 2], ['lavorative', 1], ['lavoriamo', 1], ['lavorerà', 1], ['lavorò', 1]]
+   
+7) pass
+[['passato', 103], ['passo', 71], ['passare', 31], ['passa', 27], ['passati', 21], ['passi', 20], ['passata', 11], ['passando', 11], ['passate', 7], ['passano', 7], ['passerà', 6], ['passava', 3], ['passiamo', 2], ['passarci', 2], ['passarli', 1], ['passiva', 1], ['passasse', 1], ['passassero', 1], ['passarsi', 1], ['passarono', 1], ['passeremo', 1], ['passerebbe', 1], ['passerò', 1], ['passavamo', 1]]
+   
+8) punt
+[['punto', 159], ['punti', 59], ['punta', 30], ['puntare', 10], ['puntata', 10], ['puntato', 4], ['puntate', 4], ['puntano', 4], ['puntando', 3], ['puntati', 2], ['puntava', 2], ['punte', 2], ['punterebbe', 1], ['puntandomi', 1], ['punterei', 1]]
+   
+9) president
+[['presidente', 247], ['presidenti', 4], ['president', 2]]
+   
+10) rapport
+[['rapporto', 79], ['rapporti', 50]]
+   
+Topic 3
+1) part
+[['parte', 366], ['partito', 95], ['partire', 57], ['partita', 53], ['parti', 33], ['partiti', 24], ['partite', 22], ['partendo', 8], ['parto', 6], ['partono', 4], ['partirà', 3], ['partiva', 2], ['partirono', 2], ['partivano', 2], ['partirebbe', 1], ['parta', 1], ['partano', 1]]
+   
+2) stat
+[['stato', 752], ['stata', 419], ['stati', 257], ['state', 98], ['statuto', 3]]
+   
+3) rapport
+[['rapporto', 79], ['rapporti', 50]]
+   
+4) pd
+[['pd', 106]]
+   
+5) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+6) bianc
+[['bianca', 45], ['bianco', 33], ['bianchi', 8], ['bianche', 4]]
+   
+7) cammin
+[['camminare', 15], ['cammino', 10], ['cammina', 2], ['camminavo', 2], ['camminando', 1], ['camminatore', 1], ['camminatori', 1], ['camminerà', 1], ['camminata', 1]]
+   
+8) napol
+[['napoli', 68]]
+   
+9) renz
+[['renzi', 97], ['renzo', 5], ['renziano', 4]]
+   
+10) bambin
+[['bambini', 89], ['bambino', 54], ['bambina', 32], ['bambine', 7], ['bambin', 1]]
+   
+Topic 4
+1) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], ['italico', 2], ['italiche', 1]]
+   
+2) mil
+[['milano', 253], ['mila', 210], ['milita', 4]]
+   
+3) parl
+[['parla', 89], ['parlare', 82], ['parlato', 46], ['parlamento', 38], ['parlando', 18], ['parlano', 16], ['parliamo', 13], ['parlava', 9], ['parlerà', 7], ['parlarne', 6], ['parlo', 6], ['parli', 4], ['parlavano', 3], ['parlò', 3], ['parlarsi', 3], ['parlarci', 2], ['parlandogli', 2], ['parlate', 1], ['parlandone', 1], ['parlar', 1], ['parlargli', 1]]
+   
+4) paes
+[['paese', 192], ['paesi', 75]]
+   
+5) berluscon
+[['berlusconi', 108]]
+   
+6) ministr
+[['ministro', 95], ['ministri', 29], ['ministra', 17]]
+   
+7) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+8) stat
+[['stato', 752], ['stata', 419], ['stati', 257], ['state', 98], ['statuto', 3]]
+   
+9) president
+[['presidente', 247], ['presidenti', 4], ['president', 2]]
+   
+10) figl
+[['figlio', 137], ['figli', 119], ['figlia', 68], ['figlie', 16]]
+   
+Topic 5
+1) mil
+[['milano', 253], ['mila', 210], ['milita', 4]]
+   
+2) lavor
+[['lavoro', 301], ['lavoratori', 59], ['lavorare', 48], ['lavori', 43], ['lavorato', 36], ['lavora', 34], ['lavorando', 20], ['lavorano', 15], ['lavorava', 10], ['lavoravano', 4], ['lavoratrici', 4], ['lavorativo', 3], ['lavoratore', 3], ['lavoratrice', 3], ['lavorati', 3], ['lavoravo', 2], ['lavorativa', 2], ['lavorazione', 2], ['lavorative', 1], ['lavoriamo', 1], ['lavorerà', 1], ['lavorò', 1]]
+   
+3) eur
+[['euro', 276], ['eur', 6]]
+   
+4) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], ['italico', 2], ['italiche', 1]]
+   
+5) stat
+[['stato', 752], ['stata', 419], ['stati', 257], ['state', 98], ['statuto', 3]]
+   
+6) cost
+[['costa', 36], ['costo', 28], ['costi', 25], ['cost', 18], ['costato', 9], ['coste', 9], ['costano', 6], ['costata', 4], ['costare', 2], ['costati', 1], ['costavano', 1]]
+   
+7) milion
+[['milioni', 170], ['milione', 33]]
+   
+8) digital
+[['digitale', 29], ['digitali', 19], ['digital', 7], ['digitalmente', 1]]
+   
+9) centr
+[['centro', 148], ['centri', 28], ['centre', 3], ['centrare', 2], ['centrato', 2], ['centrata', 1], ['centrano', 1]]
+   
+10) aument
+[['aumento', 39], ['aumentare', 16], ['aumentato', 15], ['aumenta', 13], ['aumentata', 9], ['aumentano', 5], ['aumenti', 4], ['aumentando', 4], ['aumentate', 3], ['aumentati', 1], ['aumenterebbe', 1], ['aumentiamo', 1]]
+   
+Topic 6
+1) lavor
+[['lavoro', 301], ['lavoratori', 59], ['lavorare', 48], ['lavori', 43], ['lavorato', 36], ['lavora', 34], ['lavorando', 20], ['lavorano', 15], ['lavorava', 10], ['lavoravano', 4], ['lavoratrici', 4], ['lavorativo', 3], ['lavoratore', 3], ['lavoratrice', 3], ['lavorati', 3], ['lavoravo', 2], ['lavorativa', 2], ['lavorazione', 2], ['lavorative', 1], ['lavoriamo', 1], ['lavorerà', 1], ['lavorò', 1]]
+   
+2) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], ['italico', 2], ['italiche', 1]]
+   
+3) president
+[['presidente', 247], ['presidenti', 4], ['president', 2]]
+   
+4) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+5) ministr
+[['ministro', 95], ['ministri', 29], ['ministra', 17]]
+   
+6) paes
+[['paese', 192], ['paesi', 75]]
+   
+7) stat
+[['stato', 752], ['stata', 419], ['stati', 257], ['state', 98], ['statuto', 3]]
+   
+8) social
+[['social', 89], ['sociale', 50], ['sociali', 33], ['socialista', 9], ['socialismo', 2], ['socialisti', 2], ['socialità', 1], ['socialmente', 1]]
+   
+9) francesc
+[['francesco', 117], ['francesca', 12]]
+   
+10) pass
+[['passato', 103], ['passo', 71], ['passare', 31], ['passa', 27], ['passati', 21], ['passi', 20], ['passata', 11], ['passando', 11], ['passate', 7], ['passano', 7], ['passerà', 6], ['passava', 3], ['passiamo', 2], ['passarci', 2], ['passarli', 1], ['passiva', 1], ['passasse', 1], ['passassero', 1], ['passarsi', 1], ['passarono', 1], ['passeremo', 1], ['passerebbe', 1], ['passerò', 1], ['passavamo', 1]]
+   
+Topic 7
+1) parl
+[['parla', 89], ['parlare', 82], ['parlato', 46], ['parlamento', 38], ['parlando', 18], ['parlano', 16], ['parliamo', 13], ['parlava', 9], ['parlerà', 7], ['parlarne', 6], ['parlo', 6], ['parli', 4], ['parlavano', 3], ['parlò', 3], ['parlarsi', 3], ['parlarci', 2], ['parlandogli', 2], ['parlate', 1], ['parlandone', 1], ['parlar', 1], ['parlargli', 1]]
+   
+2) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+3) donn
+[['donna', 187], ['donne', 149]]
+   
+4) renz
+[['renzi', 97], ['renzo', 5], ['renziano', 4]]
+   
+5) mil
+[['milano', 253], ['mila', 210], ['milita', 4]]
+   
+6) person
+[['persone', 281], ['persona', 79]]
+   
+7) pd
+[['pd', 106]]
+   
+8) violenz
+[['violenza', 117], ['violenze', 25]]
+   
+9) president
+[['presidente', 247], ['presidenti', 4], ['president', 2]]
+   
+10) lavor
+[['lavoro', 301], ['lavoratori', 59], ['lavorare', 48], ['lavori', 43], ['lavorato', 36], ['lavora', 34], ['lavorando', 20], ['lavorano', 15], ['lavorava', 10], ['lavoravano', 4], ['lavoratrici', 4], ['lavorativo', 3], ['lavoratore', 3], ['lavoratrice', 3], ['lavorati', 3], ['lavoravo', 2], ['lavorativa', 2], ['lavorazione', 2], ['lavorative', 1], ['lavoriamo', 1], ['lavorerà', 1], ['lavorò', 1]]
+   
+Topic 8
+1) lavor
+[['lavoro', 301], ['lavoratori', 59], ['lavorare', 48], ['lavori', 43], ['lavorato', 36], ['lavora', 34], ['lavorando', 20], ['lavorano', 15], ['lavorava', 10], ['lavoravano', 4], ['lavoratrici', 4], ['lavorativo', 3], ['lavoratore', 3], ['lavoratrice', 3], ['lavorati', 3], ['lavoravo', 2], ['lavorativa', 2], ['lavorazione', 2], ['lavorative', 1], ['lavoriamo', 1], ['lavorerà', 1], ['lavorò', 1]]
+   
+2) figl
+[['figlio', 137], ['figli', 119], ['figlia', 68], ['figlie', 16]]
+   
+3) vit
+[['vita', 351], ['vite', 12], ['vito', 2]]
+   
+4) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+5) mil
+[['milano', 253], ['mila', 210], ['milita', 4]]
+   
+6) genitor
+[['genitori', 120], ['genitore', 11]]
+   
+7) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], ['italico', 2], ['italiche', 1]]
+   
+8) bambin
+[['bambini', 89], ['bambino', 54], ['bambina', 32], ['bambine', 7], ['bambin', 1]]
+   
+9) renz
+[['renzi', 97], ['renzo', 5], ['renziano', 4]]
+   
+10) padr
+[['padre', 140], ['padri', 13]]
+   
+Topic 9
+1) donn
+[['donna', 187], ['donne', 149]]
+   
+2) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], ['italico', 2], ['italiche', 1]]
+   
+3) accus
+[['accusa', 72], ['accuse', 41], ['accusato', 38], ['accusata', 11], ['accusati', 8], ['accusate', 4], ['accusò', 3], ['accusano', 3], ['accusarono', 2], ['accusandola', 2]]
+   
+4) violenz
+[['violenza', 117], ['violenze', 25]]
+   
+5) figl
+[['figlio', 137], ['figli', 119], ['figlia', 68], ['figlie', 16]]
+   
+6) pubblic
+[['pubblico', 101], ['pubblica', 58], ['pubblicato', 41], ['pubblici', 37], ['pubblicità', 19], ['pubblicata', 13], ['pubblicazione', 8], ['pubbliche', 8], ['pubblicamente', 7], ['pubblicati', 6], ['pubblicate', 5], ['pubblicando', 3], ['pubblicazioni', 3], ['pubblicare', 3], ['pubblichiamo', 1], ['pubblicherà', 1], ['pubblicò', 1], ['pubblicarle', 1], ['pubblicarla', 1]]
+   
+7) ex
+[['ex', 253]]
+   
+8) molest
+[['molestie', 48], ['molestia', 6], ['molestatore', 4], ['molestatori', 3], ['molestata', 2], ['molesti', 2], ['molestate', 1], ['molesto', 1], ['molestare', 1]]
+   
+9) stor
+[['storia', 169], ['storie', 32], ['store', 2]]
+   
+10) poss
+[['possono', 97], ['possa', 60], ['posso', 46], ['possiamo', 40], ['possano', 25]]
+   
+Topic 10
+1) figl
+[['figlio', 137], ['figli', 119], ['figlia', 68], ['figlie', 16]]
+   
+2) ex
+[['ex', 253]]
+   
+3) pubblic
+[['pubblico', 101], ['pubblica', 58], ['pubblicato', 41], ['pubblici', 37], ['pubblicità', 19], ['pubblicata', 13], ['pubblicazione', 8], ['pubbliche', 8], ['pubblicamente', 7], ['pubblicati', 6], ['pubblicate', 5], ['pubblicando', 3], ['pubblicazioni', 3], ['pubblicare', 3], ['pubblichiamo', 1], ['pubblicherà', 1], ['pubblicò', 1], ['pubblicarle', 1], ['pubblicarla', 1]]
+   
+4) renz
+[['renzi', 97], ['renzo', 5], ['renziano', 4]]
+   
+5) president
+[['presidente', 247], ['presidenti', 4], ['president', 2]]
+   
+6) pens
+[['pensare', 65], ['penso', 45], ['pensato', 38], ['pensa', 32], ['pensano', 11], ['pensiamo', 9], ['pensando', 8], ['pensava', 7], ['pensavo', 7], ['pensi', 6], ['pensavano', 5], ['pensata', 5], ['penserei', 2], ['pensate', 2], ['penserà', 2], ['penserebbe', 1], ['penserete', 1], ['pensarlo', 1], ['pensò', 1], ['pensassero', 1], ['pensavamo', 1], ['penseremo', 1]]
+   
+7) milion
+[['milioni', 170], ['milione', 33]]
+   
+8) accus
+[['accusa', 72], ['accuse', 41], ['accusato', 38], ['accusata', 11], ['accusati', 8], ['accusate', 4], ['accusò', 3], ['accusano', 3], ['accusarono', 2], ['accusandola', 2]]
+   
+9) ser
+[['serie', 114], ['sera', 80], ['serata', 30], ['serio', 20], ['seria', 12], ['seriamente', 7], ['seri', 4], ['serate', 3], ['sere', 1]]
+   
+10) genitor
+[['genitori', 120], ['genitore', 11]]
+   
+Topic 11
+1) person
+[['persone', 281], ['persona', 79]]
+   
+2) pubblic
+[['pubblico', 101], ['pubblica', 58], ['pubblicato', 41], ['pubblici', 37], ['pubblicità', 19], ['pubblicata', 13], ['pubblicazione', 8], ['pubbliche', 8], ['pubblicamente', 7], ['pubblicati', 6], ['pubblicate', 5], ['pubblicando', 3], ['pubblicazioni', 3], ['pubblicare', 3], ['pubblichiamo', 1], ['pubblicherà', 1], ['pubblicò', 1], ['pubblicarle', 1], ['pubblicarla', 1]]
+   
+3) ex
+[['ex', 253]]
+   
+4) president
+[['presidente', 247], ['presidenti', 4], ['president', 2]]
+   
+5) mond
+[['mondo', 265], ['mondi', 4], ['mondano', 2], ['monde', 1]]
+   
+6) paes
+[['paese', 192], ['paesi', 75]]
+   
+7) procur
+[['procura', 91], ['procuratore', 48], ['procure', 4], ['procuratrice', 2], ['procurate', 1], ['procurò', 1], ['procuratori', 1], ['procurandogli', 1], ['procurato', 1], ['procurare', 1], ['procurarsi', 1]]
+   
+8) figl
+[['figlio', 137], ['figli', 119], ['figlia', 68], ['figlie', 16]]
+   
+9) oper
+[['opera', 67], ['operazione', 35], ['operazioni', 26], ['opere', 20], ['operatori', 12], ['operare', 11], ['operato', 10], ['operativo', 8], ['operativa', 8], ['operatore', 7], ['operano', 5], ['operante', 3], ['operati', 3], ['operarla', 2], ['operosa', 2], ['operative', 2], ['operando', 2], ['operò', 2], ['operatrice', 2], ['operava', 1], ['operata', 1]]
+   
+10) part
+[['parte', 366], ['partito', 95], ['partire', 57], ['partita', 53], ['parti', 33], ['partiti', 24], ['partite', 22], ['partendo', 8], ['parto', 6], ['partono', 4], ['partirà', 3], ['partiva', 2], ['partirono', 2], ['partivano', 2], ['partirebbe', 1], ['parta', 1], ['partano', 1]]
+   
+Topic 12
+1) pubblic
+[['pubblico', 101], ['pubblica', 58], ['pubblicato', 41], ['pubblici', 37], ['pubblicità', 19], ['pubblicata', 13], ['pubblicazione', 8], ['pubbliche', 8], ['pubblicamente', 7], ['pubblicati', 6], ['pubblicate', 5], ['pubblicando', 3], ['pubblicazioni', 3], ['pubblicare', 3], ['pubblichiamo', 1], ['pubblicherà', 1], ['pubblicò', 1], ['pubblicarle', 1], ['pubblicarla', 1]]
+   
+2) polit
+[['politica', 135], ['politico', 51], ['politici', 40], ['politiche', 38], ['politicamente', 6], ['politeismo', 2]]
+   
+3) berluscon
+[['berlusconi', 108]]
+   
+4) pens
+[['pensare', 65], ['penso', 45], ['pensato', 38], ['pensa', 32], ['pensano', 11], ['pensiamo', 9], ['pensando', 8], ['pensava', 7], ['pensavo', 7], ['pensi', 6], ['pensavano', 5], ['pensata', 5], ['penserei', 2], ['pensate', 2], ['penserà', 2], ['penserebbe', 1], ['penserete', 1], ['pensarlo', 1], ['pensò', 1], ['pensassero', 1], ['pensavamo', 1], ['penseremo', 1]]
+   
+5) general
+[['generale', 110], ['generali', 10], ['general', 5], ['generalista', 3], ['generalmente', 2], ['generaliste', 1]]
+   
+6) cap
+[['capo', 93], ['capire', 81], ['capito', 39], ['capisco', 12], ['capita', 9], ['capi', 7], ['capisce', 6], ['caputo', 3], ['capite', 3], ['capiscono', 3], ['capa', 2], ['capivo', 2], ['capiva', 2], ['capiamo', 2], ['capirmi', 1], ['capirci', 1], ['capivamo', 1], ['capirà', 1], ['capisci', 1], ['capirai', 1]]
+   
+7) carabinier
+[['carabinieri', 134]]
+   
+8) trov
+[['trovato', 67], ['trovare', 61], ['trova', 35], ['trovano', 23], ['trovata', 23], ['trovava', 14], ['trovati', 14], ['trovi', 9], ['troviamo', 8], ['trovavo', 6], ['trovavano', 4], ['trovo', 4], ['trovate', 4], ['trovarlo', 3], ['trovando', 3], ['trovarsi', 3], ['troverebbe', 3], ['troverà', 2], ['trovarli', 2], ['trovarmi', 2], ['trovarne', 2], ['trovassero', 1], ['trovò', 1], ['troverai', 1], ['troveremo', 1], ['trovandosi', 1], ['trovargli', 1], ['troverete', 1], ['trovarci', 1], ['trovavamo', 1]]
+   
+9) procur
+[['procura', 91], ['procuratore', 48], ['procure', 4], ['procuratrice', 2], ['procurate', 1], ['procurò', 1], ['procuratori', 1], ['procurandogli', 1], ['procurato', 1], ['procurare', 1], ['procurarsi', 1]]
+   
+10) ser
+[['serie', 114], ['sera', 80], ['serata', 30], ['serio', 20], ['seria', 12], ['seriamente', 7], ['seri', 4], ['serate', 3], ['sere', 1]]
