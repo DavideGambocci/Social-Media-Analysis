@@ -1,0 +1,925 @@
+924News
+LDA 2803.753625869751
+LSI 10.18956971168518
+
+Topic 1
+1) stat
+[['stato', 1177], ['stata', 625], ['stati', 380], ['state', 159]]
+   
+2) donn
+[['donna', 458], ['donne', 178]]
+   
+3) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+4) uom
+[['uomo', 501]]
+   
+5) mort
+[['morte', 214], ['morto', 145], ['morta', 69], ['morti', 59]]
+   
+6) enne
+[['enne', 415]]
+   
+7) ragazz
+[['ragazza', 144], ['ragazzo', 129], ['ragazzi', 67], ['ragazze', 30], ['ragazzate', 1]]
+   
+8) poliz
+[['polizia', 302]]
+   
+9) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+10) trov
+[['trovato', 148], ['trovare', 72], ['trova', 52], ['trovata', 40], ['trovava', 28], ['trovati', 21], ['trovano', 19], ['trovavano', 11], ['trovate', 10], ['trovasse', 8], ['trovarlo', 7], ['trovarono', 5], ['trovarsi', 5], ['troviamo', 4], ['trovo', 4], ['trovi', 3], ['troveranno', 3], ['trovando', 3], ['trovassimo', 2], ['trovò', 2], ['troverà', 2], ['trovandosi', 1], ['trovavo', 1], ['trovarli', 1], ['troverebbero', 1], ['trovarmi', 1], ['trovandola', 1], ['trovarla', 1], ['trovarvi', 1], ['trovarti', 1]]
+   
+11) vittim
+[['vittima', 207], ['vittime', 134]]
+   
+12) arrest
+[['arrestato', 105], ['arresto', 49], ['arrestata', 32], ['arrestati', 30], ['arresti', 23], ['arrestare', 10], ['arrestate', 7], ['arresta', 2], ['arrestarsi', 1]]
+   
+13) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+14) giovan
+[['giovane', 226], ['giovani', 106], ['giovan', 1]]
+   
+15) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+Topic 2
+1) ital
+[['italia', 425], ['italiano', 73], ['italo', 1]]
+   
+2) part
+[['parte', 394], ['partito', 134], ['partire', 62], ['partita', 36], ['partiti', 35], ['parti', 35], ['parto', 8], ['partite', 6], ['part', 5], ['partirà', 3], ['partendo', 3], ['partono', 3], ['partiamo', 2]]
+   
+3) pd
+[['pd', 179]]
+   
+4) polit
+[['politica', 97], ['politiche', 68], ['politico', 48], ['politici', 47], ['politicamente', 5]]
+   
+5) renz
+[['renzi', 151], ['renziano', 1]]
+   
+6) elezion
+[['elezioni', 102], ['elezione', 3]]
+   
+7) forz
+[['forza', 138], ['forze', 100], ['forzati', 3], ['forzato', 3], ['forzata', 3], ['forzare', 2], ['forzate', 1]]
+   
+8) president
+[['presidente', 223], ['presidenti', 9]]
+   
+9) nord
+[['nord', 180]]
+   
+10) eur
+[['euro', 247], ['eur', 1]]
+   
+11) leader
+[['leader', 107]]
+   
+12) prossim
+[['prossime', 81], ['prossimo', 42], ['prossimi', 29], ['prossima', 17], ['prossimità', 4], ['prossimamente', 1]]
+   
+13) berluscon
+[['berlusconi', 115]]
+   
+14) centrodestr
+[['centrodestra', 68]]
+   
+15) sinistr
+[['sinistra', 85], ['sinistro', 6], ['sinistre', 1]]
+   
+Topic 3
+1) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+2) donn
+[['donna', 458], ['donne', 178]]
+   
+3) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+4) genitor
+[['genitori', 160], ['genitore', 13]]
+   
+5) mar
+[['marito', 114], ['maria', 91], ['mare', 39], ['mario', 19], ['mar', 16], ['mari', 5], ['marie', 3], ['mariti', 3], ['marò', 2], ['marita', 1], ['marassi', 1], ['mara', 1]]
+   
+6) padr
+[['padre', 207], ['padri', 4]]
+   
+7) condann
+[['condannato', 74], ['condanna', 71], ['condannata', 11], ['condanne', 11], ['condannati', 10], ['condannare', 6], ['condannando', 3], ['condanniamo', 2], ['condannate', 2], ['condannerò', 1], ['condannarlo', 1], ['condannandolo', 1], ['condannabile', 1], ['condannandola', 1], ['condanno', 1]]
+   
+8) pd
+[['pd', 179]]
+   
+9) abus
+[['abusi', 47], ['abusato', 15], ['abuso', 14], ['abusiva', 4], ['abusata', 3], ['abusa', 3], ['abusivo', 2], ['abusivamente', 2], ['abusive', 1], ['abusati', 1], ['abusava', 1], ['abusare', 1], ['abusarne', 1]]
+   
+10) mamm
+[['mamma', 123], ['mamme', 6]]
+   
+11) cap
+[['capo', 76], ['capire', 61], ['capito', 41], ['capi', 24], ['capita', 7], ['capiti', 4], ['capisco', 4], ['capite', 3], ['capivamo', 2], ['capiscono', 2], ['capivo', 2], ['cap', 1], ['capirla', 1], ['capirai', 1], ['capisce', 1]]
+   
+12) polit
+[['politica', 97], ['politiche', 68], ['politico', 48], ['politici', 47], ['politicamente', 5]]
+   
+13) medic
+[['medici', 150], ['medico', 83], ['mediche', 13], ['medica', 12], ['medicata', 1], ['medicati', 1], ['medicare', 1]]
+   
+14) parl
+[['parlato', 63], ['parlare', 62], ['parlando', 47], ['parla', 40], ['parlamento', 36], ['parlano', 10], ['parlava', 8], ['parliamo', 5], ['parlo', 4], ['parlerà', 3], ['parli', 3], ['parlate', 3], ['parlasse', 2], ['parlavano', 2], ['parlarle', 1], ['parlargli', 1], ['parlò', 1], ['parlandone', 1]]
+   
+15) forz
+[['forza', 138], ['forze', 100], ['forzati', 3], ['forzato', 3], ['forzata', 3], ['forzare', 2], ['forzate', 1]]
+   
+Topic 4
+1) nord
+[['nord', 180]]
+   
+2) nev
+[['neve', 78]]
+   
+3) donn
+[['donna', 458], ['donne', 178]]
+   
+4) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+5) temperatur
+[['temperature', 63], ['temperatura', 5]]
+   
+6) piogg
+[['piogge', 50], ['pioggia', 32]]
+   
+7) centr
+[['centro', 210], ['centri', 27], ['centrata', 1], ['centrando', 1], ['centre', 1]]
+   
+8) region
+[['regioni', 66], ['regione', 35]]
+   
+9) sud
+[['sud', 123], ['sudare', 1], ['sudano', 1], ['sudate', 1]]
+   
+10) fredd
+[['freddo', 42], ['fredda', 20], ['freddi', 6], ['fredde', 1], ['freddato', 1]]
+   
+11) metr
+[['metri', 88], ['metro', 11]]
+   
+12) cal
+[['calo', 43], ['cala', 3], ['calato', 3], ['calò', 3], ['calati', 2], ['cali', 2], ['calerà', 1], ['calare', 1]]
+   
+13) port
+[['portato', 111], ['porta', 66], ['portare', 63], ['porto', 32], ['portata', 29], ['portando', 22], ['porte', 21], ['porterà', 13], ['portano', 12], ['portate', 10], ['portati', 7], ['portarlo', 7], ['portò', 5], ['portava', 5], ['porti', 4], ['portarla', 4], ['portandosi', 4], ['portarmi', 3], ['porterebbe', 3], ['portargli', 2], ['porteranno', 2], ['portiamo', 2], ['portandole', 1], ['portandola', 1], ['porteremo', 1], ['portavo', 1], ['portarono', 1], ['portandogli', 1], ['portandolo', 1], ['porterò', 1], ['port', 1]]
+   
+14) vent
+[['venti', 39], ['vento', 18], ['vent', 8], ['ventata', 1]]
+   
+15) soprattutt
+[['soprattutto', 153]]
+   
+Topic 5
+1) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+2) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+3) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+4) port
+[['portato', 111], ['porta', 66], ['portare', 63], ['porto', 32], ['portata', 29], ['portando', 22], ['porte', 21], ['porterà', 13], ['portano', 12], ['portate', 10], ['portati', 7], ['portarlo', 7], ['portò', 5], ['portava', 5], ['porti', 4], ['portarla', 4], ['portandosi', 4], ['portarmi', 3], ['porterebbe', 3], ['portargli', 2], ['porteranno', 2], ['portiamo', 2], ['portandole', 1], ['portandola', 1], ['porteremo', 1], ['portavo', 1], ['portarono', 1], ['portandogli', 1], ['portandolo', 1], ['porterò', 1], ['port', 1]]
+   
+5) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+6) medic
+[['medici', 150], ['medico', 83], ['mediche', 13], ['medica', 12], ['medicata', 1], ['medicati', 1], ['medicare', 1]]
+   
+7) genitor
+[['genitori', 160], ['genitore', 13]]
+   
+8) azi
+[['azienda', 79], ['aziende', 17]]
+   
+9) person
+[['persone', 336], ['persona', 100]]
+   
+10) ultim
+[['ultimo', 130], ['ultimi', 109], ['ultima', 64], ['ultime', 60], ['ultimamente', 2], ['ultimato', 1]]
+   
+11) milion
+[['milioni', 133], ['milione', 24]]
+   
+12) scuol
+[['scuola', 153], ['scuole', 34]]
+   
+13) eur
+[['euro', 247], ['eur', 1]]
+   
+14) famigl
+[['famiglia', 248], ['famiglie', 66], ['famigliare', 2], ['famigli', 2]]
+   
+15) oper
+[['opera', 110], ['opere', 58], ['operazione', 45], ['operazioni', 20], ['operato', 13], ['operativo', 11], ['operatori', 10], ['operatore', 8], ['operativa', 7], ['operare', 5], ['operatrici', 5], ['operanti', 4], ['operava', 3], ['operata', 2], ['operativi', 2], ['operavano', 1], ['operante', 1], ['operative', 1], ['operate', 1], ['operarla', 1], ['operabile', 1], ['operarsi', 1], ['operano', 1], ['opereremo', 1]]
+   
+Topic 6
+1) enne
+[['enne', 415]]
+   
+2) uom
+[['uomo', 501]]
+   
+3) giovan
+[['giovane', 226], ['giovani', 106], ['giovan', 1]]
+   
+4) ragazz
+[['ragazza', 144], ['ragazzo', 129], ['ragazzi', 67], ['ragazze', 30], ['ragazzate', 1]]
+   
+5) vittim
+[['vittima', 207], ['vittime', 134]]
+   
+6) carabinier
+[['carabinieri', 205]]
+   
+7) raccont
+[['raccontato', 127], ['racconta', 81], ['raccontare', 29], ['racconto', 22], ['raccontano', 16], ['raccontando', 12], ['raccontata', 6], ['racconti', 5], ['racconteranno', 3], ['raccontarsi', 2], ['raccontarlo', 2], ['raccontati', 2], ['raccontava', 2], ['raccontarvi', 2], ['raccontandogli', 1], ['racconterà', 1], ['raccontò', 1], ['raccontassero', 1], ['raccontandolo', 1], ['raccontavo', 1], ['raccontate', 1], ['raccontavano', 1]]
+   
+8) denunc
+[['denuncia', 75], ['denunciato', 50], ['denunciare', 29], ['denunce', 16], ['denunciati', 7], ['denunciata', 7], ['denunciano', 5], ['denunciando', 3], ['denuncio', 3], ['denunciarlo', 3], ['denunciarne', 2], ['denunciò', 1], ['denunciarono', 1], ['denunci', 1]]
+   
+9) accus
+[['accusa', 106], ['accuse', 43], ['accusato', 43], ['accusati', 23], ['accusata', 14], ['accusava', 3], ['accusate', 2], ['accusavano', 1], ['accusandolo', 1], ['accusarono', 1], ['accusandoci', 1], ['accusatrice', 1], ['accusando', 1], ['accusano', 1], ['accusatore', 1]]
+   
+10) condann
+[['condannato', 74], ['condanna', 71], ['condannata', 11], ['condanne', 11], ['condannati', 10], ['condannare', 6], ['condannando', 3], ['condanniamo', 2], ['condannate', 2], ['condannerò', 1], ['condannarlo', 1], ['condannandolo', 1], ['condannabile', 1], ['condannandola', 1], ['condanno', 1]]
+   
+11) sessual
+[['sessuale', 52], ['sessuali', 51], ['sessualmente', 5]]
+   
+12) ex
+[['ex', 255]]
+   
+13) arrest
+[['arrestato', 105], ['arresto', 49], ['arrestata', 32], ['arrestati', 30], ['arresti', 23], ['arrestare', 10], ['arrestate', 7], ['arresta', 2], ['arrestarsi', 1]]
+   
+14) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+15) sub
+[['subito', 184], ['subire', 20], ['subiti', 12], ['subiscono', 6], ['subita', 5], ['subisce', 5], ['sub', 5], ['subirà', 3], ['subite', 3], ['subendo', 2], ['subiranno', 1], ['subiva', 1], ['subiamo', 1]]
+   
+Topic 7
+1) donn
+[['donna', 458], ['donne', 178]]
+   
+2) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+3) fer
+[['ferite', 79], ['feriti', 69], ['ferita', 39], ['ferito', 38], ['ferimento', 5], ['ferie', 3], ['ferisce', 2], ['ferendo', 2], ['ferendone', 2], ['ferirli', 1], ['ferirlo', 1], ['ferire', 1], ['ferendola', 1]]
+   
+4) incident
+[['incidente', 173], ['incidenti', 16]]
+   
+5) person
+[['persone', 336], ['persona', 100]]
+   
+6) poliz
+[['polizia', 302]]
+   
+7) ore
+[['ore', 256]]
+   
+8) dett
+[['detto', 345], ['detta', 10], ['dette', 2], ['detti', 1]]
+   
+9) mogl
+[['moglie', 128], ['mogli', 12]]
+   
+10) present
+[['presentato', 50], ['presente', 45], ['presenti', 43], ['presentata', 27], ['presentare', 22], ['presenta', 21], ['presentazione', 20], ['presentate', 14], ['presentava', 9], ['presentati', 8], ['presentano', 7], ['presentarsi', 7], ['presenterà', 4], ['presentavano', 2], ['presentò', 2], ['presentando', 2], ['presentatore', 1], ['presentasse', 1], ['presentimento', 1], ['presentazioni', 1], ['presenterò', 1], ['presentandosi', 1], ['presentarti', 1]]
+   
+11) legg
+[['legge', 276], ['leggere', 11], ['leggi', 7], ['leggendo', 7], ['leggeva', 4], ['leggiamo', 3], ['leggevo', 1], ['leggenda', 1], ['leggende', 1], ['leggo', 1], ['leggono', 1], ['leggerlo', 1]]
+   
+12) colp
+[['colpito', 47], ['colpo', 40], ['colpi', 31], ['colpita', 22], ['colpite', 21], ['colpa', 21], ['colpire', 12], ['colpiti', 10], ['colpisce', 10], ['colpe', 3], ['colpendo', 3], ['colpirà', 2], ['colpirli', 1], ['colpendolo', 1], ['colp', 1], ['colpiscono', 1], ['colpirebbero', 1], ['colpendola', 1], ['colpirlo', 1]]
+   
+13) fuoc
+[['fuoco', 125], ['fuochi', 1]]
+   
+14) trov
+[['trovato', 148], ['trovare', 72], ['trova', 52], ['trovata', 40], ['trovava', 28], ['trovati', 21], ['trovano', 19], ['trovavano', 11], ['trovate', 10], ['trovasse', 8], ['trovarlo', 7], ['trovarono', 5], ['trovarsi', 5], ['troviamo', 4], ['trovo', 4], ['trovi', 3], ['troveranno', 3], ['trovando', 3], ['trovassimo', 2], ['trovò', 2], ['troverà', 2], ['trovandosi', 1], ['trovavo', 1], ['trovarli', 1], ['troverebbero', 1], ['trovarmi', 1], ['trovandola', 1], ['trovarla', 1], ['trovarvi', 1], ['trovarti', 1]]
+   
+15) zon
+[['zona', 136], ['zone', 38]]
+   
+Topic 8
+1) ragazz
+[['ragazza', 144], ['ragazzo', 129], ['ragazzi', 67], ['ragazze', 30], ['ragazzate', 1]]
+   
+2) donn
+[['donna', 458], ['donne', 178]]
+   
+3) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+4) giovan
+[['giovane', 226], ['giovani', 106], ['giovan', 1]]
+   
+5) madr
+[['madre', 211], ['madri', 5]]
+   
+6) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+7) vittim
+[['vittima', 207], ['vittime', 134]]
+   
+8) famigl
+[['famiglia', 248], ['famiglie', 66], ['famigliare', 2], ['famigli', 2]]
+   
+9) decis
+[['deciso', 168], ['decisamente', 26], ['decise', 11], ['decisivo', 10], ['decisa', 6], ['decisiva', 4], ['decisivi', 1]]
+   
+10) trov
+[['trovato', 148], ['trovare', 72], ['trova', 52], ['trovata', 40], ['trovava', 28], ['trovati', 21], ['trovano', 19], ['trovavano', 11], ['trovate', 10], ['trovasse', 8], ['trovarlo', 7], ['trovarono', 5], ['trovarsi', 5], ['troviamo', 4], ['trovo', 4], ['trovi', 3], ['troveranno', 3], ['trovando', 3], ['trovassimo', 2], ['trovò', 2], ['troverà', 2], ['trovandosi', 1], ['trovavo', 1], ['trovarli', 1], ['troverebbero', 1], ['trovarmi', 1], ['trovandola', 1], ['trovarla', 1], ['trovarvi', 1], ['trovarti', 1]]
+   
+11) indagin
+[['indagini', 129], ['indagine', 52]]
+   
+12) continu
+[['continua', 79], ['continuato', 24], ['continuano', 21], ['continuare', 20], ['continuerà', 11], ['continui', 8], ['continuo', 7], ['continuità', 7], ['continuava', 6], ['continue', 6], ['continuamente', 3], ['continuata', 3], ['continuando', 3], ['continuativi', 2], ['continuavano', 2], ['continuò', 2], ['continuativa', 2], ['continueranno', 1], ['continuatore', 1], ['continuerò', 1], ['continuazione', 1], ['continuavamo', 1], ['continuativamente', 1], ['continueremo', 1], ['continuerebbe', 1]]
+   
+13) amic
+[['amici', 76], ['amico', 43], ['amica', 22], ['amiche', 6]]
+   
+14) carabinier
+[['carabinieri', 205]]
+   
+15) avven
+[['avvenuto', 100], ['avvenuta', 32], ['avvenuti', 21], ['avvenire', 8], ['avvenivano', 4], ['avveniva', 1]]
+   
+Topic 9
+1) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+2) stat
+[['stato', 1177], ['stata', 625], ['stati', 380], ['state', 159]]
+   
+3) bimb
+[['bimbo', 81], ['bimba', 79], ['bimbi', 25], ['bimbe', 1]]
+   
+4) raccont
+[['raccontato', 127], ['racconta', 81], ['raccontare', 29], ['racconto', 22], ['raccontano', 16], ['raccontando', 12], ['raccontata', 6], ['racconti', 5], ['racconteranno', 3], ['raccontarsi', 2], ['raccontarlo', 2], ['raccontati', 2], ['raccontava', 2], ['raccontarvi', 2], ['raccontandogli', 1], ['racconterà', 1], ['raccontò', 1], ['raccontassero', 1], ['raccontandolo', 1], ['raccontavo', 1], ['raccontate', 1], ['raccontavano', 1]]
+   
+5) scuol
+[['scuola', 153], ['scuole', 34]]
+   
+6) violenz
+[['violenza', 147], ['violenze', 45]]
+   
+7) genitor
+[['genitori', 160], ['genitore', 13]]
+   
+8) denunc
+[['denuncia', 75], ['denunciato', 50], ['denunciare', 29], ['denunce', 16], ['denunciati', 7], ['denunciata', 7], ['denunciano', 5], ['denunciando', 3], ['denuncio', 3], ['denunciarlo', 3], ['denunciarne', 2], ['denunciò', 1], ['denunciarono', 1], ['denunci', 1]]
+   
+9) donn
+[['donna', 458], ['donne', 178]]
+   
+10) giovan
+[['giovane', 226], ['giovani', 106], ['giovan', 1]]
+   
+11) vittim
+[['vittima', 207], ['vittime', 134]]
+   
+12) sessual
+[['sessuale', 52], ['sessuali', 51], ['sessualmente', 5]]
+   
+13) mamm
+[['mamma', 123], ['mamme', 6]]
+   
+14) arrest
+[['arrestato', 105], ['arresto', 49], ['arrestata', 32], ['arrestati', 30], ['arresti', 23], ['arrestare', 10], ['arrestate', 7], ['arresta', 2], ['arrestarsi', 1]]
+   
+15) poliz
+[['polizia', 302]]
+   
+Topic 10
+1) poliz
+[['polizia', 302]]
+   
+2) fer
+[['ferite', 79], ['feriti', 69], ['ferita', 39], ['ferito', 38], ['ferimento', 5], ['ferie', 3], ['ferisce', 2], ['ferendo', 2], ['ferendone', 2], ['ferirli', 1], ['ferirlo', 1], ['ferire', 1], ['ferendola', 1]]
+   
+3) person
+[['persone', 336], ['persona', 100]]
+   
+4) incident
+[['incidente', 173], ['incidenti', 16]]
+   
+5) bimb
+[['bimbo', 81], ['bimba', 79], ['bimbi', 25], ['bimbe', 1]]
+   
+6) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+7) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+8) ragazz
+[['ragazza', 144], ['ragazzo', 129], ['ragazzi', 67], ['ragazze', 30], ['ragazzate', 1]]
+   
+9) ore
+[['ore', 256]]
+   
+10) fuoc
+[['fuoco', 125], ['fuochi', 1]]
+   
+11) mattin
+[['mattina', 88], ['mattino', 46], ['mattinata', 22], ['mattine', 1]]
+   
+12) genitor
+[['genitori', 160], ['genitore', 13]]
+   
+13) pd
+[['pd', 179]]
+   
+14) famigl
+[['famiglia', 248], ['famiglie', 66], ['famigliare', 2], ['famigli', 2]]
+   
+15) rimast
+[['rimasto', 67], ['rimasta', 50], ['rimasti', 23], ['rimaste', 19]]
+   
+Topic 11
+1) ragazz
+[['ragazza', 144], ['ragazzo', 129], ['ragazzi', 67], ['ragazze', 30], ['ragazzate', 1]]
+   
+2) stat
+[['stato', 1177], ['stata', 625], ['stati', 380], ['state', 159]]
+   
+3) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+4) uom
+[['uomo', 501]]
+   
+5) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+6) decis
+[['deciso', 168], ['decisamente', 26], ['decise', 11], ['decisivo', 10], ['decisa', 6], ['decisiva', 4], ['decisivi', 1]]
+   
+7) ex
+[['ex', 255]]
+   
+8) president
+[['presidente', 223], ['presidenti', 9]]
+   
+9) mar
+[['marito', 114], ['maria', 91], ['mare', 39], ['mario', 19], ['mar', 16], ['mari', 5], ['marie', 3], ['mariti', 3], ['marò', 2], ['marita', 1], ['marassi', 1], ['mara', 1]]
+   
+10) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+11) poliz
+[['polizia', 302]]
+   
+12) eur
+[['euro', 247], ['eur', 1]]
+   
+13) famigl
+[['famiglia', 248], ['famiglie', 66], ['famigliare', 2], ['famigli', 2]]
+   
+14) incident
+[['incidente', 173], ['incidenti', 16]]
+   
+15) pag
+[['pagamento', 39], ['pagare', 30], ['paga', 21], ['pagato', 16], ['pagamenti', 12], ['pagando', 8], ['pagata', 5], ['pagate', 4], ['pagati', 2], ['pagarne', 1], ['pagò', 1], ['pagavano', 1], ['pagava', 1], ['pagassimo', 1], ['page', 1], ['pagarla', 1], ['pagano', 1], ['pagandolo', 1], ['pagarsi', 1], ['pagarle', 1], ['pagarlo', 1]]
+   
+Topic 12
+1) bosc
+[['boschi', 93], ['bosco', 8], ['boschiva', 1]]
+   
+2) banc
+[['banca', 81], ['banche', 30], ['banco', 7], ['banchi', 1]]
+   
+3) president
+[['presidente', 223], ['presidenti', 9]]
+   
+4) etrur
+[['etruria', 53]]
+   
+5) dichiar
+[['dichiarato', 139], ['dichiarazioni', 29], ['dichiarazione', 26], ['dichiara', 13], ['dichiarata', 11], ['dichiarando', 6], ['dichiarare', 5], ['dichiararlo', 4], ['dichiarò', 4], ['dichiarati', 4], ['dichiarano', 2], ['dichiarativo', 2], ['dichiarandosi', 1], ['dichiararne', 1], ['dichiararono', 1], ['dichiari', 1], ['dichiarerà', 1], ['dichiarate', 1]]
+   
+6) ex
+[['ex', 255]]
+   
+7) oper
+[['opera', 110], ['opere', 58], ['operazione', 45], ['operazioni', 20], ['operato', 13], ['operativo', 11], ['operatori', 10], ['operatore', 8], ['operativa', 7], ['operare', 5], ['operatrici', 5], ['operanti', 4], ['operava', 3], ['operata', 2], ['operativi', 2], ['operavano', 1], ['operante', 1], ['operative', 1], ['operate', 1], ['operarla', 1], ['operabile', 1], ['operarsi', 1], ['operano', 1], ['opereremo', 1]]
+   
+8) alcun
+[['alcuni', 256], ['alcune', 137], ['alcun', 38], ['alcuna', 36], ['alcuno', 1]]
+   
+9) stat
+[['stato', 1177], ['stata', 625], ['stati', 380], ['state', 159]]
+   
+10) legg
+[['legge', 276], ['leggere', 11], ['leggi', 7], ['leggendo', 7], ['leggeva', 4], ['leggiamo', 3], ['leggevo', 1], ['leggenda', 1], ['leggende', 1], ['leggo', 1], ['leggono', 1], ['leggerlo', 1]]
+   
+11) incontr
+[['incontro', 53], ['incontrato', 29], ['incontri', 20], ['incontrare', 15], ['incontra', 7], ['incontrano', 6], ['incontrati', 5], ['incontrò', 4], ['incontrarsi', 3], ['incontrarlo', 2], ['incontrando', 2], ['incontreranno', 2], ['incontrerà', 2], ['incontrate', 1], ['incontrarla', 1], ['incontreremo', 1], ['incontriamo', 1], ['incontrava', 1], ['incontrarvi', 1], ['incontrarci', 1], ['incontrarti', 1]]
+   
+12) person
+[['persone', 336], ['persona', 100]]
+   
+13) moment
+[['momento', 251], ['momenti', 27]]
+   
+14) commission
+[['commissione', 89], ['commissionate', 3], ['commissionato', 2], ['commissioni', 2], ['commissionata', 2], ['commissionati', 1], ['commission', 1]]
+   
+15) mar
+[['marito', 114], ['maria', 91], ['mare', 39], ['mario', 19], ['mar', 16], ['mari', 5], ['marie', 3], ['mariti', 3], ['marò', 2], ['marita', 1], ['marassi', 1], ['mara', 1]]
+   
+Topic 13
+1) ragazz
+[['ragazza', 144], ['ragazzo', 129], ['ragazzi', 67], ['ragazze', 30], ['ragazzate', 1]]
+   
+2) dett
+[['detto', 345], ['detta', 10], ['dette', 2], ['detti', 1]]
+   
+3) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+4) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+5) medic
+[['medici', 150], ['medico', 83], ['mediche', 13], ['medica', 12], ['medicata', 1], ['medicati', 1], ['medicare', 1]]
+   
+6) port
+[['portato', 111], ['porta', 66], ['portare', 63], ['porto', 32], ['portata', 29], ['portando', 22], ['porte', 21], ['porterà', 13], ['portano', 12], ['portate', 10], ['portati', 7], ['portarlo', 7], ['portò', 5], ['portava', 5], ['porti', 4], ['portarla', 4], ['portandosi', 4], ['portarmi', 3], ['porterebbe', 3], ['portargli', 2], ['porteranno', 2], ['portiamo', 2], ['portandole', 1], ['portandola', 1], ['porteremo', 1], ['portavo', 1], ['portarono', 1], ['portandogli', 1], ['portandolo', 1], ['porterò', 1], ['port', 1]]
+   
+7) pd
+[['pd', 179]]
+   
+8) ospedal
+[['ospedale', 290], ['ospedali', 10], ['ospedaliere', 3]]
+   
+9) part
+[['parte', 394], ['partito', 134], ['partire', 62], ['partita', 36], ['partiti', 35], ['parti', 35], ['parto', 8], ['partite', 6], ['part', 5], ['partirà', 3], ['partendo', 3], ['partono', 3], ['partiamo', 2]]
+   
+10) elezion
+[['elezioni', 102], ['elezione', 3]]
+   
+11) genitor
+[['genitori', 160], ['genitore', 13]]
+   
+12) renz
+[['renzi', 151], ['renziano', 1]]
+   
+13) uom
+[['uomo', 501]]
+   
+14) decis
+[['deciso', 168], ['decisamente', 26], ['decise', 11], ['decisivo', 10], ['decisa', 6], ['decisiva', 4], ['decisivi', 1]]
+   
+15) spieg
+[['spiegato', 156], ['spiega', 100], ['spiegando', 33], ['spiegare', 18], ['spiegano', 13], ['spiegava', 2], ['spiegò', 2], ['spiegarlo', 2], ['spiegarono', 1], ['spiegandole', 1], ['spiegati', 1], ['spiegarmi', 1], ['spiegavano', 1], ['spiegarsi', 1], ['spiego', 1], ['spiegheremo', 1], ['spiegherebbe', 1], ['spiegate', 1]]
+   
+Topic 14
+1) trov
+[['trovato', 148], ['trovare', 72], ['trova', 52], ['trovata', 40], ['trovava', 28], ['trovati', 21], ['trovano', 19], ['trovavano', 11], ['trovate', 10], ['trovasse', 8], ['trovarlo', 7], ['trovarono', 5], ['trovarsi', 5], ['troviamo', 4], ['trovo', 4], ['trovi', 3], ['troveranno', 3], ['trovando', 3], ['trovassimo', 2], ['trovò', 2], ['troverà', 2], ['trovandosi', 1], ['trovavo', 1], ['trovarli', 1], ['troverebbero', 1], ['trovarmi', 1], ['trovandola', 1], ['trovarla', 1], ['trovarvi', 1], ['trovarti', 1]]
+   
+2) part
+[['parte', 394], ['partito', 134], ['partire', 62], ['partita', 36], ['partiti', 35], ['parti', 35], ['parto', 8], ['partite', 6], ['part', 5], ['partirà', 3], ['partendo', 3], ['partono', 3], ['partiamo', 2]]
+   
+3) poliz
+[['polizia', 302]]
+   
+4) mort
+[['morte', 214], ['morto', 145], ['morta', 69], ['morti', 59]]
+   
+5) eur
+[['euro', 247], ['eur', 1]]
+   
+6) genitor
+[['genitori', 160], ['genitore', 13]]
+   
+7) madr
+[['madre', 211], ['madri', 5]]
+   
+8) alcun
+[['alcuni', 256], ['alcune', 137], ['alcun', 38], ['alcuna', 36], ['alcuno', 1]]
+   
+9) local
+[['locali', 104], ['locale', 95], ['località', 16], ['localmente', 10]]
+   
+10) violenz
+[['violenza', 147], ['violenze', 45]]
+   
+11) arrest
+[['arrestato', 105], ['arresto', 49], ['arrestata', 32], ['arrestati', 30], ['arresti', 23], ['arrestare', 10], ['arrestate', 7], ['arresta', 2], ['arrestarsi', 1]]
+   
+12) pd
+[['pd', 179]]
+   
+13) aut
+[['auto', 173]]
+   
+14) vittim
+[['vittima', 207], ['vittime', 134]]
+   
+15) person
+[['persone', 336], ['persona', 100]]
+   
+Topic 15
+1) enne
+[['enne', 415]]
+   
+2) poliz
+[['polizia', 302]]
+   
+3) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+4) mort
+[['morte', 214], ['morto', 145], ['morta', 69], ['morti', 59]]
+   
+5) arrest
+[['arrestato', 105], ['arresto', 49], ['arrestata', 32], ['arrestati', 30], ['arresti', 23], ['arrestare', 10], ['arrestate', 7], ['arresta', 2], ['arrestarsi', 1]]
+   
+6) president
+[['presidente', 223], ['presidenti', 9]]
+   
+7) dichiar
+[['dichiarato', 139], ['dichiarazioni', 29], ['dichiarazione', 26], ['dichiara', 13], ['dichiarata', 11], ['dichiarando', 6], ['dichiarare', 5], ['dichiararlo', 4], ['dichiarò', 4], ['dichiarati', 4], ['dichiarano', 2], ['dichiarativo', 2], ['dichiarandosi', 1], ['dichiararne', 1], ['dichiararono', 1], ['dichiari', 1], ['dichiarerà', 1], ['dichiarate', 1]]
+   
+8) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+9) bosc
+[['boschi', 93], ['bosco', 8], ['boschiva', 1]]
+   
+10) pd
+[['pd', 179]]
+   
+11) legg
+[['legge', 276], ['leggere', 11], ['leggi', 7], ['leggendo', 7], ['leggeva', 4], ['leggiamo', 3], ['leggevo', 1], ['leggenda', 1], ['leggende', 1], ['leggo', 1], ['leggono', 1], ['leggerlo', 1]]
+   
+12) ospedal
+[['ospedale', 290], ['ospedali', 10], ['ospedaliere', 3]]
+   
+13) incident
+[['incidente', 173], ['incidenti', 16]]
+   
+14) renz
+[['renzi', 151], ['renziano', 1]]
+   
+15) incontr
+[['incontro', 53], ['incontrato', 29], ['incontri', 20], ['incontrare', 15], ['incontra', 7], ['incontrano', 6], ['incontrati', 5], ['incontrò', 4], ['incontrarsi', 3], ['incontrarlo', 2], ['incontrando', 2], ['incontreranno', 2], ['incontrerà', 2], ['incontrate', 1], ['incontrarla', 1], ['incontreremo', 1], ['incontriamo', 1], ['incontrava', 1], ['incontrarvi', 1], ['incontrarci', 1], ['incontrarti', 1]]
+   
+Topic 16
+1) part
+[['parte', 394], ['partito', 134], ['partire', 62], ['partita', 36], ['partiti', 35], ['parti', 35], ['parto', 8], ['partite', 6], ['part', 5], ['partirà', 3], ['partendo', 3], ['partono', 3], ['partiamo', 2]]
+   
+2) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+3) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+4) fer
+
+[['ferite', 79], ['feriti', 69], ['ferita', 39], ['ferito', 38], ['ferimento', 5], ['ferie', 3], ['ferisce', 2], ['ferendo', 2], ['ferendone', 2], ['ferirli', 1], ['ferirlo', 1], ['ferire', 1], ['ferendola', 1]]
+   
+5) scuol
+[['scuola', 153], ['scuole', 34]]
+   
+6) enne
+[['enne', 415]]
+   
+7) ore
+[['ore', 256]]
+   
+8) stat
+[['stato', 1177], ['stata', 625], ['stati', 380], ['state', 159]]
+   
+9) mattin
+[['mattina', 88], ['mattino', 46], ['mattinata', 22], ['mattine', 1]]
+   
+10) incident
+[['incidente', 173], ['incidenti', 16]]
+   
+11) fuoc
+[['fuoco', 125], ['fuochi', 1]]
+   
+12) condann
+[['condannato', 74], ['condanna', 71], ['condannata', 11], ['condanne', 11], ['condannati', 10], ['condannare', 6], ['condannando', 3], ['condanniamo', 2], ['condannate', 2], ['condannerò', 1], ['condannarlo', 1], ['condannandolo', 1], ['condannabile', 1], ['condannandola', 1], ['condanno', 1]]
+   
+13) comun
+[['comune', 91], ['comunità', 51], ['comuni', 39], ['comunicazione', 30], ['comunicazioni', 5], ['comunemente', 5], ['comunisti', 5], ['comunista', 4], ['comunica', 3], ['comunismo', 2], ['comunicativo', 1], ['comunicative', 1]]
+   
+14) azi
+[['azienda', 79], ['aziende', 17]]
+   
+15) bimb
+[['bimbo', 81], ['bimba', 79], ['bimbi', 25], ['bimbe', 1]]
+   
+Topic 17
+1) raccont
+[['raccontato', 127], ['racconta', 81], ['raccontare', 29], ['racconto', 22], ['raccontano', 16], ['raccontando', 12], ['raccontata', 6], ['racconti', 5], ['racconteranno', 3], ['raccontarsi', 2], ['raccontarlo', 2], ['raccontati', 2], ['raccontava', 2], ['raccontarvi', 2], ['raccontandogli', 1], ['racconterà', 1], ['raccontò', 1], ['raccontassero', 1], ['raccontandolo', 1], ['raccontavo', 1], ['raccontate', 1], ['raccontavano', 1]]
+   
+2) bimb
+[['bimbo', 81], ['bimba', 79], ['bimbi', 25], ['bimbe', 1]]
+   
+3) incident
+[['incidente', 173], ['incidenti', 16]]
+   
+4) bosc
+[['boschi', 93], ['bosco', 8], ['boschiva', 1]]
+   
+5) fer
+[['ferite', 79], ['feriti', 69], ['ferita', 39], ['ferito', 38], ['ferimento', 5], ['ferie', 3], ['ferisce', 2], ['ferendo', 2], ['ferendone', 2], ['ferirli', 1], ['ferirlo', 1], ['ferire', 1], ['ferendola', 1]]
+   
+6) lavor
+[['lavoro', 268], ['lavoratori', 84], ['lavorare', 25], ['lavori', 24], ['lavora', 21], ['lavorato', 18], ['lavorando', 16], ['lavorava', 15], ['lavoratore', 8], ['lavorano', 8], ['lavorative', 6], ['lavorativo', 5], ['lavoratrici', 5], ['lavorativi', 4], ['lavorativa', 3], ['lavoratrice', 3], ['lavoriamo', 2], ['lavoravano', 2], ['lavorazioni', 2], ['lavoreremo', 2], ['lavorarci', 1], ['lavoreranno', 1], ['lavorate', 1], ['lavorati', 1]]
+   
+7) condann
+[['condannato', 74], ['condanna', 71], ['condannata', 11], ['condanne', 11], ['condannati', 10], ['condannare', 6], ['condannando', 3], ['condanniamo', 2], ['condannate', 2], ['condannerò', 1], ['condannarlo', 1], ['condannandolo', 1], ['condannabile', 1], ['condannandola', 1], ['condanno', 1]]
+   
+8) mort
+[['morte', 214], ['morto', 145], ['morta', 69], ['morti', 59]]
+   
+9) banc
+[['banca', 81], ['banche', 30], ['banco', 7], ['banchi', 1]]
+   
+10) genitor
+[['genitori', 160], ['genitore', 13]]
+   
+11) uom
+[['uomo', 501]]
+   
+12) attacc
+[['attacco', 44], ['attacchi', 30], ['attacca', 14], ['attaccato', 14], ['attaccare', 6], ['attaccati', 5], ['attaccata', 5], ['attaccando', 3], ['attaccante', 2], ['attaccano', 2], ['attaccate', 2], ['attaccassero', 1], ['attaccarsi', 1], ['attaccamento', 1]]
+   
+13) renz
+[['renzi', 151], ['renziano', 1]]
+   
+14) etrur
+[['etruria', 53]]
+   
+15) parl
+[['parlato', 63], ['parlare', 62], ['parlando', 47], ['parla', 40], ['parlamento', 36], ['parlano', 10], ['parlava', 8], ['parliamo', 5], ['parlo', 4], ['parlerà', 3], ['parli', 3], ['parlate', 3], ['parlasse', 2], ['parlavano', 2], ['parlarle', 1], ['parlargli', 1], ['parlò', 1], ['parlandone', 1]]
+   
+Topic 18
+1) alcun
+[['alcuni', 256], ['alcune', 137], ['alcun', 38], ['alcuna', 36], ['alcuno', 1]]
+   
+2) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+3) raccont
+[['raccontato', 127], ['racconta', 81], ['raccontare', 29], ['racconto', 22], ['raccontano', 16], ['raccontando', 12], ['raccontata', 6], ['racconti', 5], ['racconteranno', 3], ['raccontarsi', 2], ['raccontarlo', 2], ['raccontati', 2], ['raccontava', 2], ['raccontarvi', 2], ['raccontandogli', 1], ['racconterà', 1], ['raccontò', 1], ['raccontassero', 1], ['raccontandolo', 1], ['raccontavo', 1], ['raccontate', 1], ['raccontavano', 1]]
+   
+4) mar
+[['marito', 114], ['maria', 91], ['mare', 39], ['mario', 19], ['mar', 16], ['mari', 5], ['marie', 3], ['mariti', 3], ['marò', 2], ['marita', 1], ['marassi', 1], ['mara', 1]]
+   
+5) poliz
+[['polizia', 302]]
+   
+6) part
+[['parte', 394], ['partito', 134], ['partire', 62], ['partita', 36], ['partiti', 35], ['parti', 35], ['parto', 8], ['partite', 6], ['part', 5], ['partirà', 3], ['partendo', 3], ['partono', 3], ['partiamo', 2]]
+   
+7) vist
+[['visto', 165], ['vista', 83], ['viste', 14], ['visti', 6]]
+   
+8) altro
+[['altro', 248]]
+   
+9) local
+[['locali', 104], ['locale', 95], ['località', 16], ['localmente', 10]]
+   
+10) rifer
+[['riferito', 53], ['riferimento', 45], ['riferisce', 21], ['riferendosi', 16], ['riferiscono', 8], ['riferimenti', 5], ['riferire', 5], ['riferita', 3], ['riferiva', 3], ['riferiti', 2], ['riferite', 2], ['riferiamo', 2], ['rifer', 1], ['riferendo', 1], ['riferisca', 1], ['riferirsi', 1], ['riferendogli', 1]]
+   
+11) viv
+[['vivere', 57], ['vive', 52], ['vivono', 28], ['viveva', 26], ['vivo', 25], ['viva', 19], ['vivi', 12], ['vivevano', 8], ['vivendo', 7], ['viviamo', 7], ['viverle', 2], ['vivermi', 2], ['vivevamo', 1], ['vivamente', 1], ['viverla', 1], ['vivano', 1]]
+   
+12) sott
+[['sotto', 172], ['sott', 1]]
+   
+13) padr
+[['padre', 207], ['padri', 4]]
+   
+14) colp
+[['colpito', 47], ['colpo', 40], ['colpi', 31], ['colpita', 22], ['colpite', 21], ['colpa', 21], ['colpire', 12], ['colpiti', 10], ['colpisce', 10], ['colpe', 3], ['colpendo', 3], ['colpirà', 2], ['colpirli', 1], ['colpendolo', 1], ['colp', 1], ['colpiscono', 1], ['colpirebbero', 1], ['colpendola', 1], ['colpirlo', 1]]
+   
+15) lasc
+[['lasciato', 73], ['lasciare', 39], ['lascia', 39], ['lasciando', 18], ['lasciati', 14], ['lasciata', 10], ['lasciano', 7], ['lasciarlo', 5], ['lasci', 5], ['lasciandolo', 4], ['lasciava', 4], ['lasciar', 4], ['lasciò', 3], ['lasceranno', 2], ['lasciarla', 2], ['lascerà', 2], ['lasciavano', 2], ['lascito', 2], ['lasciate', 1], ['lasciti', 1], ['lasciandole', 1], ['lasciandola', 1], ['lasciamo', 1], ['lascerò', 1], ['lasceremo', 1], ['lasciandosi', 1], ['lascio', 1], ['lascerebbe', 1]]
+   
+Topic 19
+1) vit
+[['vita', 379], ['vite', 14], ['vito', 10]]
+   
+2) enne
+[['enne', 415]]
+   
+3) trov
+[['trovato', 148], ['trovare', 72], ['trova', 52], ['trovata', 40], ['trovava', 28], ['trovati', 21], ['trovano', 19], ['trovavano', 11], ['trovate', 10], ['trovasse', 8], ['trovarlo', 7], ['trovarono', 5], ['trovarsi', 5], ['troviamo', 4], ['trovo', 4], ['trovi', 3], ['troveranno', 3], ['trovando', 3], ['trovassimo', 2], ['trovò', 2], ['troverà', 2], ['trovandosi', 1], ['trovavo', 1], ['trovarli', 1], ['troverebbero', 1], ['trovarmi', 1], ['trovandola', 1], ['trovarla', 1], ['trovarvi', 1], ['trovarti', 1]]
+   
+4) person
+[['persone', 336], ['persona', 100]]
+   
+5) famigl
+[['famiglia', 248], ['famiglie', 66], ['famigliare', 2], ['famigli', 2]]
+   
+6) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+7) ital
+[['italia', 425], ['italiano', 73], ['italo', 1]]
+   
+8) eur
+[['euro', 247], ['eur', 1]]
+   
+9) bosc
+[['boschi', 93], ['bosco', 8], ['boschiva', 1]]
+   
+10) ex
+[['ex', 255]]
+   
+11) attacc
+[['attacco', 44], ['attacchi', 30], ['attacca', 14], ['attaccato', 14], ['attaccare', 6], ['attaccati', 5], ['attaccata', 5], ['attaccando', 3], ['attaccante', 2], ['attaccano', 2], ['attaccate', 2], ['attaccassero', 1], ['attaccarsi', 1], ['attaccamento', 1]]
+   
+12) mamm
+[['mamma', 123], ['mamme', 6]]
+   
+13) cur
+[['cura', 62], ['cure', 56], ['curato', 10], ['curata', 9], ['curarsi', 5], ['curare', 4], ['curarla', 2], ['curerà', 2], ['curati', 1], ['curia', 1], ['curà', 1]]
+   
+14) incontr
+[['incontro', 53], ['incontrato', 29], ['incontri', 20], ['incontrare', 15], ['incontra', 7], ['incontrano', 6], ['incontrati', 5], ['incontrò', 4], ['incontrarsi', 3], ['incontrarlo', 2], ['incontrando', 2], ['incontreranno', 2], ['incontrerà', 2], ['incontrate', 1], ['incontrarla', 1], ['incontreremo', 1], ['incontriamo', 1], ['incontrava', 1], ['incontrarvi', 1], ['incontrarci', 1], ['incontrarti', 1]]
+   
+15) stat
+[['stato', 1177], ['stata', 625], ['stati', 380], ['state', 159]]
+   
+Topic 20
+1) alcun
+[['alcuni', 256], ['alcune', 137], ['alcun', 38], ['alcuna', 36], ['alcuno', 1]]
+   
+2) enne
+[['enne', 415]]
+   
+3) trov
+[['trovato', 148], ['trovare', 72], ['trova', 52], ['trovata', 40], ['trovava', 28], ['trovati', 21], ['trovano', 19], ['trovavano', 11], ['trovate', 10], ['trovasse', 8], ['trovarlo', 7], ['trovarono', 5], ['trovarsi', 5], ['troviamo', 4], ['trovo', 4], ['trovi', 3], ['troveranno', 3], ['trovando', 3], ['trovassimo', 2], ['trovò', 2], ['troverà', 2], ['trovandosi', 1], ['trovavo', 1], ['trovarli', 1], ['troverebbero', 1], ['trovarmi', 1], ['trovandola', 1], ['trovarla', 1], ['trovarvi', 1], ['trovarti', 1]]
+   
+4) bambin
+[['bambini', 156], ['bambino', 127], ['bambina', 99], ['bambine', 8]]
+   
+5) poliz
+[['polizia', 302]]
+   
+6) local
+[['locali', 104], ['locale', 95], ['località', 16], ['localmente', 10]]
+   
+7) port
+[['portato', 111], ['porta', 66], ['portare', 63], ['porto', 32], ['portata', 29], ['portando', 22], ['porte', 21], ['porterà', 13], ['portano', 12], ['portate', 10], ['portati', 7], ['portarlo', 7], ['portò', 5], ['portava', 5], ['porti', 4], ['portarla', 4], ['portandosi', 4], ['portarmi', 3], ['porterebbe', 3], ['portargli', 2], ['porteranno', 2], ['portiamo', 2], ['portandole', 1], ['portandola', 1], ['porteremo', 1], ['portavo', 1], ['portarono', 1], ['portandogli', 1], ['portandolo', 1], ['porterò', 1], ['port', 1]]
+   
+8) figl
+[['figlio', 170], ['figli', 156], ['figlia', 153], ['figlie', 12]]
+   
+9) famigl
+[['famiglia', 248], ['famiglie', 66], ['famigliare', 2], ['famigli', 2]]
+   
+10) ragazz
+[['ragazza', 144], ['ragazzo', 129], ['ragazzi', 67], ['ragazze', 30], ['ragazzate', 1]]
+   
+11) vist
+[['visto', 165], ['vista', 83], ['viste', 14], ['visti', 6]]
+   
+12) amic
+[['amici', 76], ['amico', 43], ['amica', 22], ['amiche', 6]]
+   
+13) condizion
+[['condizioni', 156], ['condizione', 28], ['condizionata', 2], ['condizionato', 1], ['condizionano', 1]]
+   
+14) infatt
+[['infatti', 285]]
+   
+15) paes
+[['paese', 189], ['paesi', 60]]
+

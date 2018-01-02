@@ -1,0 +1,559 @@
+176 News
+LDA  524.7527143955231
+LSI 2.065390110015869
+
+Topic 1
+1) stat
+[['stato', 221], ['stati', 97], ['stata', 88], ['state', 32], ['statuto', 1]]
+   
+2) part
+[['parte', 99], ['partito', 31], ['partire', 23], ['partiti', 15], ['partita', 13], ['parti', 11], ['partendo', 3], ['partono', 3], ['partite', 2], ['parto', 2], ['partiamo', 1], ['partiremo', 1]]
+   
+3) ital
+[['italia', 139], ['italiano', 19], ['italo', 3]]
+   
+4) mil
+[['mila', 87], ['milano', 43]]
+   
+5) paes
+[['paese', 67], ['paesi', 59]]
+   
+6) govern
+[['governo', 64], ['governatore', 8], ['governare', 5], ['governi', 2], ['governativo', 2], ['governative', 2], ['governavano', 1], ['governassero', 1], ['governatori', 1], ['governativi', 1], ['governanti', 1]]
+   
+7) eur
+[['euro', 90], ['eur', 1]]
+   
+8) milion
+[['milioni', 75], ['milione', 5]]
+   
+9) pd
+[['pd', 82]]
+   
+10) commission
+[['commissione', 53], ['commissionato', 3], ['commissioni', 2]]
+   
+11) russ
+[['russia', 24], ['russa', 8], ['russo', 7], ['russi', 6], ['russe', 4]]
+   
+12) citt
+[['città', 80]]
+   
+Topic 2
+1) part
+[['parte', 99], ['partito', 31], ['partire', 23], ['partiti', 15], ['partita', 13], ['parti', 11], ['partendo', 3], ['partono', 3], ['partite', 2], ['parto', 2], ['partiamo', 1], ['partiremo', 1]]
+   
+2) govern
+[['governo', 64], ['governatore', 8], ['governare', 5], ['governi', 2], ['governativo', 2], ['governative', 2], ['governavano', 1], ['governassero', 1], ['governatori', 1], ['governativi', 1], ['governanti', 1]]
+   
+3) pd
+[['pd', 82]]
+   
+4) renz
+[['renzi', 62], ['renziano', 2]]
+   
+5) commission
+[['commissione', 53], ['commissionato', 3], ['commissioni', 2]]
+   
+6) decision
+[['decisione', 35], ['decisioni', 7]]
+   
+7) ue
+[['ue', 56]]
+   
+8) vot
+[['voto', 22], ['voti', 9], ['votato', 7], ['votare', 5], ['voterebbe', 3], ['vota', 2], ['votano', 2], ['voterei', 1], ['voterà', 1], ['voterebbero', 1]]
+   
+9) sinistr
+[['sinistra', 43], ['sinistro', 2]]
+   
+10) accord
+[['accordo', 33], ['accordi', 4], ['accordata', 1]]
+   
+11) may
+[['may', 14], ['maya', 1]]
+   
+12) pisap
+[['pisapia', 18]]
+   
+Topic 3
+1) ue
+[['ue', 56]]
+   
+2) paes
+[['paese', 67], ['paesi', 59]]
+   
+3) accord
+[['accordo', 33], ['accordi', 4], ['accordata', 1]]
+   
+4) unit
+[['uniti', 27], ['unito', 22], ['unità', 17], ['unite', 5]]
+   
+5) may
+[['may', 14], ['maya', 1]]
+   
+6) decision
+[['decisione', 35], ['decisioni', 7]]
+   
+7) europe
+[['europea', 32], ['europeo', 10], ['europei', 9], ['europee', 7]]
+   
+8) regn
+[['regno', 22], ['regna', 2], ['regnare', 1], ['regnò', 1]]
+   
+9) britann
+[['britannico', 8], ['britannici', 5], ['britannica', 3], ['britanniche', 1]]
+   
+10) union
+[['unione', 21], ['unioni', 3], ['unionisti', 1]]
+   
+11) russ
+[['russia', 24], ['russa', 8], ['russo', 7], ['russi', 6], ['russe', 4]]
+   
+12) merc
+[['mercato', 21], ['mercati', 5], ['merci', 5], ['merce', 1]]
+   
+Topic 4
+1) eur
+[['euro', 90], ['eur', 1]]
+   
+2) ue
+[['ue', 56]]
+   
+3) europe
+[['europea', 32], ['europeo', 10], ['europei', 9], ['europee', 7]]
+   
+4) milion
+[['milioni', 75], ['milione', 5]]
+   
+5) may
+[['may', 14], ['maya', 1]]
+   
+6) regn
+[['regno', 22], ['regna', 2], ['regnare', 1], ['regnò', 1]]
+   
+7) accord
+[['accordo', 33], ['accordi', 4], ['accordata', 1]]
+   
+8) unit
+[['uniti', 27], ['unito', 22], ['unità', 17], ['unite', 5]]
+   
+9) negoz
+[['negoziati', 7], ['negoziato', 6], ['negozi', 4], ['negoziare', 3], ['negozio', 2], ['negoziatori', 2], ['negoziante', 1]]
+   
+10) stat
+[['stato', 221], ['stati', 97], ['stata', 88], ['state', 32], ['statuto', 1]]
+   
+11) britann
+[['britannico', 8], ['britannici', 5], ['britannica', 3], ['britanniche', 1]]
+   
+12) premier
+[['premier', 40]]
+   
+Topic 5
+1) mil
+[['mila', 87], ['milano', 43]]
+   
+2) ital
+[['italia', 139], ['italiano', 19], ['italo', 3]]
+   
+3) men
+[['meno', 56], ['men', 1], ['mena', 1]]
+   
+4) lavor
+[['lavoro', 61], ['lavorare', 13], ['lavoratori', 13], ['lavori', 10], ['lavora', 9], ['lavorativa', 5], ['lavorato', 5], ['lavorando', 5], ['lavorava', 4], ['lavoriamo', 2], ['lavorano', 1], ['lavorativo', 1], ['lavorerò', 1]]
+   
+5) paes
+[['paese', 67], ['paesi', 59]]
+   
+6) figl
+[['figlio', 29], ['figli', 22], ['figlia', 10]]
+   
+7) diminu
+[['diminuzione', 7], ['diminuiti', 3], ['diminuite', 2], ['diminuisce', 1], ['diminuire', 1]]
+   
+8) rispett
+[['rispetto', 34], ['rispettare', 7], ['rispettivamente', 4], ['rispettano', 2], ['rispetta', 2], ['rispettato', 2], ['rispettate', 1], ['rispettosi', 1], ['rispettando', 1], ['rispettò', 1]]
+   
+9) piazz
+[['piazza', 37], ['piazze', 4], ['piazzare', 1], ['piazzato', 1], ['piazzandosi', 1]]
+   
+10) pag
+[['pagare', 18], ['pagamento', 5], ['pagato', 4], ['pagamenti', 4], ['pagate', 3], ['paga', 2], ['pagati', 2], ['pagata', 1], ['pagando', 1], ['pagano', 1], ['pagavano', 1]]
+   
+11) alcun
+[['alcuni', 44], ['alcune', 22], ['alcun', 11], ['alcuna', 9]]
+   
+12) chiar
+[['chiara', 17], ['chiaro', 13], ['chiaramente', 5], ['chiarire', 3], ['chiari', 3], ['chiarito', 2], ['chiarisce', 2], ['chiariscono', 1], ['chiarisca', 1]]
+   
+Topic 6
+1) ital
+[['italia', 139], ['italiano', 19], ['italo', 3]]
+   
+2) russ
+[['russia', 24], ['russa', 8], ['russo', 7], ['russi', 6], ['russe', 4]]
+   
+3) piazz
+[['piazza', 37], ['piazze', 4], ['piazzare', 1], ['piazzato', 1], ['piazzandosi', 1]]
+   
+4) pd
+[['pd', 82]]
+   
+5) mosc
+[['mosca', 23], ['moscio', 1]]
+   
+6) vot
+[['voto', 22], ['voti', 9], ['votato', 7], ['votare', 5], ['voterebbe', 3], ['vota', 2], ['votano', 2], ['voterei', 1], ['voterà', 1], ['voterebbero', 1]]
+   
+7) sinistr
+[['sinistra', 43], ['sinistro', 2]]
+   
+8) paes
+[['paese', 67], ['paesi', 59]]
+   
+9) citt
+[['città', 80]]
+   
+10) usa
+[['usa', 32]]
+   
+11) palazz
+[['palazzo', 18], ['palazzi', 9]]
+   
+12) regol
+[['regole', 12], ['regola', 7], ['regolare', 4], ['regolamento', 3], ['regoleranno', 1]]
+   
+Topic 7
+1) paes
+[['paese', 67], ['paesi', 59]]
+   
+2) figl
+[['figlio', 29], ['figli', 22], ['figlia', 10]]
+   
+3) pd
+[['pd', 82]]
+   
+4) parl
+[['parlare', 14], ['parlato', 12], ['parlamento', 11], ['parla', 10], ['parliamo', 5], ['parlano', 4], ['parlando', 3], ['parlava', 2], ['parlo', 2], ['parlavo', 2], ['parlandone', 1], ['parlate', 1], ['parlavano', 1], ['parlò', 1], ['parlerà', 1], ['parlavamo', 1], ['parleremo', 1]]
+   
+5) vit
+[['vita', 60]]
+   
+6) prezz
+[['prezzo', 12], ['prezzi', 5]]
+   
+7) alcun
+[['alcuni', 44], ['alcune', 22], ['alcun', 11], ['alcuna', 9]]
+   
+8) tagl
+[['tagli', 10], ['taglio', 6], ['tagliare', 5], ['tagliato', 2], ['taglia', 2], ['taglieremo', 1], ['tagliando', 1]]
+   
+9) dett
+[['detto', 53], ['detta', 5], ['dettati', 2], ['dette', 2], ['dettata', 1]]
+   
+10) russ
+[['russia', 24], ['russa', 8], ['russo', 7], ['russi', 6], ['russe', 4]]
+   
+11) ius
+[['ius', 19]]
+   
+12) legg
+[['legge', 52], ['leggi', 8], ['leggere', 5], ['leggenda', 3], ['leggono', 2], ['leggende', 2], ['leggerà', 1], ['leggevo', 1]]
+   
+Topic 8
+1) citt
+[['città', 80]]
+   
+2) pass
+[['passato', 30], ['passa', 14], ['passo', 13], ['passare', 9], ['passi', 9], ['passati', 7], ['passate', 5], ['passata', 5], ['passando', 3], ['passano', 2], ['passerebbe', 1], ['passava', 1], ['passeranno', 1], ['passasse', 1]]
+   
+3) piazz
+[['piazza', 37], ['piazze', 4], ['piazzare', 1], ['piazzato', 1], ['piazzandosi', 1]]
+   
+4) torin
+[['torino', 37]]
+   
+5) alcun
+[['alcuni', 44], ['alcune', 22], ['alcun', 11], ['alcuna', 9]]
+   
+6) part
+[['parte', 99], ['partito', 31], ['partire', 23], ['partiti', 15], ['partita', 13], ['parti', 11], ['partendo', 3], ['partono', 3], ['partite', 2], ['parto', 2], ['partiamo', 1], ['partiremo', 1]]
+   
+7) san
+[['san', 38], ['sano', 1], ['sana', 1], ['sanano', 1]]
+   
+8) donn
+[['donne', 44], ['donna', 26], ['donno', 2]]
+   
+9) ospedal
+[['ospedale', 27], ['ospedali', 4]]
+   
+10) mond
+[['mondo', 43]]
+   
+11) palazz
+[['palazzo', 18], ['palazzi', 9]]
+   
+12) appendin
+[['appendino', 9]]
+   
+Topic 9
+1) milion
+[['milioni', 75], ['milione', 5]]
+   
+2) citt
+[['città', 80]]
+   
+3) paes
+[['paese', 67], ['paesi', 59]]
+   
+4) mond
+[['mondo', 43]]
+   
+5) ultim
+[['ultimi', 41], ['ultimo', 31], ['ultima', 24], ['ultime', 15], ['ultimato', 1]]
+   
+6) capital
+[['capitale', 39], ['capitalismo', 1], ['capitali', 1]]
+   
+7) alcun
+[['alcuni', 44], ['alcune', 22], ['alcun', 11], ['alcuna', 9]]
+   
+8) parc
+[['parco', 8]]
+   
+9) sir
+[['siria', 23], ['siriano', 8], ['siro', 2]]
+   
+10) dollar
+[['dollari', 26]]
+   
+11) punt
+[['punto', 61], ['punti', 12], ['punta', 5], ['puntare', 4], ['puntato', 2], ['puntavano', 1], ['puntando', 1], ['puntati', 1], ['puntano', 1], ['punteremo', 1], ['puntata', 1]]
+   
+12) prezz
+[['prezzo', 12], ['prezzi', 5]]
+   
+Topic 10
+1) person
+[['persone', 67], ['persona', 32]]
+   
+2) parl
+[['parlare', 14], ['parlato', 12], ['parlamento', 11], ['parla', 10], ['parliamo', 5], ['parlano', 4], ['parlando', 3], ['parlava', 2], ['parlo', 2], ['parlavo', 2], ['parlandone', 1], ['parlate', 1], ['parlavano', 1], ['parlò', 1], ['parlerà', 1], ['parlavamo', 1], ['parleremo', 1]]
+   
+3) lavor
+[['lavoro', 61], ['lavorare', 13], ['lavoratori', 13], ['lavori', 10], ['lavora', 9], ['lavorativa', 5], ['lavorato', 5], ['lavorando', 5], ['lavorava', 4], ['lavoriamo', 2], ['lavorano', 1], ['lavorativo', 1], ['lavorerò', 1]]
+   
+4) altro
+[['altro', 55]]
+   
+5) robot
+[['robot', 19], ['robotica', 1]]
+   
+6) dett
+[['detto', 53], ['detta', 5], ['dettati', 2], ['dette', 2], ['dettata', 1]]
+   
+7) vol
+[['voleva', 11], ['voluto', 8], ['voli', 7], ['volo', 5], ['volevo', 2], ['volevano', 2], ['volato', 2], ['vola', 2], ['volevamo', 1], ['volersi', 1], ['volere', 1], ['volar', 1], ['voluta', 1], ['volare', 1], ['volete', 1], ['voluti', 1]]
+   
+8) cont
+[['conto', 22], ['conti', 16], ['contare', 3], ['conta', 2], ['contate', 1], ['conte', 1], ['contavano', 1], ['contano', 1], ['contava', 1]]
+   
+9) govern
+[['governo', 64], ['governatore', 8], ['governare', 5], ['governi', 2], ['governativo', 2], ['governative', 2], ['governavano', 1], ['governassero', 1], ['governatori', 1], ['governativi', 1], ['governanti', 1]]
+   
+10) pass
+[['passato', 30], ['passa', 14], ['passo', 13], ['passare', 9], ['passi', 9], ['passati', 7], ['passate', 5], ['passata', 5], ['passando', 3], ['passano', 2], ['passerebbe', 1], ['passava', 1], ['passeranno', 1], ['passasse', 1]]
+   
+11) ser
+[['sera', 26], ['serie', 13], ['serata', 9], ['serio', 3], ['sere', 2], ['seria', 2]]
+   
+12) san
+[['san', 38], ['sano', 1], ['sana', 1], ['sanano', 1]]
+   
+Topic 11
+1) president
+[['presidente', 109], ['presidenti', 2], ['president', 1]]
+   
+2) san
+[['san', 38], ['sano', 1], ['sana', 1], ['sanano', 1]]
+   
+3) mil
+[['mila', 87], ['milano', 43]]
+   
+4) pass
+[['passato', 30], ['passa', 14], ['passo', 13], ['passare', 9], ['passi', 9], ['passati', 7], ['passate', 5], ['passata', 5], ['passando', 3], ['passano', 2], ['passerebbe', 1], ['passava', 1], ['passeranno', 1], ['passasse', 1]]
+   
+5) piazz
+[['piazza', 37], ['piazze', 4], ['piazzare', 1], ['piazzato', 1], ['piazzandosi', 1]]
+   
+6) acqua
+[['acqua', 19]]
+   
+7) berluscon
+[['berlusconi', 29]]
+   
+8) ogni
+[['ogni', 58]]
+   
+9) ex
+[['ex', 78]]
+   
+10) cert
+[['certo', 23], ['certa', 5], ['certi', 4], ['certamente', 2], ['certe', 2]]
+   
+11) ser
+[['sera', 26], ['serie', 13], ['serata', 9], ['serio', 3], ['sere', 2], ['seria', 2]]
+   
+12) sir
+[['siria', 23], ['siriano', 8], ['siro', 2]]
+   
+Topic 12
+1) govern
+[['governo', 64], ['governatore', 8], ['governare', 5], ['governi', 2], ['governativo', 2], ['governative', 2], ['governavano', 1], ['governassero', 1], ['governatori', 1], ['governativi', 1], ['governanti', 1]]
+   
+2) sir
+[['siria', 23], ['siriano', 8], ['siro', 2]]
+   
+3) unit
+[['uniti', 27], ['unito', 22], ['unità', 17], ['unite', 5]]
+   
+4) possibil
+[['possibilità', 21], ['possibili', 20], ['possibile', 18]]
+   
+5) comun
+[['comune', 24], ['comunità', 17], ['comuni', 11], ['comunicazione', 8], ['comunista', 4], ['comunicazioni', 3], ['comunisti', 3]]
+   
+6) ottobr
+[['ottobre', 17]]
+   
+7) unic
+[['unico', 27], ['unica', 22], ['unicamente', 2], ['unici', 1]]
+   
+8) nord
+[['nord', 36]]
+   
+9) colp
+[['colpito', 10], ['colpo', 8], ['colpa', 6], ['colpire', 5], ['colpi', 4], ['colpisce', 3], ['colpite', 3], ['colpe', 2], ['colpita', 2], ['colp', 1], ['colpiti', 1], ['colpirebbe', 1], ['colpendo', 1]]
+   
+10) prezz
+[['prezzo', 12], ['prezzi', 5]]
+   
+11) camp
+[['campo', 32], ['campi', 3], ['camp', 1]]
+   
+12) centr
+[['centro', 44], ['centri', 7], ['centre', 1], ['centrato', 1]]
+   
+Topic 13
+1) parl
+[['parlare', 14], ['parlato', 12], ['parlamento', 11], ['parla', 10], ['parliamo', 5], ['parlano', 4], ['parlando', 3], ['parlava', 2], ['parlo', 2], ['parlavo', 2], ['parlandone', 1], ['parlate', 1], ['parlavano', 1], ['parlò', 1], ['parlerà', 1], ['parlavamo', 1], ['parleremo', 1]]
+   
+2) bambin
+[['bambini', 25], ['bambino', 20], ['bambina', 4], ['bambine', 1]]
+   
+3) mond
+[['mondo', 43]]
+   
+4) person
+[['persone', 67], ['persona', 32]]
+   
+5) citt
+[['città', 80]]
+   
+6) italian
+[['italiana', 31], ['italiani', 28], ['italiane', 12], ['italian', 1]]
+   
+7) milion
+[['milioni', 75], ['milione', 5]]
+   
+8) cont
+[['conto', 22], ['conti', 16], ['contare', 3], ['conta', 2], ['contate', 1], ['conte', 1], ['contavano', 1], ['contano', 1], ['contava', 1]]
+   
+9) lavor
+[['lavoro', 61], ['lavorare', 13], ['lavoratori', 13], ['lavori', 10], ['lavora', 9], ['lavorativa', 5], ['lavorato', 5], ['lavorando', 5], ['lavorava', 4], ['lavoriamo', 2], ['lavorano', 1], ['lavorativo', 1], ['lavorerò', 1]]
+   
+10) punt
+[['punto', 61], ['punti', 12], ['punta', 5], ['puntare', 4], ['puntato', 2], ['puntavano', 1], ['puntando', 1], ['puntati', 1], ['puntano', 1], ['punteremo', 1], ['puntata', 1]]
+   
+11) poch
+[['pochi', 35], ['poche', 14]]
+   
+12) giovan
+[['giovani', 29], ['giovane', 20]]
+   
+Topic 14
+1) port
+[['portato', 19], ['portare', 18], ['porta', 12], ['porto', 10], ['porterà', 5], ['portate', 4], ['portata', 4], ['porti', 3], ['portando', 3], ['portati', 2], ['porte', 2], ['portiamo', 2], ['portava', 2], ['portiere', 2], ['portano', 2], ['porteremo', 1], ['portarla', 1], ['portarono', 1], ['port', 1], ['portarlo', 1]]
+   
+2) figl
+[['figlio', 29], ['figli', 22], ['figlia', 10]]
+   
+3) dett
+[['detto', 53], ['detta', 5], ['dettati', 2], ['dette', 2], ['dettata', 1]]
+   
+4) renz
+[['renzi', 62], ['renziano', 2]]
+   
+5) parl
+[['parlare', 14], ['parlato', 12], ['parlamento', 11], ['parla', 10], ['parliamo', 5], ['parlano', 4], ['parlando', 3], ['parlava', 2], ['parlo', 2], ['parlavo', 2], ['parlandone', 1], ['parlate', 1], ['parlavano', 1], ['parlò', 1], ['parlerà', 1], ['parlavamo', 1], ['parleremo', 1]]
+   
+6) madr
+[['madre', 25]]
+   
+7) famigl
+[['famiglia', 45], ['famiglie', 22], ['famigliare', 1]]
+   
+8) piazz
+[['piazza', 37], ['piazze', 4], ['piazzare', 1], ['piazzato', 1], ['piazzandosi', 1]]
+   
+9) europe
+[['europea', 32], ['europeo', 10], ['europei', 9], ['europee', 7]]
+   
+10) affid
+[['affidata', 5], ['affidato', 4], ['affidare', 4], ['affidamento', 3], ['affidando', 3], ['affidate', 3], ['affidati', 2], ['affidarci', 1], ['affido', 1], ['affidarsi', 1], ['affidamenti', 1], ['affiderà', 1]]
+   
+11) organizz
+[['organizzazione', 14], ['organizzato', 7], ['organizzare', 3], ['organizzate', 3], ['organizzazioni', 1], ['organizzativa', 1], ['organizzata', 1], ['organizzava', 1]]
+   
+12) ue
+[['ue', 56]]
+   
+Topic 15
+1) eur
+[['euro', 90], ['eur', 1]]
+   
+2) dett
+[['detto', 53], ['detta', 5], ['dettati', 2], ['dette', 2], ['dettata', 1]]
+   
+3) piazz
+[['piazza', 37], ['piazze', 4], ['piazzare', 1], ['piazzato', 1], ['piazzandosi', 1]]
+   
+4) russ
+[['russia', 24], ['russa', 8], ['russo', 7], ['russi', 6], ['russe', 4]]
+   
+5) tagl
+[['tagli', 10], ['taglio', 6], ['tagliare', 5], ['tagliato', 2], ['taglia', 2], ['taglieremo', 1], ['tagliando', 1]]
+   
+6) san
+[['san', 38], ['sano', 1], ['sana', 1], ['sanano', 1]]
+   
+7) donn
+[['donne', 44], ['donna', 26], ['donno', 2]]
+   
+8) mosc
+[['mosca', 23], ['moscio', 1]]
+   
+9) fond
+[['fondo', 23], ['fondi', 18], ['fondata', 3], ['fondato', 3]]
+   
+10) figl
+[['figlio', 29], ['figli', 22], ['figlia', 10]]
+   
+11) renz
+[['renzi', 62], ['renziano', 2]]
+   
+12) acqua
+[['acqua', 19]]
+
