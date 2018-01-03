@@ -13,6 +13,19 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 
+\makeatletter
+    \def\thebibliography#1{\chapter*{Bibliografia e Sitografia\@mkboth
+      {Bibliografia e Sitografia}{Bibliografia e Sitografia}}\list
+      {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+	\advance\leftmargin\labelsep
+	\usecounter{enumi}}
+	\def\newblock{\hskip .11em plus .33em minus .07em}
+	\sloppy\clubpenalty4000\widowpenalty4000
+	\sfcode`\.=1000\relax}
+    \makeatother
+
+
+
 \hypersetup{colorlinks=true,linkcolor=black}
 
 \theoremstyle{definition}
@@ -47,23 +60,23 @@
 % Introduzione
 \chapter*{Introduzione}
 
-Questo lavoro di tesi si propone lo scopo di progettare ed implementare un programma in grado di acquisire, processare ed estrarre i contenuti di file di testo provenienti dalla rete. Particolare cura è stata dedicata alla costruzione dell'algoritmo e alla scelta del caso di studio: nel primo, in modo particolare, si fondono diversi strumenti, tutti Open Source e tutti accomunati dallo stesso linguaggio e ambiente di programmazione, che consentono sia di gestire un gran numero di dati e sia, soprattuto, di eseguire una parte computazionalmente rilevante del codice in modo distribuito, permettendo un abbattimento notevole dei tempi di esecuzione. 
+Questo lavoro di tesi si propone lo scopo di progettare ed implementare un sistema distribuito in grado di acquisire, processare ed estrarre i nuclei informativi di file di testo provenienti dalla rete. Particolare cura è stata dedicata alla costruzione dell'algoritmo e alla scelta del caso di studio: nel primo, in modo particolare, si fondono diversi strumenti, tutti Open Source e tutti accomunati dallo stesso linguaggio e ambiente di programmazione, che consentono sia di gestire un gran numero di dati e sia, soprattuto, di eseguire una parte computazionalmente rilevante del codice in modo distribuito, permettendo un abbattimento notevole dei tempi di esecuzione. 
 
 I temi trattati in questo elaborato sono molteplici, ma possiamo suddividerli in due macro-aree: in primo luogo ci si pone il problema di estrarre l'informazione contenuta in una collezione di file di testo, sviluppando metodi e modelli statistici per l'estrapolazione dei termini e, verosimilmente, dei concetti chiave; in secondo luogo, si affronta la questione di gestire grosse moli di dati, architettare procedure di analisi testuale efficienti con gli strumenti a disposizione e rendere l'intero processo sufficientemente veloce e automatizzato da poter essere generalizzato e suscettibile di future applicazioni.
 
-A culmine di tutta l'opera viene presentato un caso di studio che permette di testare l'intera procedura costruita; in particolare, i file di testo analizzati sono costituiti da articoli di una selezione di testate giornalistiche. L'obiettivo è quello di classificarne i contenuti sulla base dei temi maggiormente trattati durante il periodo di raccolta dati.
+A culmine di tutto il lavoro viene presentato un caso di studio che permette di testare l'intera procedura costruita; in particolare, i file di testo analizzati sono costituiti da articoli di una selezione di testate giornalistiche. L'obiettivo è quello di classificarne i contenuti sulla base dei temi maggiormente trattati durante il periodo di raccolta dati.
 
 Il dettaglio degli argomenti presentati è il seguente.
 
 Nel Capitolo 1 si fornisce una visione generale del problema affrontato. In esso non mancano riferimenti e indicazioni per generalizzazioni e possibili applicazioni. Si cerca inoltre di contestualizzare la procedura, sottolineando la necessità di analisi efficienti in una realtà dove la produzione dei dati è così elevata che la necessità di coadiuvarsi con il calcolatore è ormai un fatto scontato.
 
-Nel Capitolo 2 vengono presentati i principali modelli: di essi si analizzano i dettagli tecnici, si dànno cenni degli algoritmi di implementazione e si fanno, naturalmente, confronti critici per comprendere i punti di forza di ciascuno.
+Nel Capitolo 2 si analizza l'apparato software utilizzato durante l'intero studio, se ne specificano le funzionalità e le motivazioni di utilizzo. Particolare enfasi si pone sulla questione dell'unitarietà dell'intera procedura, garantita dall'uso di un solo linguaggio di programmazione che opera a tutti i livelli, e sulla gestione parallela di alcuni compiti da parte dell'algoritmo 
 
-Nel Capitolo 3 si analizza l'apparato software utilizzato durante l'intero studio, se ne specificano le funzionalità e le motivazioni di utilizzo. Particolare enfasi si pone sulla questione dell'unitarietà dell'intera procedura, garantita dall'uso di un solo linguaggio di programmazione che opera a tutti i livelli, e sulla gestione parallela dei compiti da parte dell'algoritmo 
+Nel Capitolo 3 vengono presentati i principali modelli: di essi si analizzano i dettagli tecnici, si dànno cenni degli algoritmi di implementazione e si fanno, naturalmente, confronti critici per comprendere i punti di forza di ciascuno.
 
 Nel Capitolo 4 si dànno dettagli circa la costruzione dell'intera procedura. In esso si manifesta il contributo originale della tesi: la fusione delle due principali metodologie studiate e l'implementazione di un algoritmo distribuito.
 
-Nel Capitolo 5, infine, si mostrano i risultati dell'analisi compiuta nel caso particolare delle testate giornalistiche: si esegue il codice su una selezione di notizie provenienti da alcuni siti di testate giornalistiche prescelte.
+Nel Capitolo 5, infine, si mostrano i risultati dell'analisi compiuta nel caso particolare delle testate giornalistiche: si esegue il codice su una selezione di notizie provenienti da alcuni siti di quotidiani prescelti.
 
 Nell'Appendice A si parlerà dell'acquisizione dei dati provenienti dai social network e si darà il dettaglio della procedura nel caso particolare di Facebook.
 
@@ -78,13 +91,14 @@ Nota: talvolta gli output sono stati modificati per facilitarne l'impaginazione.
 \clearpage
 
 % Capitolo1
-\chapter{Tematiche affrontate}
-\chaptermark{Tematiche affrontate} 
+\chapter{Il contesto del problema trattato: tematiche e motivazioni}
+\chaptermark{Il contesto} 
 
-Secondo uno studio dell'Università di Berkeley \cite{Lym03}, nel 2003 sono stati prodotti ``...  \emph{25 TB\footnote{1 Terabyte = 1000 Gigabyte} di file di testo relativi ai giornali, 10 TB relativi alle riviste in genere ... e 195 TB di documenti d'ufficio. Si stima che siano state inviate 610 miliardi di e-mail, per un totale di 11000 T}B ``; nel 2010 il solo numero di mail è salito alla enorme cifra di $107\times 10^12$ secondo \cite{Roe12} e, venendo a dati più recenti, si stima che nel 2017 la media di e-mail inviate sia stata di 269 miliardi al giorno \cite{Rad17}. Nel 2003, inoltre, non era ancora affermata la realtà social, per cui nel conteggio dell'informazione prodotta oggi dobbiamo aggiungere anche file testuali di nuova generazione come \emph{post}, \emph{commenti} e \emph{tweet}: di questi ultimi, nel 2017, ne sono stati prodotti circa 300 miliardi (\cite{IntLS}). 
+Secondo uno studio dell'Università di Berkeley \cite{Lym03}, nel 2003 sono stati prodotti ``...  \emph{25 TB\footnote{1 Terabyte = 1000 Gigabyte} di file di testo relativi ai giornali, 10 TB relativi alle riviste in genere ... e 195 TB di documenti d'ufficio. Si stima che siano state inviate 610 miliardi di e-mail, per un totale di 11000 T}B ``; nel 2010 il solo numero di mail è salito alla enorme cifra di $107\times 10^{12}$ secondo \cite{Roe12} e, venendo a dati più recenti, si stima che nel 2017 la media di e-mail inviate sia stata di 269 miliardi al giorno \cite{Rad17}. Nel 2003, inoltre, non era ancora affermata la realtà social, per cui nel conteggio dell'informazione prodotta oggi dobbiamo aggiungere anche file testuali di nuova generazione come \emph{post}, \emph{commenti} e \emph{tweet}: di questi ultimi, nel 2017, ne sono stati prodotti circa 300 miliardi (\cite{IntLS}). 
+
 % Possiamo aggiungere ancora qualcos'altro?
 
-Insomma la crescita è stata esponenziale in tutte le direzioni: ciò solleva diverse riflessioni e questioni e tocca diverse tematiche importanti. Con l'obiettivo di voler implementare un algoritmo in grado di eseguire tutte le fasi dell'analisi testuale di file provenienti dalla rete (dall'estrazione dati all'applicazione di topi model), dobbiamo avere una panoramica di tali questioni e comprendere quali sono le possibili applicazioni e i limiti della procedura che costruiremo. Innanzitutto, è evidente che una così massiccia produzione di dati, può contenere informazioni di valore per diverse tipologie di analisi, da quelle di mercato a indagini di tipo sociologico. Un altro punto interessante è l'immediatezza con cui questi dati sono reperibili: in passato, per molte analisi, raccogliere i dati necessari poteva essere un'operazione che comportava lunghe attese. Chiaramente, e lo sottolineeremo anche in seguito, non è detto che tutti i dati siano di ottima qualità, anche se spesso ciò dipende anche dal tipo di analisi che si vuole condurre. Un tale flusso di dati, consente in molti casi analisi accurate anche se non risolve certamente tutti i problemi, al contrario, l'aspetto interessante è che ne genera di nuovi, legati soprattutto alla gestione e al processing di questi enormi flussi di dati.
+Insomma la crescita è stata esponenziale in tutte le direzioni: ciò solleva diverse riflessioni e questioni a proposito di diverse tematiche importanti ed attuali. Con l'obiettivo di voler implementare un algoritmo in grado di eseguire tutte le fasi dell'analisi testuale di file provenienti dalla rete (dall'estrazione dei dati all'applicazione di topic model), dobbiamo avere una panoramica di tali questioni e comprendere quali sono le possibili applicazioni e i limiti della procedura che costruiremo. Innanzitutto, è evidente che una così massiccia produzione di dati, può contenere informazioni di indubbio valore per diverse tipologie di analisi, da quelle di mercato a indagini di tipo sociologico. Un altro punto interessante è l'immediatezza con cui questi dati sono reperibili: in passato, per molte analisi, raccogliere i dati necessari poteva essere un'operazione che comportava lunghe attese. Chiaramente, e lo sottolineeremo anche in seguito, non è detto che tutti i dati siano di ottima qualità, anche se, spesso, ciò dipende anche dal tipo di analisi che si vuole condurre. Un tale flusso di dati, consente in molti casi analisi accurate anche se non risolve certamente tutti i problemi, al contrario, l'aspetto interessante è che ne genera di nuovi, legati soprattutto alla gestione e al processing di questi enormi flussi di dati.
 
 \section{I \emph{big data} e l'analisi testuale}
 \sectionmark{Big Data}
@@ -125,20 +139,20 @@ $$
 \underbrace{Il}_{art.} \hspace{0.1cm} \underbrace{bambino}_{nome} \hspace{0.1cm} \underbrace{gioca}_{verbo}\hspace{0.1cm} \underbrace{con}_{prep.} \hspace{0.1cm} \underbrace{un}_{art.} \hspace{0.1cm} \underbrace{giocattolo}_{nome};
 $$
 
-per l'analisi sintattica invece si avrebbe
+mediante un'analisi sintattica invece si avrebbe
 $$
 \underbrace{Il\hspace{0.07cm}bambino}_{soggetto} \hspace{0.1cm} \underbrace{gioca}_{predicato}\hspace{0.1cm} \underbrace{con\hspace{0.07cm} un \hspace{0.07cm} giocattolo}_{complemento}.
 $$
 
-Con l'analisi semantica, invece, si scoprirebbe che \emph{gioco} e\emph{giocattolo} hanno la stessa radice e lo stesso significato e che, probabilmente, quest'ultimo è il tema centrale della frase.
+Con l'analisi semantica, invece, si scoprirebbe che \emph{gioco} e\emph{giocattolo} hanno la stessa radice e lo stesso significato e che, probabilmente, esso è il tema centrale della frase.
  
-In generale, ogni analisi aumenta la comprensione del discorso e più livelli si esaminano, maggiore sarà la precisione della macchina nell'individuare il significato del testo che le si chiede di analizzare. Per ciascun sottoprocesso sarebbe opportuno costruire un insieme di strumenti in grado di consentire l'analisi a quel livello. Generalmente, anche se non il solo, lo strumento maggiormente utilizzato è il \emph{dizionario}: la creazione di dizionari appositi consente di comprendere se una parola rappresenta un nome piuttosto che un aggettivo, se possiede un significato affine ad un altro termine in una frase e così via. 
+In generale, ogni analisi aumenta la comprensione del discorso e più livelli si esaminano, maggiore sarà la precisione della macchina nell'individuare il significato del testo che le si chiede di analizzare. Per ciascun sottoprocesso sarebbe opportuno costruire un insieme di strumenti in grado di consentire l'analisi a quel livello. Generalmente, anche se non il solo, lo strumento maggiormente utilizzato è il \emph{dizionario}: la creazione di dizionari appositi consente di comprendere se una parola rappresenta un nome piuttosto che un aggettivo, se possiede un significato affine ad un altro termine in una frase e se è parte di un'espressione idiomatica o di una locuzione. L'assenza di dizionari completi è un problema notevole, vedremo nel prosieguo come cercare di aggirarlo o di impostare una soluzione sub-ottimale per proseguire l'analisi.
 
 La fase successiva è rappresentata dalla capacità del computer di elaborare queste informazioni, estraendone, eventualmente, una sintesi: tale fase è chiamata \emph{text mining}, ovvero la ricerca dei principali gruppi tematici all'interno di file di testo.
 
 Allo stato attuale non è possibile insegnare a un computer a comprendere profondamente un testo, percepire l'ironia o trarre conclusioni critiche, tuttavia, con l'ausilio di alcuni rudimenti di NLP, della probabilità e della statistica, la macchina riesce a riconoscere i termini di maggiore rilevanza, diversi costrutti latenti e strutture più complesse come la sinonimia.
 
-In qualche senso, occorre immaginare in che maniera un computer, che non comprende il linguaggio naturale, possa comunque riuscire a trattarlo. Il modo più semplice è quello di considerare come indicativa solo l'occorrenza delle parole nel testo: i concetti presenti si palesano nei nomi, verbi e aggettivi utilizzati nel discorso e dunque è tra le occorrenze di questi ultimi che bisogna scorgere la sintesi dei contenuti. In generale, intuitivamente, più una parola sarà ripetuta e più è plausibile che essa sarà rilevante ai fini della comprensione di quel testo. Questo approccio è ancora molto grezzo: articoli e congiunzioni ad esempio si ripetono spesso con notevole frequenza all'interno di un discorso, eppure la loro funzione non ha niente a che fare con l'argomento di cui si sta parlando. Occorre dunque limitare l'analisi solamente ad una categoria selezionata di parole ed è quello che si vedrà in seguito. Quest'idea, seppure molto semplice, di considerare unicamente le parole e la loro frequenza come veicoli del concetto è esattamente la medesima che sta alla base dei modelli che useremo. Due concetti importanti si possono già evidenziare: in questo approccio il ruolo principale spetta alle parole in quanto tali e l'\emph{ordine} con cui esse sono trascritte è perfettamente trascurabile. Un algoritmo che segue una simile linea di pensiero, si dice essere di tipo \emph{bag-of-words}. Il \emph{Latent Semantic Indexing} possiede esattamente tutte le caratteristiche appena enunciate: le sue specifiche tecniche saranno analizzate nel capitolo successivo. È importante, invece, capire come un siffatto approccio si possa migliorare, cercando di cogliere qualche aspetto più complesso che un metodo così concettualmente semplice non è in grado di cogliere. Ci si accorge subito che tale modello poggia su presupposti non sempre verificati: non sempre, infatti, le parole più diffuse sono rappresentative dei concetti centrali di un testo. Per oltrepassare questo limite, si ragiona in questo modo: supponiamo, per un testo, l'esistenza di alcuni concetti \emph{latenti} (detti \emph{topic}). A partire da essi si può generare la distribuzione delle restanti parole, sicché i \emph{topic} rappresentano gli archetipi generativi della forma finale del testo. Tale idea è alla base del \emph{Latent Dirichlet Allocation} che, oltre ad essere anch'esso un modello di tipo \emph{bag-of-word}, rileva l'aspetto distribuzionale, e dunque statistico, insito nella composizione di un testo.
+In qualche senso, occorre immaginare in che maniera un computer, che non comprende il linguaggio naturale, possa comunque riuscire a trattarlo. Il modo più semplice è quello di considerare come indicativa solo l'occorrenza delle parole nel testo: i concetti presenti si palesano nei nomi, verbi e aggettivi utilizzati nel discorso e dunque è tra le occorrenze di questi ultimi che bisogna scorgere la sintesi dei contenuti. In generale, intuitivamente, più una parola sarà ripetuta e più è plausibile che essa sarà rilevante ai fini della comprensione di quel testo. Questo approccio è ancora molto grezzo: articoli e congiunzioni ad esempio si ripetono spesso con notevole frequenza all'interno di un discorso, eppure la loro funzione non ha niente a che fare con l'argomento di cui si sta parlando. Occorre dunque limitare l'analisi solamente ad una categoria selezionata di parole ed è quello che si vedrà in seguito. Quest'idea, seppure molto semplice, di considerare unicamente le parole e la loro frequenza come veicoli del concetto è esattamente la medesima che sta alla base dei modelli che useremo. Due concetti importanti si possono già evidenziare: in questo approccio il ruolo principale spetta alle parole in quanto tali e l'\emph{ordine} con cui esse sono trascritte è perfettamente trascurabile. Un algoritmo che segue una simile linea di pensiero, si dice essere di tipo \emph{bag-of-words}. Il \emph{Latent Semantic Indexing} possiede esattamente tutte le caratteristiche appena enunciate: le sue specifiche tecniche saranno analizzate nel terzo capitolo. È importante, invece, capire come un siffatto approccio si possa migliorare, cercando di cogliere qualche aspetto più complesso che un metodo così concettualmente semplice non è in grado di cogliere. Ci si accorge subito che tale modello poggia su presupposti non sempre verificati: non sempre, infatti, le parole più diffuse sono rappresentative dei concetti centrali di un testo, alla comprensione dei quali noi effettivamente miriamo. Per oltrepassare questo limite, si ragiona in questo modo: supponiamo, per un testo, l'esistenza di alcuni concetti \emph{latenti} (detti \emph{topic}). A partire da essi si può generare la distribuzione delle restanti parole nel testo, sicché i \emph{topic} rappresentano gli archetipi generativi della forma finale del documento analizzato. Tale idea è alla base del \emph{Latent Dirichlet Allocation} che, oltre ad essere anch'esso un modello di tipo \emph{bag-of-word}, rileva l'aspetto distribuzionale, e dunque statistico, insito nella composizione di un testo.
 
 Un modello come il \emph{Latent Semantic Indexing} o come il \emph{Latent Dirichlet Allocation}, in quanto metodo per l'estrazione di contenuto informativo presente in un testo, si definisce \emph{topic model} o modello di \emph{topic extraction}.
 
@@ -150,23 +164,23 @@ I \emph{topic model} sono dunque gli strumenti matematico-statistici che abbiamo
 
 A questo punto, dopo aver esaminato il contesto che giustifica l'implementazione della nostra procedura, risultano delineati tre aspetti centrali del nostro studio: i \emph{big data}, il processing del linguaggio naturale e i \emph{topic model}. Si comincia a comprendere quali possano essere i requisiti dell'algoritmo da implementare. Innanzitutto si richiede che esso sia in grado di reperire i file testuali dalla rete, di memorizzarli e gestirli e poi di ripulirli dal superfluo di cui inevitabilmente sono carichi. Successivamente, occorre analizzare i file così processati in modo che il computer comprenda quali sono le parti fondamentali del discorso e se ci sono affinità di significato tra i termini incontrati. Infine, si applicano i modelli di \emph{topic extraction}. Resta da motivare la scelta del caso di studio per testare l'algoritmo.
 
-I contenuti testuali presenti in rete, come abbiamo visto, sono moltissimi e disparati e vanno dalle mail ai tweet, dai blog ai siti istituzionali. In particolare, ci sembra rilevante soffermarci sul  settore dell'editoria giornalistica, i cui contenuti sono oggigiorno quasi interamente fruibili in rete Tale settore rappresenta una parte molto importante della categoria più generale dei \emph{social media}. Con quest'ultima locuzione si intende quel complesso di tecnologie e pratiche che le persone adottano per lo scambio di informazioni in Internet ed estende alla rete quella dimensione una volta esclusiva dei \emph{mass media}. In questo senso il giornalismo rappresenta una forma di contatto tra questi due aspetti, tuttavia le motivazioni della nostra scelta vanno ben oltre. Innanzitutto, il giornalismo produce articoli ad un ritmo costante, il che è fondamentale per le rilevazioni: nel caso di tweet specifici o mail, i contenuti possono essere postati in modo occasionale e dunque non è scontato che si riesca ad accumulare un sufficiente numero di dati in tempo fissato; gli articoli possiedono, per di più, un'estensione non ridotta e che si presta bene alle analisi dei topic model. A differenza delle pagine sui social o dei blog, inoltre, i giornali appaiono come entità più solide: accade di frequente che i blog vengano presi di mira da attacchi informatici o che le pagine dei social chiudano spontaneamente, mentre è rarissimo che un giornale di punto in bianco smetta di esistere. Per di più, le conclusioni che possiamo trarre dall'analisi degli articoli di giornale hanno, potenzialmente, un interesse di pubblico rilievo e sono suscettibili di diverse e interessanti generalizzazioni. 
+I contenuti testuali presenti in rete, come abbiamo visto, sono moltissimi e disparati e vanno dalle mail ai tweet, dai blog ai siti istituzionali. In particolare, ci sembra rilevante soffermarci sul settore dell'editoria giornalistica, i cui contenuti sono oggigiorno quasi interamente fruibili in rete. Tale settore rappresenta una parte molto importante della categoria più generale dei \emph{social media}. Con quest'ultima locuzione si intende quel complesso di tecnologie e pratiche che le persone adottano per lo scambio di informazioni in Internet ed estende alla rete quella dimensione una volta esclusiva dei \emph{mass media}. In questo senso il giornalismo rappresenta una forma di contatto tra questi due aspetti, tuttavia le motivazioni della nostra scelta vanno ben oltre. Innanzitutto, il giornalismo produce articoli ad un ritmo costante, il che è fondamentale per le rilevazioni: nel caso di tweet o mail, alcuni specifici contenuti di interesse possono essere postati in modo occasionale e dunque non è scontato che si riesca ad accumulare un sufficiente numero di dati in tempo fissato; gli articoli possiedono, per di più, un'estensione non ridotta e che si presta bene alle analisi dei topic model. A differenza delle pagine sui social o dei blog, inoltre, i giornali appaiono come entità più solide: accade di frequente che i blog vengano presi di mira da attacchi informatici o che le pagine dei social chiudano spontaneamente o cambino, mentre è rarissimo che un giornale di punto in bianco smetta di esistere; a differenza di questi ultimi, inoltre, gli articoli di giornale rappresentano modelli testuali di buona qualità: non si incontrano generalmente errori ortografici e non usano forme di scrittura insolite (nei commenti social, ad esempio è facile imbattersi in espressioni come \emph{xke} invece di \emph{perché}, ecc.). Per di più, le conclusioni che possiamo trarre dall'analisi degli articoli di giornale hanno, potenzialmente, un interesse di pubblico rilievo e sono suscettibili di diverse e interessanti generalizzazioni. 
 
 Nel caso esaminato, ci preoccuperemo di enucleare gli argomenti principali di ciascuna testata giornalistica analizzata, allo scopo di classificarla sulla base degli argomenti trattati. 
 
 Come più volte sottolineato, l'algoritmo si può adattare anche ad altri contesti: basta, ad esempio, modificare la sorgente dei dati acquisiti (nell'appendice finale si vedrà come estrarre anche dati dai social). Gli studi che si possono condurre sono svariati, con applicazioni che vanno dalla \emph{sentiment analysis} alle ricerche in campo sociologico. 
 
-Noi ci occuperemo, come più volte ribadito, solo della procedura. Anche le conclusioni del caso di studio saranno solo indicative e non hanno valore di una ricerca scientifica.
+Noi ci occuperemo, come più volte ribadito, solo della procedura. Anche le conclusioni del caso di studio saranno solo indicative e non hanno valore di una ricerca scientifica rigorosa.
 \clearpage
 
 % Capitolo 2
 \chapter{Tecnologie per la gestione dei Big Data e l'analisi testuale}
-\chaptermark{Big Data e NLP}
+\chaptermark{Big Data e Text Mining}
 
 I Software per la manipolazione di Big Data a disposizione degli analisti sono molteplici e sovente occorre selezionare con accuratezza quelli che si prestano allo scopo da raggiungere. Il nostro obiettivo, come anticipato, è quello di realizzare un'analisi dei contenuti con supporti \emph{Open Source} che consentano un'esecuzione \emph{distribuita} del codice e che  permettano un abbattimento notevole dei tempi di realizzazione.
 
-\section{Database NoSQL.}
-Innanzitutto occorre provvedere allo storage dei dati acquisiti, ovvero occorre strutturare un database. Per i nostri scopi, si è deciso di adottare un database NoSQL, nella fattispecie \emph{MongoDB}[].
+\section{La scelta del database.}
+Innanzitutto occorre provvedere allo storage dei dati acquisiti, ovvero occorre strutturare un database. Per i nostri scopi, si è deciso di adottare un database NoSQL, nella fattispecie \emph{MongoDB} (\cite{MonDB}).
 
 Per comprendere i vantaggi di questa scelta nel caso specifico da noi esaminato, dobbiamo confrontare le caratteristiche di questi database con quelle dei database dai quali, già a partire dallo stesso nome, così nettamente si diversificano e cioè i database relazionali gestiti con linguaggio SQL \footnote{Che sta per \emph{Structured Query Language} }. Questi ultimi sono spesso indicati  con la sigla RDBMS \footnote{Che sta per \emph{Relational DataBase Management System}}.
 
@@ -190,79 +204,150 @@ Inoltre un documento, rispetto alla tabella, non possiede una struttura fissata 
 Per di più i dati provenienti da Internet (in particolare dai Social Network) non hanno sempre una struttura fissata. 
 
 In generale e per completezza la mancanza di struttura non consente la gestione di query complesse, tuttavia il sistema di indicizzazione è efficiente in entrambi i casi e dunque rimane comunque possibile richiamare i documenti necessari in modo rapido.
-  
+
+% Linguaggio SQL? Teoria degli insiemi e così via...
 
 \section{Sistemi di gestione distribuiti e Apache Spark.}
 
-La scelta di utilizzare Apache Spark come shell da cui lanciare gli script per l'analisi, si fonda soprattutto sulla capacità di gestire diversi compiti in parallelo. In generale, sebbene sia noto [] che su modeste quantità di dati non si ottiene un guadagno sensibile  rispetto ad altri programmi in termini di tempo di esecuzione, per la gestione di big data con Spark si ottengono risultati ragguardevoli. 
+La scelta di utilizzare Apache Spark (di seguito solo Spark) come shell da cui lanciare gli script per l'analisi, si fonda soprattutto sulla capacità di gestire diversi compiti in parallelo. In generale, sebbene su modeste quantità di dati non si ottiene un guadagno sensibile  rispetto ad altri programmi in termini di tempo di esecuzione, per la gestione di big data con Spark si ottengono risultati ragguardevoli rispetto ad altri software (\cite{QuoSfH}). 
 
-La scelta di operare con linguaggio Python (che motiveremo in seguito), rallenta notevolmente [] l'esecuzione rispetto all'utilizzo con il linguaggio nativo Scala, che meglio si adatta ad un ambiente Java, ma, ciononostante, rispetto ad altri software [] i tempi di esecuzione sono comunque fino dieci volte superiori. 
+La scelta di operare con linguaggio Python (che motiveremo in seguito), rallenta notevolmente (\cite{QuoSvP}) l'esecuzione rispetto all'utilizzo con il linguaggio nativo Scala, che meglio si adatta ad un ambiente Java, ma, ciononostante, rispetto ad altri software i tempi di esecuzione sono comunque di molto inferiori. 
 
-Poiché un aspetto importante dell'analisi è rappresentato dall'ambiente informatico in cui essa si sviluppa, parleremo più diffusamente di Spark, descrivendo le principali caratteristiche di interesse che ritroveremo sia direttamente che indirettamente nello svolgimento, per approfondimenti segnaliamo [].
+Poiché un aspetto importante dell'analisi è rappresentato dall'ambiente informatico in cui essa si sviluppa, parleremo più diffusamente di Spark, descrivendo le principali caratteristiche di interesse che ritroveremo sia direttamente che indirettamente nello svolgimento.
 
-\subsection{Struttura e funzionamento di Spark.}
+\subsection{Struttura e funzionamento di Spark}
+\subsectionmark{Spark}
+Essenzialmente Spark è un sistema di computazione cluster distribuito e ad alte prestazioni. In figura 2.1 possiamo vederne i principali costituenti.
 
-Essenzialmente Spark è un sistema di computazione cluster distribuito e ad alte prestazioni. In figura è esemplificata la struttura delle sue componenti e distribuzione della gestione dei processi.
+\begin{figure}
+\centering
+\includegraphics[width=.5\textwidth]{Spark_Core}
+\caption{Componenti di Spark}
+\label{fig:subfig}
+\end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  FIGURA
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Di particolare interesse è \emph{MLlib} che sta per \emph{Machine Learning Library} ed è una libreria che contiene diversi algoritmi per il machine learning. In essa troviamo anche alcuni algoritmi di topic modeling, tra cui quello che esegue l'LDA e di cui parleremo diffusamente più avanti.
 
-In particolare il \emph{Cluster Manager} centrale gestisce il \emph{Driver Program} e i diversi \emph{Worker Nodes}. In Particolare ciascun \emph{Worker Node} esegue diverse \emph{Tasks}, cioè compiti, tra i quali l'avvio dei DAG (Direct Acyclic Graphs).
+% Bisogna parlare anche di SQL Spark
 
-% Dire altro sulla base della famosa immagine con Mllib e magari accorpare anche il paragrafo successivo
+Tutte queste aree sono sottese, in figura, da \emph{Apache Spark}, il cui core controlla le esecuzioni di ciascuna componente. Vediamo nel dettaglio il modo in cui Spark esegue le istruzioni nella figura 2.2 .
 
-\subsection{Resilient Distributed Dataset.}
-La struttura di base in cui i dati vengono incapsulati in Spark è quella dei Resilient Distributed Dataset (RDD), la cui caratteristica principale è quella di rimanere immutati durante tutto il processo di esecuzione. Questo vuol dire che anche in caso di una trasformazione,  di un filtro o un'operazione di mapping, il programma non modifica il dataset resiliente, bensì costruisce un altro RDD. Questo rende l'intero processo estremamente robusto e preserva i dati da eventuali crash o modifiche indesiderate.
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{Spark_Manager}
+\caption{Gestione dell'esecuzione in Spark}
+\label{fig:subfig}
+\end{figure}
+
+In essa notiamo che il \emph{Cluster Manager} centrale gestisce il \emph{Driver Program}, richiamato mediante lo \emph{Spark Context}, e i diversi \emph{Worker Nodes}. In particolare ciascun \emph{Worker Node} esegue diverse \emph{Tasks}, cioè compiti, assegnati. Se un nodo va in crash, esso viene ripristinato dal \emph{Driver}. In questa gestione si ravvisa lo sviluppo parallelo dell'esecuzione con Spark.  Tra i diversi compiti eseguiti c'è l'avvio dei e la gestione dei Database Resilienti. Di essi parleremo diffusamente nei prossimi paragrafi poiché rivestono un ruolo importante nel prosieguo.
+
+
+\subsection{Resilient Distributed Dataset}
+La struttura di base in cui i dati vengono incapsulati in Spark è quella dei\emph{ Resilient Distributed Dataset} (RDD), la cui caratteristica principale è quella di rimanere immutati durante tutto il processo di esecuzione. Questo vuol dire che anche in caso di una operazione su di essi, il programma non modifica il dataset resiliente, bensì costruisce un altro RDD. Questo rende l'intero processo estremamente robusto e preserva i dati da eventuali crash o modifiche indesiderate, in quanto ogni volta l'insieme dei dati è praticamente ricostruibili. 
+
+Esistono due modi di creare un RDD: riferendosi ad un sistema di memorizzazione esterno, oppure usando il comando \emph{parallelize} su una collezione già presente sul Driver. Quest'ultimo comando copia, sostanzialmente, i dati che processa e permette la loro esecuzione in parallelo.
+
+Le operazioni che è possibile eseguire sui RDD sono di due tipi: le \emph{trasformazioni}, che creano un nuuovo dataset a partire da uno preesistente, e le \emph{azioni}, che restituiscono un valore al Driver dopo aver operato un calcolo sul dataset. Un esempio di trasformazione è \emph{map} che processa secondo una funzione ogni elemento di un dataset e restituisce un nuovo RDD costituito dai risultati;  un esempio di azione è, invece, il comando \emph{reduce}, che aggrega tutti gli elementi del RDD e restituisce un risultato finale al Driver.
+
+Tutte le trasformazioni in Spark non vengono eseguite fino a quando non si necessita di un risultato effettivo nel Driver (ad esempio da parte di un'azione). In questo modo (definito \emph{lazy}, cioè pigro) si ottimizzano i tempi di esecuzione.
+
+\subsection{Direct Acyclic Graphs}
+Tutte le trasformazioni vengono eseguite come \emph{Direct Acyclic Graphs}, ovvero come grafi aciclici. Essa è un'astrazione che consente di visualizzare propriamente il processo. In figura 2.3 possiamo vedere con un DAG appare, si comprende la struttura aciclica che ricorda quella ad albero, e si nota l'attitudine al lavoro in parallelo. Osserviamo come nei diversi passaggi (o \emph{stage}) si eseguano diverse operazioni.
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{Spark_DAG}
+\caption{Esempio di visualizzazione di un DAG}
+\label{fig:subfig}
+\end{figure}
+
+È appena il caso di ricordare che, ogni volta che è necessario, il DAG si può ricostruire a partire dal Driver, conserva, cioè, la struttura resiliente.
 
 \section{Il linguaggio Python e le sue librerie}
+\sectionmark{Python}
 
 Il linguaggio Python è certamente tra i più usati nel campo dell'analisi dei dati. Il suo maggiore punto di forza consiste nella enorme quantità di librerie che consentono di eseguire con pochi comandi pressoché qualsiasi procedura analitica e statistica; inoltre consente di interfacciarsi a diversi tipi di software. Proprio per questo, nella nostra analisi, il linguaggio Python rappresenta il nerbo di collegamento tra i diversi moduli di cui è costituita la procedura realizzata. Approfondiamo caso per caso le librerie prese in considerazione.
 
 \subsection{Python e web scraping con Scrapy}
-I dati esaminati provengono dalla rete, per questo è necessario implementare una procedura che permetta la rilevazione e la memorizzazione di questi ultimi in modo automatizzato. L'attività di rilevazione sistematica di informazione da specifiche fonti Internet viene definita \emph{web scraping} e un programma che effettui lo scraping viene definito \emph{scraper} o \emph{spider}.  Nel nostro caso, si è fatto ricorso a \emph{Scrapy} [], che è costituito da diversi moduli che consentono di estrarre contenuti da pagine web ovvero di costruire uno o più \emph{spider}. Esso consente di effettuare il parsing del linguaggio HTML/XML (o in alternativa usare i selettori CSS e le espressioni XPath) con cui è costruita la pagina internet e registrare le informazioni desiderate. La praticità dell'utilizzo di una piattaforma con funzionalità built-in com'è Scrapy, piuttosto che l'uso di una singola libreria di parsing com'è l'eccellente \emph{BeautifulSoup}, sta nella naturalezza con cui si svolgono alcune operazioni, tra le quali, fondamentale per la nostra analisi, quella di connettersi a MongoDB mediante un pacchetto che vediamo in dettaglio.
+\subsectionmark{Scrapy}
+I dati esaminati provengono dalla rete, per questo è necessario implementare una procedura che permetta la rilevazione e la memorizzazione di questi ultimi in modo automatizzato. L'attività di rilevazione sistematica di informazione da specifiche fonti Internet viene definita \emph{web scraping} e un programma che effettui lo scraping viene definito \emph{scraper} o \emph{spider}.  Nel nostro caso, si è fatto ricorso a \emph{Scrapy} \cite{Scrpy}, che è costituito da diversi moduli che consentono di estrarre contenuti da pagine web ovvero di costruire uno o più \emph{spider}. Esso consente di effettuare il parsing del linguaggio HTML/XML (o in alternativa usare i selettori CSS e le espressioni XPath) con cui è costruita la pagina internet e registrare le informazioni desiderate. La praticità dell'utilizzo di una piattaforma con funzionalità built-in com'è Scrapy, piuttosto che l'uso di una singola libreria di parsing, com'è l'eccellente \emph{BeautifulSoup} (\cite{BeaSp}), sta nella naturalezza con cui si svolgono alcune operazioni, tra le quali, fondamentale per la nostra analisi, quella di connettersi a MongoDB mediante un pacchetto che vediamo in dettaglio.
  
 \subsection{PyMongo}
-La memorizzazione dei dati ottenuti è il secondo passo da compiere. Abbiamo già esaminato in dettaglio il Database NoSQL MongoDB; per connettersi ad esso con Python si usa la libreria \emph{PyMongo}[]. Mediante le funzionalità che essa consente è possibile non solo registrare in una specifica collection in dati ottenuti mediante lo scraping delle fonti, ma anche e soprattutto evitare i duplicati.
-Nell'ipotesi di una raccolta informazioni sistematica, poniamo giornaliera, è, infatti, ragionevole supporre che su una stessa pagina web siano presenti dati risalenti al giorno prima e che dunque si possiedono già in memoria. 
+La memorizzazione dei dati ottenuti è il secondo passo da compiere. Abbiamo già esaminato in dettaglio il Database NoSQL MongoDB; per connettersi ad esso con Python si usa la libreria \emph{PyMongo} (si veda \cite{PyMDB}). Mediante le funzionalità che essa consente è possibile non solo registrare in una specifica collection in dati ottenuti mediante lo scraping delle fonti, ma anche e soprattutto evitare i duplicati.
+Nell'ipotesi di una raccolta informazioni sistematica, poniamo giornaliera, è, infatti, ragionevole supporre che su una stessa pagina web siano presenti dati risalenti al giorno prima e che dunque si possiedono già in memoria. Gestire i duplicati è dunque una fase importante: in generale, questo si può fare verificando se il nuovo dato possiede qualche caratteristica identica a un dato già memorizzato. Ad esempio, nel caso della raccolta di articoli di giornale che opereremo, possiamo controllare se un articolo possiede un titolo identico ad uno già memorizzato; potremmo verificare,  per una maggiore sicurezza, che abbia anche il testo identico, tuttavia è estremamente raro che due diversi articoli di giornale possiedano uno stesso titolo. Come si vedrà in seguito, abbiamo adottato la prima linea di condotta, ovvero l'esclusiva verifica del titolo e non solo per le ragioni appena esposte: una verifica anche del testo operata su larghi dataset ha un costo computazionale decisamente non trascurabile.
 
-\subsection{\emph{Natural Language Toolkit}} % Posso fare una frase di esempio???
+\subsection{\emph{Natural Language Toolkit}} 
 
-Il \emph{Natural Language ToolKit} (di seguito \emph{nltk}) è un insieme di librerie che consente di processare il linguaggio naturale [].
+Il \emph{Natural Language ToolKit} (di seguito \emph{nltk}) è un insieme di librerie (si veda \cite{NaLTK}) che consente di processare il linguaggio naturale.
+
 La sua importanza nell'analisi è giustificata dalla considerazione che ogni file di testo porta con sé una quantità enorme di \emph{materiale-spazzatura} che rallenta, e in qualche caso distorce, l'analisi che si sta eseguendo. 
 
-Pertanto occorre innanzitutto rendere omogeneo l'intero documento, rendendo il testo uniformemente in formato minuscolo ed eliminando segni di punteggiatura, apostrofi ma anche numeri e caratteri speciali, spesso presenti come residui del linguaggio informatico di impaginazione o come simboli matematici. 
+Pertanto occorre innanzitutto rendere omogeneo l'intero documento, trasformando tutto il testo in formato minuscolo ed eliminando segni di punteggiatura, apostrofi ma anche numeri e caratteri speciali, spesso presenti come residui del linguaggio informatico di impaginazione o come simboli matematici e di interpunzione. 
  
-Ciò fatto, occorre eliminare le \emph{stopwords}, ovvero articoli, preposizioni semplici o articolate e congiunzioni, quelle parole, cioè, che sono poco significative ma che compaiono sovente all'interno di una frase. In genere per effettuare un'operazione di stopwords removing occorre avere a disposizione dizionari ben forniti, che, nel caso specifico della lingua italiana e a differenza di quella anglosassone, non abbondano. La lista di termini di default in nltk è un buon compromesso, inoltre è consentito aggiungervi elementi qualora manchino.
+Ciò fatto, occorre eliminare le \emph{stopwords}, ovvero articoli, preposizioni semplici o articolate e congiunzioni, quelle parole, cioè, che sono poco significative ma che compaiono sovente all'interno di una frase. 
 
-In generale sembrerebbe che una tale procedura sia perfettamente legittima nell'ottica dell'analisi testuale e non comporti nessun costo in termini di informazione: la prima affermazione è certamente vera, sulla seconda bisogna essere cauti. Supponiamo, ad esempio, di analizzare un documento che tratta di Intelligenza Artificiale e in cui sovente troviamo la sigla AI ad indicarla lungo il discorso. Se riduco tutte le maiuscole a minuscole, la sigla diviene 'ai' la quale, applicando lo stop remover, viene completamente eliminata dal documento in quanto confusa con una preposizione articolata. Pertanto uno dei termini-chiave del nostro documento viene inevitabilmente perso! 
+Ad esempio, i versi:
 
-In generale, i casi in cui le procedure di stopwords removing comportano una gravosa perdita di informazione sono rari e alla lunga e su un gran numero di dati tali procedure comportano più benefici che perdite; tuttavia occorre sempre tenere in conto che non è mai possibile ridurre il contenuto di un documento senza che ciò comporti una perdita di informazione.
+\begin{verbatim}
+Sempre caro mi fu quest'ermo colle,
+E questa siepe, che da tanta parte
+Dell'ultimo orizzonte il guardo esclude.
+\end{verbatim}
 
-La fase successiva consiste nell'applicare un \emph{word stemmer}, il cui ruolo è ridurre una parola alla sua radice semantica; ad esempio le varie coniugazioni di un verbo alla radice ('vado', 'sarò andato' --> 'andare'), oppure parole con una stessa etimologia o affinità di significato (...). Per un'analisi efficiente, in questo caso, occorrerebbero dei dizionari molto completi che, a differenza del caso precedente, per lo stemming mancano del tutto. La soluzione, implementata in nltk, consiste in uno stemming forzato, ovvero in una riduzione sommaria dei vocaboli a  radici \emph{fittizie} ('andiamo'--> 'and') che pertanto non permette nè di rilevare sempre la corretta origine semantica di un vocabolo, né di distinguere due vocaboli diversi nel significato ma con uguale 'radice' ('computazionale', 'computer'--> 'comput').
+dopo un'operazione di omogenizzazione, pulitura e stopwords removing, diventerebbe 
+\begin{verbatim}
+caro fu ermo 
+siepe tanta parte
+ultimo orizzonte guardo esclude
+\end{verbatim}
 
-Sebbene in questo caso la perdita di informazione sia necessariamente più marcata, questa procedura aumenta generalmente le prestazioni dell'analisi. 
+Per effettuare un'operazione di stopwords removing occorre avere a disposizione dizionari ben forniti, che, nel caso specifico della lingua italiana e a differenza di quella anglosassone, non abbondano. La lista di termini di default in \emph{nltk} è un buon compromesso anche perché è consentito aggiungervi elementi qualora manchino.
 
-\subsection{Scikit-Learn e pypark}
-Il cuore dell'analisi è costituito dalle procedure di analisi testuale che si applicano ai dati memorizzati. Per quanto riguarda l'LSI, l'algortimo si basa su funzionalità built-in della suite Scikit-Learn, che consiste in una libreria di procedure per il Machine Learning []. Le funzioni principali che di essa ci riguardano sono: 
+In generale sembrerebbe che una tale procedura sia perfettamente legittima nell'ottica dell'analisi testuale e non comporti nessun costo in termini di perdita di informazione: la prima affermazione è certamente vera, sulla seconda bisogna essere cauti. Nel caso esaminato la parola \emph{colle}, nel senso di collina, rilievo, viene eliminata dal primo verso perché confuso con la preposizione articolata \emph{con} + \emph{le}. Sebbene in questo caso la perdita di informazione sia minima, può succedere di peggio: supponiamo, ad esempio, di analizzare un documento che tratta di Intelligenza Artificiale e in cui sovente troviamo la sigla \emph{AI} ad indicarla lungo il discorso. Se riduco tutte le maiuscole a minuscole, la sigla diviene \emph{ai} la quale, applicando lo stopwords removing, viene completamente eliminata dal documento in quanto confusa con una preposizione articolata. Pertanto uno dei termini-chiave del nostro documento viene inevitabilmente perso! 
+
+In generale, i casi in cui le procedure di stopwords removing comportano una gravosa perdita di informazione sono rari e, alla lunga e su un gran numero di dati, tali procedure comportano più benefici che svantaggi; tuttavia occorre sempre tenere in conto che non è mai possibile ridurre il contenuto di un documento senza che ciò comporti anche una certa perdita di informazione.
+
+La fase successiva consiste nell'applicare un \emph{word stemmer}, il cui ruolo è ridurre una parola alla sua radice semantica; ad esempio le varie coniugazioni di un verbo alla radice ('vado', 'sarò andato' $\rightarrow$ 'andare'), oppure parole con una stessa etimologia o affinità di significato ('giocatore', 'giocattolo'$\rightarrow$ 'gioco').
+
+Per un'analisi efficiente, in questo caso, occorrerebbero dei dizionari molto completi che, a differenza del caso precedente, per lo stemming mancano del tutto.
+
+La soluzione, implementata in nltk, consiste in uno stemming forzato, ovvero in una riduzione sommaria dei vocaboli a radici \emph{fittizie} ('andiamo'--> 'and') che pertanto non permette né di rilevare sempre la corretta origine semantica di un vocabolo, né di distinguere due vocaboli diversi nel significato ma con uguale 'radice' ('computazionale', 'computer'--> 'comput'). Lo stemmer riconosce, dunque, soltanto i suffissi più comuni e li tronca dal resto della parola.
+
+Sebbene in questo caso la perdita di informazione sia necessariamente più marcata, questa procedura è necessaria e incrementa, generalmente, la conoscenza acquisita nel risultato finale. 
+
+Da un punto di vista delle analisi descritte nel Capitolo 1, riconosciamo che siamo sicuramente in grado di eseguire un'analisi lessicale, e parzialmente quella sintattica e semantica. L'analisi sintattica viene operata in modo tacito, ovvero escludendo quelle \emph{stopwords} appartenenti ad una specifica categoria di parole (come articoli e congiunzioni). L'analisi semantica, invece, è quella che ha più margine di miglioramento, in quanto la sola operazione di \emph{stemming}, come abbiamo visto non è ottimale. Entrambe queste analisi sono ostacolate dall'ambiguità intrinseche di alcuni aspetti della lingua, per cui occorrerebbe esaminare ciascun termine specifico nel suo contesto originario per poter comprendere il ruolo che esso svolge nella frase è il suo effettivo significato. Il fatto che queste tipologie di analisi non vengano approfondite al massimo delle loro potenzialità non è dovuto solo alla mancanza di strumenti (come i dizionari) o alla constatazione che, comunque, qualsiasi metodo di comprensione non sarà che approssimato: esso è contingente nell'ottica di un approccio \emph{bag-of-words} delle successive analisi, in cui, cioè, il contesto proprio di ciascuna parola viene trascurato.
+
+\subsection{Scikit-Learn e pyspark}
+Il cuore dell'analisi è costituito dalle procedure di \emph{topic extraction }che si applicano ai dati memorizzati. 
+Gli algoritmi verranno richiamati attraverso due librerie principali: \emph{Scikit-Learn} e \emph{pyspark} (si veda rispettivamente \cite{SckLn} e \cite{PySpk}).
+
+La prima libreria consente di richiamare diverse procedure per il machine learning ed è diffusamente usata nel campo dell'analisi dei dati. Da essa richiamiamo principalmente i seguenti algoritmi:
+
 \begin{enumerate} 
 \item TfidfVectorizer: ovvero la procedura dalla quale si ottiene una matrice DTM mediante lo schema \emph{tdidf}; 
 \item TruncatedSVD: che consente la decomposizione in valori singolari di una matrice (SVD sta per Singular Value Decomposition).
 \end{enumerate} 
-Il tutto è implementato senza l'ausilio di Spark,  per ragioni che saranno chiarite nei due capitoli finali.
-Viceversa la procedura LSA è interamente eseguita all'interno dell'ambiente Spark il quale viene richiamato mediante pyspark, ovvero una libreria API che consente di richiamarne la shell. In Spark è implementato l'algoritmo che esegue la procedura LDA
+Nel prossimo capitolo comprenderemo come essi si incasellano nell'intera procedura.
 
-% Parlare più diffusamente degli algoritmi, soprattutto LDA
+Per quanto riguarda \emph{pyspark}, esso rappresenta il collegamento con la shell di Spark. Mediante \emph{pyspark} possiamo richiamare lo \emph{SparkContext} ovvero il collegamento al cluster di Spark. Mediante esso siamo in grado di creare un RDD e processarlo, ed eseguire il codice come se ci trovassimo in ambiente Spark. 
+Per richiamarlo, basta digitare le seguenti linee di codice:
+\begin{verbatim}
+import pyspark
+from pyspark import SparkContext
+sc=SparkContext()
+\end{verbatim}
 
-% L'interfaccia OS?
-
+Solamente uno \emph{SparkContext} alla volta può essere avviato e di questo si terrà conto durante lo sviluppo della procedura. Questo perché solamente uno \emph{SparkContext} può essere attivo sulla \emph{Java Virtual Machine} (JVM), che rappresenta l'ambiente in cui il codice viene eseguito. Per stopparlo, possiamo digitare semplicemente
+\begin{verbatim}
+sc.stop()
+\end{verbatim}
+Mediante lo \emph{SparkContext} saremo in grado di richiamare da \emph{MLlib} il programma per l'esecuzione del topic model \emph{Latent Dirichlet Allocation}; di esso e dei topic model in generale ci occuperemo nel seguente capitolo.
 
 \clearpage
 
 % Capitolo 3
 \chapter{Modelli di Topic Extraction. LSI e LDA.}
-\chaptermark{Topic extraction} % Supervised and unsupervised classification... 
-
+\chaptermark{Topic extraction} 
 Il fulcro dell'analisi che andremo a svolgere è costituito dalla capacità di estrarre dai testi analizzati informazioni concernenti il loro contenuto: tale è il compito dei \emph{topic model} Ci concentreremo principalmente su due estrattori, il \emph{Latent Semantic Indexing} ed il \emph{Latent Dirichlet Allocation}, di seguito abbreviati LSI e LDA.
 
 Storicamente, l'LSI rappresenta il capostipite dei \emph{topic model}: tra la fine degli anni '80 e l'inizio dei '90, nell'ambito del cosiddetto \emph{Information Retrieval} (Recupero delle Informazioni), viene definito il \emph{Latent Semantic Indexing} da Deerwester et al. \cite{Der90}. Tale metodologia è stata adottata fino alla fine del secolo scorso nell'ambito dei motori di ricerca. Successivamente, Hofmann \cite{Hof99} nel 1999, ha generalizzato la procedura implementando il \emph{Probabilistic Latent Semantic Indexing} (pLSI) di cui daremo qualche cenno. Infine, nel 2003, Blei et al. \cite{Ble03} hanno realizzato l'algoritmo di LDA, che ha raggiunto grande fama e diffusione.
@@ -333,9 +418,60 @@ Con l'LSI si riescono a cogliere anche alcuni aspetti importanti del linguaggio 
 
 \subsection{Un esempio di applicazione}
 
-% Newton
+Per testare l'efficacia dell'algoritmo LSI, strutturiamo un esempio di applicazione su un corpus costituito da due documenti. Nel caso in questione abbiamo selezionato le biografie di Isaac Newton ed Albert Einstein che sono pubblicamente fruibili su Wikipedia (vedi \cite{BioEN}). Essi vengono ripuliti  e poi sottoposti ad un operazione di rimozione delle stopwords: l'estensione dei file è di circa 2000 parole per entrambi. Il codice che processa secondo l'LSI è il seguente
+\begin{verbatim}
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import TruncatedSVD
 
-% Non serve parlare dell'algoritmo SVD?
+vectorizer = TfidfVectorizer(use_idf=True, ngram_range=(1, 3))
+X = vectorizer.fit_transform(collection_testi)
+lsa = TruncatedSVD(n_components = 1, n_iter = 100) 
+lsa.fit(X)
+\end{verbatim}
+dove \emph{collection\_testi} è una lista che contiene le biografie processate. Dal pacchetto \emph{sklearn} abbiamo importato sia l'algoritmo \emph{tfidf}, sia l'algoritmo \emph{TruncatedSVD} che prima 
+fattorizza la matrice parole-documenti e poi ne riduce il rango. Quest'ultimo supporta due tipi di algoritmi: un solver di SVD rapido e randomizzato e un algoritmo naive che usa ARPACK come solutore.
+
+Come si vede, abbiamo impostato a 1 il numero di topic: in tal caso ci aspettiamo che l'output evidenzi la comunanza tra i due file di testo, ovvero ciò che in comune hanno Isaac Newton e Albert Einstein. L'output è il seguente: 
+\begin{verbatim}
+Topic 1:
+einstein 
+newton 
+studi
+anni 
+teoria 
+fisica 
+stato 
+anno 
+relatività
+finire
+\end{verbatim}
+in linea con le nostre aspettative. Abbiamo omesso le probabilità associate a ciascun termine:  è importante solamente constatare che le parole vengono elencate in ordine decrescente di rilevanza nei confronti del topic.
+
+Nel caso in cui impostiamo a 2 il numero di topic da restituire, ci aspettiamo che ci venga restituito un output in cui si differenzi un gruppo di parole riguardanti la vita di Einstein e un gruppo relativo a quella di Newton, che rappresentano i due argomenti principali di cui si sta parlando. In questo caso l'output (parziale) è
+
+\begin{verbatim}
+Topic 1: 
+einstein 
+newton 
+studio 
+teoria
+fisico
+...
+
+Topic 2:
+newton 
+mela 
+divenne 
+isaac 
+\textbf{royal society}
+zecca
+...
+\end{verbatim}
+Osserviamo un fatto interessante: sebbene le parole vengano memorizzate singolarmente, il programma riconosce che \emph{royal} e \emph{society} costituiscono un'unica locuzione. Questo perché le occorrenze di entrambe le parole sono le stesse e il programma rileva che hanno la medesima comunanza nel testo. In generale possiamo anche non richiedere all'algoritmo di rilevare questi costrutti, basta lasciare l'opzione \emph{ngram\_range} di \emph{TfidfVectorizer} con le impostazioni di default.
+
+Poiché l'LSI è un algoritmo deterministico, l'intera procedura e l'output sono perfettamente riproducibili e si possono confrontare i risultati con quelli appena mostrati. I file si trovano nella repository Github descritta nell'introduzione.
+
+Altri esempi di applicazione dell'algoritmo LSI si possono trovare nell'articolo di Deerwester \cite{Der90} e nel riferimento \cite{San15}, dove si applica l'LSI all'intero corpo di articoli di Wikipedia.
 
 \subsection{Cenni al \emph{pLSI}}
 
@@ -343,7 +479,7 @@ Pur senza addentrarci nei dettagli, diamo qualche cenno del pLSI, in quanto esso
 
 Come abbiamo visto, il modello LSI consente di cogliere un nucleo conoscitivo di un documento o di una collezione di documenti ma non è un modello generativo, nel senso che non coglie l'aspetto statistico della distribuzione delle parole nel documento.
 
-Il modello pLSI, anch'esso basato sull'approccio \emph{bag-of words}, consente di risolvere questo problema aggiungendo, di fatto, un modello generativo all'LSI:  si vuole assegnare una distribuzione di probabilità congiunta alla coppia documento-parola, in particolare si suppone che ogni parola sia generata indipendentemente dalle altre da un modello di mistura. Per far ciò, si considera un'ulteriore variabile, poniamo $z$ (che rappresenta la classe latente),  condizionatamente alla quale la probabilità congiunta si decompone nel prodotto della distribuzione sui documenti e sulle parole. 
+Il modello pLSI, anch'esso basato sull'approccio \emph{bag-of-words}, consente di risolvere questo problema aggiungendo, di fatto, un modello generativo all'LSI:  si vuole assegnare una distribuzione di probabilità congiunta alla coppia documento-parola, in particolare si suppone che ogni parola sia generata indipendentemente dalle altre da un modello di mistura. Per far ciò, si considera un'ulteriore variabile, poniamo $z$ (che rappresenta la classe latente),  condizionatamente alla quale la probabilità congiunta si decompone nel prodotto della distribuzione sui documenti e sulle parole. 
 
 Con queste assunzioni, ne risulta un modello generativo dei parametri (documento, \emph{z} e parola); l'inferenza sui parametri si ottiene massimizzando la funzione di log-verosimiglianza mediante l'algoritmo EM.
 
@@ -462,56 +598,51 @@ $$
 Questi due passi sono ripetuti fino a quando l'algoritmo converge ad un massimo locale
 della funzione di log-verosimiglianza.
 
-% Possiamo aggiungere altri confronti/ algoritmi dall'articolo di Blei...
+L'algoritmo LDA richiamato in Spark, ricalca le linee teoriche appena enunciate: esso possiede un ottimizzatore (\emph{EMLDAOptimizer}) che pratica l'algoritmo EM sulla verosimiglianza. 
 
-\subsection{Esempio di applicazione.}
+Esistono anche altri algoritmi per effettuare inferenza sui parametri: uno di quelli che ha ricevuto più attenzione è il \emph{Gibbs Sampling} che sfrutta un approccio differente ed è un tipo di algoritmo Monte Carlo Markov Chain. Non approfondiremo i dettagli di questa procedura, che abbiamo citato per completezza. Si rimanda a \cite{Dar11}.
 
-Il risultato dell'analisi LDA sarà simile al seguente (caso $n$ = 10 e $k$ = 2):
+\subsection{Esempio di applicazione}
+Per verificare come opera l'algoritmo di LDA, utilizziamo gli stessi testi a contenuto bibliografico adoperati anche per l'LSI. Nel caso di un topic per ciascun articolo abbiamo:
 \begin{verbatim}
-Topic 1:
-matem  0.009560573221092942
-scuol  0.00808030602233562
-post  0.007174175578550224
-vuot  0.00701157776472776
-quas  0.006984416666260308
-capac  0.006773406498557413
-istr  0.0066294229384543345
-ben  0.006600503209852239
-aver  0.006556311017571411
-reclut  0.0065142697691635085
+Articolo su 'Einstein':
+einstein 
+studi
+teoria
+...
+stato
+relatività
+milano
 
-
-Topic 2:
-frut  0.00755124839871547
-vorag  0.007512074134983625
-lombar  0.007231254609200753
-profession  0.007015777869361581
-fedel  0.006789730066915294
-dat  0.006683804983393134
-minis  0.006668940226489626
-confr  0.0066030669225653794
-fa  0.00660271421692034
-par  0.006571353930747912
+Articolo su 'Newton':
+newton 
+anni
+mela
+...
+legge
+egli 
+volt 
 \end{verbatim}
 
-Come si vede ciascuna parola è affiancata da una probabilità che è tanto più alta quanto più, secondo il modello, quella parola ha affinità con il topic.
+Anche i questo caso ciascuna parola è affiancata da una probabilità che misura affinità con il topic in questione. Le parole sono posizionate in ordine decrescente rispetto a questa probabilità. Si osserva una notevole somiglianza con l'output dell'LSI, probabilmente dovuta alla breve estensione dei file di testo analizzati e alla specificità del testo analizzato.
 
-\subsection{Considerazioni e confronti.}
+\subsection{Confronti e considerazioni}
 
-% Confronto con altri modelli sia precedenti che non esaminati come il dirichlet cluster possiamo anche fare riferimento al probabilistic LDA
+La differenza principale tra i due modelli presi in esame consiste nel fatto che mentre l'LSI è un algoritmo deterministico che non modellizza alcuna struttura generativa, l'LDA è un algoritmo probabilistico in grado di modellizzare tale struttura. I risultati di quest'ultimo possono variare ogni volta che si esegue l'algoritmo proprio in virtù dell'impostazione pseudo-casuale. 
 
-% Rispetto all'LSI è un modello non deterministico. Cosa fa di più? Perché non limitarci all'LSI? Confronta output di Blei...
+Risulta altresì chiaro che il modello LSI è molto semplificato e meno generale dell'LDA:  come in ogni scenario, però, occorre valutare sapientemente lo strumento che conviene utilizzare in una determinata situazione. Non sempre lo strumento più generale si rivela la scelta migliore; può capitare, ad esempio, che risulti troppo oneroso in termini di complessità computazionale rispetto ad un modello più semplificato, pur restituendo un output non dissimile da quest'ultimo (lo abbiamo visto nell'esempio di applicazione per entrambi). Nel prossimo capitolo daremo una giustificazione della procedura adottata nel nostro algoritmo, che fonde LDA e LSI sulla base delle loro caratteristiche.
 
-% Bag -of- words and exengeability
+L'LSI e l'LDA possono entrambe essere utilizzate per procedure di apprendimento supervisionato e non. Nel nostro caso li utilizzeremo solo come algoritmi di cluster \emph{non} supervisionato, in quanto non assumeremo di dover clusterizzare le parole in topic prestabiliti.
 
+Un'ultima riflessione sui metodi di tipo \emph{bag-of-words}. In \cite{Ble03} troviamo un'importante considerazione a proposito della facoltà di trascurare l'ordine delle parole (e nel caso dei corpus anche quello dei documenti). Il ragionamento che ha condotto alla ideazione dell'LDA parte dal teorema di De Finetti \cite{} che afferma la distribuzione congiunta di una sequenza di variabili aleatorie infinitamente scambiabili possiede una rappresentazione  in termini di mistura, condizionatamente ad un parametro latente: per questo se si vuole avere una rappresentazione della scambiabilità sia per i documenti che per le parole, dobbiamo considerare una mistura che va bene per entrambi. Ribadiamo che la scambiabilità non implica indipendenza e identica distribuzione, quanto piuttosto indipendenza e identica distribuzione \emph{condizionatamente} ad un parametro latente. Per questo, se condizionata, la distribuzione congiunta delle variabili aleatorie si può notevolmente semplificare. 
 
+Nel caso dell'LDA questo consente di elevarsi ad un livello più alto rispetto al pLSI, ovvero di estendere anche a corpus di documenti il modello e la procedura.
 \clearpage
 
 % Capitolo 4
 \chapter{Progettazione e sviluppo dell'algoritmo}
 \chaptermark{Algoritmo}
 
-% Dare una spiegazione dell'obiettivo raggiunto dall'algoritmo in termini di classificazione
 Una volta elencati gli strumenti occorre assemblarli in una procedura organica, composta di più moduli, la quale soddisferà i seguenti requisiti:
 
 \begin{enumerate}
@@ -520,115 +651,646 @@ Una volta elencati gli strumenti occorre assemblarli in una procedura organica, 
 \item Processa  i dati usando algoritmi di topic model e salva l'output in formato leggibile.
 \end{enumerate}
 
-Per eseguire il compito l'algoritmo è composto da diversi moduli, ognuno dei quali assolve a una funzione.
+Per eseguire il compito l'algoritmo è composto da diversi livelli, ognuno dei quali assolve a una specifica funzione.
+
+L'obiettivo è quello di ottenere una procedura automatica e completa di classificazione dei contenuti della collezione di documenti analizzata.
+
+L'output che desideriamo è dunque costituito da diversi cluster di parole (tanti quanti saranno i topic supposti latenti), ciascuno dei quali rappresenta un argomento centrale nella collezione. L'intero algoritmo, come specificato nei punti che esso eseguirà, è autonomo e l'intervento umano è ridotto al minimo. Una fase in cui quest'ultimo è indispensabile è certamente quella in cui si conferisce un titolo, o \emph{label}, a ciascun cluster di parole: tale operazione non è certamente possibile per una macchina, ovvero per essa non è possibile trovare quella parola o quel concetto che sottende le parole in ciascun cluster estratte dai documenti.
+
+Per intenderci, procediamo con un esempio: potremmo avere un cluster di parole come le seguenti:
+\begin{verbatim}
+giallo agrume aspro succo buccia ...
+\end{verbatim}
+il computer avrà pure estratto con criterio queste parole dai documenti che ha rilevato, ma non sarà mai in grado di astrarre da questi concetti e conferire a questo cluster il label di 'Limone'. 
+
+Quest'ultima astrazione spetta ancora all'uomo.
 
 \section{Raccolta e storage dei dati}
-La raccolta dei file di testo avviene con Scrapy, il quale è impostato per funzionare dal prompt dei comandi i cui comandi richiamano, dalla cartella del progetto, i file contenenti diversi sottomoduli, ciascuno dei quali va preimpostato indicando le specifiche del sito e dell'informazione da ricavare, e del salvataggio da effettuare. Vediamo nel dettaglio i particolari principali di questo processo.
+La raccolta dei file di testo avviene con Scrapy. Mediante esso si richiamano, dalla cartella del progetto iniziale, i file contenenti diversi sottomoduli, ciascuno dei quali va preimpostato indicando le specifiche del sito, dell'informazione da ricavare e del salvataggio da effettuare. Vediamo nel dettaglio i particolari principali di questo processo.
 
 Supponiamo, ad esempio, di voler prelevare il testo della pagina iniziale di un sito di nostra scelta.
-Creiamo un progetto di lavoro dal nome \emph{Example\_Name} avviando Scrapy dal prompt dei comandi digitando 
+Creiamo un progetto di lavoro dal nome \emph{Example\_Name} avviando Scrapy dal prompt dei comandi e digitando 
 
 \begin{verbatim}
 scrapy startproject Example_Name
 \end{verbatim}
 
-
-Questo creerà una cartella con lo stesso nome del progetto con all'interno diversi file e cartelle con specifiche funzionalità: di essi ne analizziamo i più importanti. Il primo che prendiamo in esame ha nome \emph{'items.py'}, che ha il ruolo di definire i campi da riempire con le informazioni
-%%%%
-; ad esempio, supponendo di essere interessati ai titoli dei paragrafi ed ai testi presenti nella pagina analizzata, avremo un codice simile al seguente
+Questo creerà una cartella con lo stesso nome del progetto con all'interno diversi file e cartelle con specifiche funzionalità: di essi ne analizziamo i più importanti. Il primo che prendiamo in esame ha nome \emph{'items.py'}, che ha il ruolo di definire i campi da riempire con le informazioni, ovvero si imposterà la struttura del file che poi verrà salvato nel database. Ad esempio, supponendo di essere interessati ai titoli dei paragrafi ed ai testi presenti nella pagina analizzata, avremo un codice simile al seguente
 \begin{verbatim}
 class Example_Name(scrapy.Item):
     Titoli_paragrafi = Field()
     Contenuto_testi = Field()
 		...
 \end{verbatim}
-%%%
-Questo codice verrà richiamato nel file \emph{'Example\_Name.py'} presente nella cartella \emph{spiders}, il quale rappresenta il cuore del nostro scraper. In esso si specifica l'URL del sito da analizzare e il codice HTML che consente di reperire l'informazione desiderata. Una funzionalità molto interessante e utile di questo file è quella che consente di selezionare informazioni a più livelli di profondità nel sito in questione. Come esempio, si pensi all'analisi dei quotidiani che andremo ad effettuare: la pagina principale di un quotidiano contiene molte notizie, ma nessuna per intero; per accedere al loro contenuto è necessario reperire l'URL i ciascuna notizia. Essa è chiaramente presente nel codice della pagina iniziale (in quanto cliccando su una specifica notizia siamo trasportati alla pagina che la riguarda) e dunque basta reperire l'indirizzo specifico ed effettuare lo scraping sulla nuova pagina. Con questo metodo si può andare estremamente in profondità nel sito e prelevare tutta l'informazione senza per questo dover conoscere in anticipo tutti gli indirizzi dei contenuti, che, non è escluso, potrebbero modificarsi nel tempo. Con un'impostazione dinamica dello scraping questo problema è risolto. 
 
-A questo punto occorre impostare la procedura di salvataggio. La nostra scelta di database è MongoDB e tutte le impostazioni relative al salvataggio vanno inserite nel file \emph{'pipelines.py'}. In esso si si dànno istruzioni per inizializzare una diversa istanza per ogni nuova occorrenza da salvare e si imposta il filtro per evitare la presenza di duplicati. Quest'ultimo è un punto cruciale nel contesto di un'analisi, in quanto diventerebbe complesso riuscire a porvi rimedio durante le fasi successive.
-Infine, si completano le ultime informazioni relative alla porta di connessione del database e alla collection creata nel file \emph{'settings.py'}.
+Questo codice verrà richiamato nel file \emph{'Example\_Name.py'} presente nella cartella \emph{spiders}, la quale, come il nome suggerisce, rappresenta il cuore del nostro scraper. Nel suddeto file si specifica l'URL del sito da analizzare e il pezzo di codice HTML che affianca nell'impaginazione l'informazione desiderata. Una funzionalità molto interessante e utile di questo file è quella che consente di selezionare informazioni a più livelli di profondità nel sito in questione. 
+
+Come esempio, si pensi all'analisi dei quotidiani che andremo ad effettuare: la pagina principale di un quotidiano contiene molte notizie, ma nessuna per intero: per leggere il contenuto di una notizia occorre, generalmente, cliccare sul titolo e cambiar pagina, e dunque URL. L'indirizzo URL dell'articolo che si sta selezionando è chiaramente presente nel codice della pagina iniziale (in quanto cliccando su una specifica notizia siamo automaticamente trasportati alla pagina che la riguarda) e dunque basta reperire l'indirizzo specifico, reindirizzare lo spider al nuovo indirizzo ed effettuare lo scraping sulla nuova pagina. Con questo metodo si può andare estremamente in profondità nel sito e prelevare tutta l'informazione senza per questo dover conoscere in anticipo tutti gli indirizzi dei contenuti, che, non è escluso, potrebbero modificarsi nel tempo. Con un'impostazione dinamica dello scraping questo problema è risolto. 
+
+Generalmente l'URL che conduce ad un contenuto specifico del sito, non è dissimile dall'URL del sito stesso: sovente il primo è un'estensione del secondo.
+
+Un esempio di codice che, all'interno del file, esegue la suddetta operazione è il seguente:
+\begin{verbatim}
+def parse(self, response):
+        links = list(set(response.xpath(xpath).extract()))
+        for link in links:
+            if link is not None:
+                yield scrapy.Request(link, 
+													callback=self.parse_page_Example_Name)
+\end{verbatim}
+Come si nota, prima si estraggono i link 'suffissi' dei contenuti di interesse all'interno del sito e poi si aggregano questi ultimi al link della pagina principale.
+
+A questo punto occorre impostare la procedura di salvataggio. La nostra scelta di database è MongoDB e tutte le impostazioni relative al salvataggio vanno inserite nel file \emph{'pipelines.py'}. In esso si dànno istruzioni per inizializzare una diversa istanza per ogni nuova occorrenza da salvare e si imposta il filtro per evitare la presenza di duplicati. Quest'ultimo è un punto cruciale nel contesto di un'analisi, in quanto diventerebbe complesso riuscire a porvi rimedio durante le fasi successive.
+
+Dell'intero codice, la parte fondamentale è il seguente stralcio:
+\begin{verbatim}
+ def process_item(self, item, spider):
+        self.db[self.collection_name].update({'id': item['id']}, 
+																						dict(item), upsert=True)
+        return item
+\end{verbatim}
+In particolare è l'opzione \emph{upsert} che presiede all'inserimento di nuovi dati: nel codice appena visto, impostato sul valore \emph{True}, esso non memorizza elementi che possiedano lo stesso identificativo di qualcuno già registrato.
+
+Infine, nel file \emph{'settings.py'}, si completano le ultime impostazioni specifiche relative alla porta di connessione del database e alla collection creata .
 
 Dunque, in conclusione, la struttura dello scraper è ramificata e interconnessa: ogni modulo ha una specifica funzionalità che va impostata e ciascuno ne richiama un altro per ottenere il risultato finale.
 
-A questo punto i file sono salvati in una collection la quale può essere estratta è inserita in un file di testo. La particolarità del file così ottenuti è quella di essere composti da diverse righe di testo in formato JSON. Spendiamo qualche parola in più su questo formato che ha una certa importanza per via della sua leggerezza e della sua flessibilità di utilizzo.
+Dopo questa fase, i file sono salvati in una collection la quale può essere estratta e manipolata anche esternamente al database. Le collection estratte sono salvate come file in formato JSON \footnote{È un acronimo che sta per \emph{JavaScript Object Notation}}: quest'ultimo ha una certa importanza per via della sua leggerezza e della sua flessibilità di utilizzo che coniuga un'impostazione semplice e leggibile sia per le macchine che per l'essere umano. Un esempio di file JSON è il seguente 
+\begin{verbatim}
+{_id:
+		{id: 5a101c5d5fbf0004f5a4ade1},
+		     title:["Way of the Future, ..."],
+				 text: Nella Silicon Valley non c'è spazio soltanto...
+				 author:NP,
+				 date :["17 novembre 2017 "],
+				 link: http://www.corriere.it..."}
 
-% Parlare del file JSON
+\end{verbatim}
 
 Una volta caricato il file di testo con tutte le informazioni in formato JSON siamo pronti per affrontare al fase di preprocessing.
 
-
 \section{Pulitura del file di testo}
-Le ragioni per cui è necessaria la pulitura di un file di testo sono già state in qualche misura elencate: ini sintesi, in un approccio \emph{bag-of-words} dove, cioè, la sola parola ha importanza, occorre eliminare le parole non connesse con i concetti latenti (come articoli, congiunzioni, preposizioni) e rendere identiche al computer quelle parole che, seppur diverse hanno lo stesso significato (come un verbo all'infinito con tutte le sue declinazioni). In sostanza si tratta di effettuare una operazione di \emph{stopwords removing} ed una di \emph{stemming}. Chiaramente queste analisi sono le principali, ma qualsiasi testo è suscettibile di diversi aggiustamenti, ciascuno dei quali può in qualche misura migliorare la comprensione del testo per la macchina.
+Le ragioni per cui è necessaria la pulitura di un file di testo sono già state in qualche misura elencate: in sintesi, in un approccio \emph{bag-of-words} dove, cioè, la sola parola ha importanza, occorre eliminare le parole non connesse con i concetti latenti (come articoli, congiunzioni, preposizioni) e rendere indistinguibile agli occhi del calcolatore quelle parole che, seppur diverse, hanno lo stesso significato (come un verbo all'infinito con tutte le sue declinazioni). In sostanza si tratta di effettuare una operazione di \emph{stopwords removing} ed una di \emph{stemming}. Chiaramente queste analisi sono le principali, ma qualsiasi testo è suscettibile di diversi aggiustamenti, ognuno dei quali può in qualche misura migliorarne la comprensione.
 
-La procedura di rimozione delle stopwords è contenuta nella routine \textbf{\emph{clean}}. Il passo iniziale è quello di richiamare il dizionario delle stopwords di \emph{nltk}
+Per prima cosa però, vanno eliminate alcuni caratteri o stringhe di caratteri che sono residui del linguaggio HTML che spesso filtrano durante la procedura di salvataggio del testo. Successivamente si conservano solo i caratteri alfabetici maiuscoli, minuscoli e accentati. Si eliminano numeri, segni di punteggiatura e tutte le lettere singole poiché queste ultime potrebbero essere o preposizioni, o congiunzioni o residui dell'impaginazione HTML (si pensi a  $\backslash$n, che indica andare a capo) .
+Il testo ottenuto viene, infine, ridotto tutto a caratteri minuscoli.
+
+La procedura di rimozione delle stopwords è contenuta nella routine \textbf{\emph{clean}}. 
+
+Il passo iniziale è quello di richiamare il dizionario delle stopwords di \emph{nltk}
 \begin{verbatim}
 stop_words = set(stopwords.words('italian'))
 \end{verbatim}
-ad esso vanno aggiunte alcune altre parole di uso comune che il dizionario impostato non comprende. Il codice di esempio è il seguente
-\begin{verbatim}
-\end{verbatim}
 
-Nella routine, per prima cosa vanno eliminate alcune stringhe di caratteri che sono residui del linguaggio HTML che spesso filtrano durante la procedura di salvataggio del testo; successivamente si conservano solo i caratteri alfabetici maiuscoli, minuscoli e accentati, e si escludono numeri, segni di punteggiatura e tutte le lettere singole.
-Il testo ottenuto viene ridotto tutto a caratteri minuscoli.
+Potrebbe essere necessario aumentare l'estensione di questo dizionario predefinito, inserendo in esso nuove parole. Il codice per questa operazione è il seguente
+\begin{verbatim}
+nuove_parole = set(('colla', 'colle', 'sulle'...))
+stopstop_words = set(stopwords.words('italian')) + nuove_parole
+\end{verbatim}
 
 Una volta richiamata la funzione \textbf{\emph{clean}}, si opera con lo stemmer che va dapprima richiamato dal solito pacchetto \emph{nltk}
 \begin{verbatim}
-temmer = SnowballStemmer("italian") .
+stemmer = SnowballStemmer("italian") .
 \end{verbatim}
-Effettuata la procedura, il risultato è simile a questo
+
+Da un input di testo iniziale come il seguente (tratto da una notizia di quest'anno)
+
+\begin{verbatim}
+Utilizzando i dati del Ministero dell'Istruzione si è lanciato 
+l'allarme: sono pochi i professori di Matematica, quindi le cattedre di 
+ruolo rimangono vuote. Il Problema si avverte soprattutto nella scuola media: 
+quest'anno si crea una voragine...
+\end{verbatim}
+
+si otterrà come risultato della pulitura, il seguente output.
+
 \begin{verbatim}
 utilizz dat minister istruzion lanc allarm poch 
 prof matemat quind cattedr ruol rimang vuot problem 
-avvert soprattutt scuol med quest anno cre voragin 
-post rimast vacant dop trasfer soprattutt nord lombard 
-sol arriv par nemmen prossim immission ruol colm...
+avvert soprattutt scuol med quest anno cre voragin...
 \end{verbatim}
+
 che, sebbene sia fruibile per le macchine, dal punto di vista degli uomini è praticamente incomprensibile.
 
-Onde evitare di ottenere un output dalla procedura formato da parole di cui non se ne riconosce il significato, è stata creata un altra routine di nome \textbf{\emph{rebuild}} la quale associa una radice semantica a tutte le parole che in essa sono state trasformate dall'operazione di pulitura. Inoltre vengono contate le occorrenze delle singole parole originali. Un esempio di output della routine è il seguente
+Onde evitare di ottenere un output formato da parole di cui non se ne riconosce il significato, è stata creata un altra routine di nome \textbf{\emph{rebuild}} la quale associa a una radice semantica tutte le parole che in essa sono state trasformate dall'operazione di pulitura. Inoltre vengono contate le occorrenze delle singole parole originali. Un esempio di output della routine è il seguente
 \begin{verbatim}
 'comput' = [['computer', 10], ['computazionale', 2]]
 \end{verbatim}
-volendo significare che, nel testo analizzato compare 10 volte la parola 'computer' e 2 volte la parola 'computazionale' e che, nel caso in cui la parola 'comput' sia rilevante nell'output finale, si può a ben ragione individuare quale sia l'origine più probabile di questa radice.
+
+volendo significare che, nel testo analizzato compare 10 volte la parola 'computer' e 2 volte la parola 'computazionale' e che, nel caso in cui la parola 'comput' sia rilevante nell'output finale, si può a ben ragione individuare quale sia l'origine più probabile di questa radice. Questo metodo non è immune dai casi di omonimia: non riesce a discriminare il significato che rivestono tali parole in un testo. Ad esempio, se la parola \emph{stato} voglia significare \emph{Nazione} o sia un participio passato.
 
 Il testo così processato può finalmente essere analizzato dai modelli di topic extraction.
 
 \section{Fusione dei modelli e salvataggio}
 
-Il modello LDA è già stato discusso nell'ambito delle sue caratteristiche teoriche; nell'algoritmo esso è stato implementato all'interno dell'ambiente \emph{Spark Context} richiamato dalla libreria \emph{pyspark}. È all'LDA che spetta il processo del grosso dei file di testo, pertanto è in questa sede che occorre sperimentare i vantaggi della parallelizzazione che si ottengono con Spark. L'algoritmo dell'LDA estrae i principali concetti presenti in un testo ripulito, elencando un certo numero di parole fissato per ciascun concetto a priori prima di lanciare il programma. In sostanza abbiamo due parametri liberi: il numero dei topic, poniamo $k$, e il numero delle parole per ciascun topic, poniamo $n$. Il loro valore deve essere fissato prima di lanciare l'esecuzione e dipende fortemente dal tipo di file che si sta analizzando. Se ad esempio ci occupiamo di analizzare un racconto in formato testuale, il numero di topic $k$ potrebbe essere elevato, viceversa, nel caso di un testo di breve estensione è più opportuno regolare il numero di topic su un valore più contenuto. Per quanto riguarda il parametro che indica il numero di parole per ogni topic, valgono in generale ragionamenti analoghi, anche se l'esperienza mostra che topic con un numero $n$ compreso tra 10 e 20 generalmente consente di comprendere sufficientemente a fondo il concetto analizzato. È su base empirica che si effettua questa regolazione, detto \emph{tuning}, dei parametri: occorre effettuare diverse prove per comprendere i valori ottimali nel caso specifico che si sta analizzando. 
+Il modello LDA è già stato discusso nell'ambito delle sue caratteristiche teoriche; l'algoritmo viene richiamato dalla libreria \emph{MLlib} tramite \emph{pyspark}. È all'LDA che spetta il processo del grosso dei file di testo, pertanto è in questa sede che occorre sperimentare i vantaggi della parallelizzazione che si ottengono con Spark. L'algoritmo dell'LDA estrae i principali concetti presenti in un testo ripulito, elencando un certo numero fissato a priori di parole per ciascun concetto. In sostanza abbiamo due parametri liberi: il numero dei topic, poniamo $k$, e il numero delle parole per ciascun topic, poniamo $n$. Il loro valore deve essere fissato prima di lanciare l'esecuzione e dipende fortemente dal tipo di file che si sta analizzando. Se ad esempio ci occupiamo di analizzare un racconto in formato testuale, il numero di topic $k$ potrebbe essere elevato, viceversa, nel caso di un testo di breve estensione è più opportuno regolare il numero di topic su un valore più contenuto. Per quanto riguarda il parametro che indica il numero di parole per ogni topic, valgono in generale ragionamenti analoghi, anche se l'esperienza mostra un numero $n$ compreso tra 10 e 20 generalmente consente di comprendere sufficientemente a fondo il concetto analizzato. È su base empirica che si effettua questa regolazione, detto \emph{tuning}, dei parametri: occorre effettuare diverse prove per comprendere i valori ottimali nel caso specifico che si sta analizzando. 
+
+% Parlare dell'implementazione in Spark
+
 Poiché l'obiettivo finale è quello di una classificazione di un intero corpus di argomenti secondo i temi in essa trattati, dobbiamo immaginare che diversi output del genere vengano memorizzati, ciascuno per ogni documento che viene sottoposto all'LDA. Il file completo di tutti questi output viene passato all'ultimo blocco del codice, quello che applicherà la metodologia LSI, non prima però che venga effettuata un'ultima operazione.
-Essa consiste nella rimozione di ulteriori categorie di parole. Per comprendere la necessità di quest'ulteriore scrematura, dobbiamo fare qualche passo avanti. Ci aspettiamo che l'output finale sia composto da diversi cluster di parole, ciascuno dei quali può simboleggiare un concetto importante nella collezione. La provenienza di questi termini è ciascun topic che proviene dall'LDA. Si nota, nell'output appena mostrato, che ci sono parole come 'quas' (che sta per 'quasi') nel primo topic, o 'fa' (dal verbo 'fare') nel secondo. Queste categorie di forme verbali e avverbi sono molto comuni a tutti i documenti e dunque è plausibile che molti cluster finali siano 'contaminati' dalla presenza di queste parole che non portano con sé significato. Si immagini ad esempio un cluster di soli avverbi: quale contenuto potrebbe significare? Eppure, si sperimenta, che cluster di questo tipo tendono effettivamente a formarsi dato il numero di occorrenze elevato in molti topic di queste categorie di parole. Ecco perché queste parole vanno eliminate con l'uso di un'ulteriore operazione di \emph{stopwords removing} eseguita con un dizionario \emph{ad hoc}. A questo punto si può invocare il modello LSI per la clusterizzazione finale. L'output sarà simile al seguente:
+
+Essa consiste nella rimozione di ulteriori categorie di parole. Per comprendere la necessità di quest'ulteriore scrematura, dobbiamo fare qualche passo avanti. Ci aspettiamo che l'output finale sia composto da diversi cluster di parole, ciascuno dei quali può simboleggiare un concetto importante nella collezione. 
+Ciascun termine proviene da da un cluster di parole ottenuto mediante la precedente operazione con l'LDA.
+
+Si nota che sopravvivono parole come 'quas' (che sta per 'quasi') o 'fa' (dal verbo 'fare'). Queste categorie di forme verbali e avverbi sono molto comuni a tutti i documenti e dunque è plausibile che molti cluster finali siano 'contaminati' dalla presenza di queste parole che non portano con sé significato. Si immagini ad esempio un cluster di soli avverbi: quale contenuto potrebbe significare? Eppure, si sperimenta, che cluster di questo tipo tendono effettivamente a formarsi dato il numero di occorrenze elevato in molti topic di queste categorie di parole. Ecco perché queste parole vanno eliminate con l'uso di un'ulteriore operazione di \emph{stopwords removing} eseguita con un dizionario \emph{ad hoc}. A questo punto si può invocare il modello LSI per la clusterizzazione finale: l'algoritmo opererà con le modalità già descritte il precedenza.
+
+L'output sarà simile al seguente:
 \begin{verbatim}
+Topic 1:
+
+1) stat
+[['stato', 752], ['stata', 419], ['stati', 257], ['state', 98], 
+['statuto', 3]]
+   
+2) part
+[['parte', 366], ['partito', 95], ['partire', 57], ['partita', 53], 
+['parti', 33], ['partiti', 24], ['partite', 22], ['partendo', 8], ...]
+   
+3) ital
+[['italia', 376], ['italiano', 104], ['italo', 4], ['italici', 2], 
+['italico', 2], ['italiche', 1]]
+
 ...
+     
+Topic 2:
+   
+1) ministr
+[['ministro', 95], ['ministri', 29], ['ministra', 17]]
+   
+2) paes
+[['paese', 192], ['paesi', 75]]
+   
+3) lavor
+[['lavoro', 301], ['lavoratori', 59], ['lavorare', 48], ['lavori', 43], 
+['lavorato', 36], ['lavora', 34], ['lavorando', 20], ['lavorano', 15], 
+['lavorava', 10], ['lavoravano']]
+
 ...
+
+Topic 3:
+
+1) part
+[['parte', 366], ['partito', 95], ['partire', 57], ['partita', 53], 
+['parti', 33], 
+['partiti', 24], ['partite', 22], ['partendo', 8], ...
+   
+2) stat
+[['stato', 752], ['stata', 419], ['stati', 257], ['state', 98], 
+['statuto', 3]]
+   
+3) rapport
+[['rapporto', 79], ['rapporti', 50]]
+
 ...
-...
+   
 \end{verbatim}
 
-il quale può essere reso intelligibile grazie alla routine descritta sopra. Anche in questo caso abbiamo delle probabilità accanto alle parole, con il medesimo significato di rilevanza con il topic come nell'output precedente.
+reso intelligibile grazie alla routine \textbf{\emph{rebuild}} descritta sopra. Anche in questo caso a ciascuna parola è associata una probabilità, con il medesimo significato di rilevanza con il topic come nell'output precedente.
 
-È necessario, infine, dare una giustificazione della procedura così impostata, ovvero della fusione dei modelli e dell'ultima operazione di pulitura, il cui posizionamento all'interno dell'algoritmo può sembrare un pò anomalo. Partiamo da quest'ultimo punto: perché eseguire lo stopwords removing in due diversi momenti del codice? Ci sono due motivazioni: la prima consiste nel fatto che prima di passare al vaglio dell'LSI, le parole eliminate sono effettivamente cariche di significato per l'LDA, in un cluster potrebbero contribuire a chiarificare il significato di un topic. Rammentiamo che ogni procedura di riduzione del documento tende ad eliminare parte dell'informazione e dunque, quando non è necessaria, è buona norma non abusarne. Il secondo motivo è più pratico: si è già parlato della carenza di dizionari per le analisi testuali della lingua italiana. Dovendo far fronte a parole che hanno già subìto il processo di stemming, si può più agevolmente costruire un dizionario \emph{ex novo} (nel nostro caso è stato riadattato un dizionario già in possesso).
+È necessario, infine, dare una giustificazione della procedura così impostata, ovvero della fusione dei modelli e dell'ultima operazione di pulitura, il cui posizionamento all'interno dell'algoritmo può sembrare un pò anomalo. 
+
+Partiamo da quest'ultimo punto: perché eseguire lo stopwords removing in due diversi momenti del codice? Ci sono due motivazioni: la prima consiste nel fatto che prima di passare al vaglio dell'LSI, le parole eliminate potrebbero essere effettivamente cariche di significato per l'LDA e in un cluster di parole potrebbero contribuire a chiarificare il significato di un topic. Rammentiamo che ogni procedura di riduzione del documento tende ad eliminare parte dell'informazione e dunque, quando non è necessaria, è buona norma non abusarne. Il secondo motivo è più pratico: si è già parlato della carenza di dizionari per le analisi testuali della lingua italiana. Dovendo far fronte a parole che hanno già subìto il processo di stemming, si può più agevolmente costruire un dizionario \emph{ex novo}. % Esempio?
 
 Per quanto riguarda la motivazione della scelta di queste due metodologie e della fusione nel preciso ordine mostrato, dobbiamo fare delle riflessioni.
 
-Innanzitutto come estrattore dei topic di ciascun documento, era necessario utilizzare il modello di tipo probabilistico, per le ragioni concernenti i limiti di un modello deterministico di cui si è discusso in precedenza. Una volta terminata questa fase, si può passare ad un modello come l'LSI che, in modo particolare, riesce a rilevare concetti come la sinonimia, che sono importanti per una classificazione di un livello più alto; inoltre come algoritmo è estremamente rapido. Ci si può chiedere, a questo punto, se fosse stato possibile eseguire due volte l'LSI o due volte l'LDA invece che fondere le due metodologie. In generale è perfettamente lecito impostare questi due algoritmi che, non è escluso, possono fornire risultati degni di nota. Tuttavia nel caso di un'applicazione a due stadi dell'LSI mancherebbe completamente la dimensione probabilistica, ovvero non si dà conto della struttura generativa del singolo documento. Nel caso opposto, invece, quello che contempla un'applicazione ripetuta dell'LDA, dobbiamo ipotizzare di ricavare diversi cluster di concetti da una fusione di tutti i topic provenienti dai documenti. Nel secondo stadio, dunque, avremmo perso completamente la struttura generativa che contraddistingue un testo in linguaggio naturale, dovendo noi processare esclusivamente liste di parole chiave per ciascun topic. Ne risulterebbe un processo più dispendioso e meno congeniale alle effettive operazioni di analisi che si svolgono. È altresì chiaro da questi ragionamenti per quali motivi non è consigliato scambiare le due metodologie in questa analisi, ovvero eseguire prima l'LSI e poi l'LDA.
+Innanzitutto come estrattore dei topic di ciascun documento, era scontato che usassimo un modello di tipo probabilistico, per le ragioni concernenti i limiti di un modello deterministico e non generativo di cui si è discusso in precedenza. Una volta terminata questa fase, si può passare ad un modello come l'LSI che, in modo particolare, riesce a rilevare concetti come la sinonimia, che sono rilevanti per una classificazione ad un secondo stadio; inoltre come algoritmo è estremamente rapido. 
 
-% Diversi run dell'LDA? La questione dei pesi non è stata risolta...
+Ci si può chiedere, a questo punto, se fosse stato possibile eseguire due volte l'LSI o due volte l'LDA invece che fondere le due metodologie. In generale è perfettamente lecito impostare in questo modo l'algoritmo che, non è escluso, potrebbe fornire risultati degni di nota. Tuttavia nel caso di un'applicazione a due stadi dell'LSI mancherebbe completamente la dimensione probabilistica, ovvero non si darebbe conto della struttura generativa del singolo documento. Nel caso opposto, invece, quello che contempla un'applicazione ripetuta dell'LDA, dobbiamo ipotizzare di ricavare diversi cluster di concetti da una fusione di tutti i topic provenienti dai documenti. Nel secondo stadio, dunque, avremmo perso completamente la struttura generativa che contraddistingue un testo in linguaggio naturale, dovendo noi processare esclusivamente liste di parole chiave per ciascun topic. Ne risulterebbe un processo più dispendioso e meno congeniale alle effettive operazioni di analisi che si svolgono. È altresì chiaro da questi ragionamenti per quali motivi non è consigliato scambiare le due metodologie in questa analisi, ovvero eseguire prima l'LSI e poi l'LDA.
+
+Un ultimo punto importante è chiarire per quale motivo non abbiamo adoperato un altro algoritmo generativo come il pLSI al posto dell'LDA. Anche questa modifica sarebbe lecita, tuttavia abbiamo visto quale sia la limitazione del pLSI a livello di collection. Nel nostro caso, avendo usato l'LDA, la procedura impostata è più facilmente generalizzabile e possiamo modificarla opportunamente e applicarla, in teoria, anche a collection di collection, senza tener conto delle restrizioni che il pLSI imporrebbe.
+
+In conclusione, presentiamo uno schema pratico dell'intero sistema distribuito...
+
 
 % Capitolo 5
-\chapter{Caso di Studio: Risultati}
+\chapter{Presentazione del caso di studio}
+\chaptermark{Case Study}
+A conclusione del sistema distribuito sviluppato, presentiamo il seguente studio.
 
-% I dati esaminati vengono salvate solo se hanno un titolo diverso dalle precendenti: questa scelta deriva dalla constatazione che è davvero rarissimo che due articoli pubblicati su uno stesso giornale possiedano uno stesso titolo; per articoli di diversi giornali il problema non si pone in quanto l'eliminazione di duplicati avviene per la singola testata, a livello di collection, e dunque l'eventualità che un articolo sia pubblicato su due testate differenti non costituisce un problema. In generale è possibile effettuare verifiche anche su altri attributi, ad esempio salvare solo articoli che possidono titoli e testi diversi da quelli salvati in precedenza, tuttavia riteniamo che questo procedimento costituisca solo un costo aggiuntivo in termini di velocità del programma e che non ne risulti nessun beneficio maggiore.
+I testi analizzati, come avevamo anticipato, sono costituiti da articoli di giornale e l'obiettivo è quello di  enucleare i temi principali di ciascuna testata giornalistica analizzata durante la finestra di raccolta notizie.
 
-% Periodo di raccolta 
 
-% Impostazione del salvataggio in MongoDB
+Abbiamo selezionato 5 testate: la scelta è in gran misura arbitraria, tuttavia è necessario che due requisiti siano soddisfatti:
 
-% Feed RSS
+\begin{enumerate}
+\item devono pubblicare in rete gli articoli principali ed esse devono essere fruibili gratuitamente per l'utente;
 
-% Risultati in termini di computazione
+\item deve trattarsi di testate di rilievo nazionale, per avere a disposizione un gran numero di articoli su cui lavorare.
+\end{enumerate} 
 
-% Risultati in termini di output finale
+La nostra scelta è costituita dalle seguenti testate: \emph{Repubblica, Il Corriere della Sera, La Stampa, Il Giornale, Fanpage.}
+
+Quest'ultima è pubblicata esclusivamente in rete, è interamente gratuita e costituisce un caso interessante da confrontare alle altre testate che sono più antiche per formazione e sono state pubblicate per la maggior parte del tempo su carta stampata.
+
+I siti da cui sono stati tratti gli articoli, non sono quelli principali dei singoli giornali, bensì quelli che contengono i Feed RSS, i cui indirizzi sono rispettivamente \cite{RepRSS}, \cite{CorRSS}, \cite{LaSRSS}, \cite{IlGRSS}, \cite{FanRSS}.
+
+La scelta di considerare i Feed RSS è giustificata dalla semplicità maggiore con cui si può effettuare il parsing della pagina principale. In più le notizie pubblicate sulla mainpage non differiscono da quelle che si trovano sotto forma di Feed.
+
+Su MongoDB gli articoli vengono salvate in diverse collection, ciascuna relativa ad una testata. I file salvati hanno comunque la stessa struttura, costituita da 
+\begin{enumerate}
+\item \emph{ID}: viene automaticamente assegnato ad un nuovo ingresso in memoria;
+\item \emph{Title}: in cui viene salvato il titolo dell'articolo di giornale;
+\item \emph{Resume}: un riassunto, se presente dell'articolo. A volte, quando presenti, aggregano occhiello e sommario;
+\item \emph{Date}: la data di pubblicazione dell'articolo;
+\item \emph{Author}: l'autore, se presente, dell'articolo;
+\item \emph{Shares}: Il numero di condivisioni che un articolo possiede sui social;
+\item \emph{Tags}: etichette che classificano l'articolo in categorie;
+\item \emph{Text}: il testo dell'articolo;
+\item \emph{Link}: il link originale dell'articolo;
+\item \emph{Newspaper}: il giornale su cui è comparsa la notizia.
+\end{enumerate} 
+
+Non tutti i campi saranno utilizzati nel prosieguo, la presenza di essi è giustificata da un'impostazione generale con cui si è condotto lo studio: alcuni parametri possono avere un interesse per diversi studi, anche diversi da questo, per cui, questo algoritmo può riadattarsi e generalizzarsi anche a diverse situazioni. Inoltre, talvolta, alcuni campi (come \emph{Author, Tags, Resume}) possono rimanere vuoti perché non presenti nel testo originale.
+
+Un esempio di articolo salvato è il seguente
+
+\begin{verbatim}
+{ ID: 
+		{ id:5a101c445fbf0004f5a4ace5},
+		 title : In Cina il primo trapianto di testa del mondo... ,
+		 text: Il primo trapianto di testa del mondo è stato ...,
+		 newspaper: Fanpage,
+		 resume:  L'operazione sperimentale è stata condotta con successo ...,
+		 author: D. F.,
+		 date: 17 novembre 2017    
+		 shares: 321,
+		 tags: Medicina, Mondo ...,
+		 link: https://www.fanpage.it/in-cina-il-primo...}
+\end{verbatim}
+
+Il periodo di raccolta, per tutti i quotidiani, è partito il 17 Novembre 2017 ed è terminato il 16 Dicembre dello stesso anno. 
+
+Osserviamo che il periodo di raccolta non è esteso; come abbiamo anticipato, le conclusioni che possiamo trarne sono solo indicative: uno studio rigoroso, in generale, dovrebbe tener conto di un periodo di raccolta più ampio.
+
+In questo lasso di tempo abbiamo, comunque, raccolto e analizzato circa duemilacinquecento articoli, ovvero mediamente 500 articoli per testata. Se intendessimo analizzare dieci testate su un periodo di osservazione lungo un anno, dovremmo gestire circa 60 mila articoli: in quest'ottica, il sistema distribuito, la scelta del database e, in generale, l'impostazione di tutto l'algoritmo sono pienamente giustificati.
+
+Lo scraper è stato avviato ogni giorno durante il mese di raccolta. Su ciascun sito di raccolta sovente accadeva di trovare articoli risalenti al giorno precedente, per cui le impostazioni di salvataggio contemplavano la possibilità di avere dei doppi ed evitava di salvarli confrontando il titolo (cfr. Cap. 2): di due articoli con lo stesso titolo viene conservato il più recente, in modo da aggiornare alcuni contenuti dinamici come il numero di condivisioni sui social.
+
+In generale, il numero degli articoli è un parametro variabile che dipende da diversi fattori. Esso, insieme ad altri valori indicativi circa l'analisi, sarà indicato ogni volta che un output sarà esposto.
+
+L'intera procedura è stata eseguita su un computer con le seguenti caratteristiche:
+\begin{itemize}
+\item Processore: Intel Core i3
+\item RAM: 4.00 GB
+\item CPU: 1.80 GHz
+\end{itemize}
+Chiaramente le specifiche temporali sono relative al tipo supporto hardware che si utilizza, per cui, ad esempio, con il doppio o il quadruplo di \emph{core} con medesime caratteristiche a disposizione il tempo di esecuzione dimezza, diventa un quarto, ecc.
+
+\section{Output finale}
+
+Prima di passare ad illustrare l'output, facciamo un breve riassunto dell'impostazione del sistema, elencando i punti principali e descrivendo le operazioni eseguite durante ciascuna fase per il completamento dello studio finale:
+
+\begin{enumerate}
+\item \emph{Fase di Scraping}: durante il periodo di raccolta, vengono prelevati i contenuti testuali dai siti prescelti;
+\item \emph{Fase di memorizzazione}: che va di pari passo allo scraping. Tutte le informazioni vengono salvate nel formato mostrato in precedenza e si presta attenzione ai possibili doppi estratti;
+\item \emph{Fase di Pulitura}: in cui si trasferisce il contenuto di ciascuna collection nel database in un file di tipo JSON e lo si sottopone ad una procedura di omogeneizzazione dei caratteri e ripulitura da segni grafici diversi dal quelli alfabetici (segni di interpunzione, numeri, \emph{backslash}, ecc.), in modo da eliminare anche il residuo del linguaggio HTML di ciascuna notizia;
+\item \emph{Fase di NLP}: in cui si applica una procedura di rimozione delle stopwords e si esegue lo stemming delle parole rimaste;
+\item \emph{LDA con Spark}: in cui si richiama la console Spark e si esegue l'algoritmo LDA sugli articoli. Si definisce un corpus costituito dai topic estratti;
+\item \emph{LSI sul corpus}: in cui si esegue l'LSI e si ottiene il risultato finale.
+\item \emph{Fase di salvataggio}: in cui viene salvato l'output.
+\end{enumerate}
+
+In particolare, riguardo ai penultimi ultimi due punti, è necessario specificare i parametri utilizzati: nella fase 5 si sono estratti 2 topic composti da 12 parole per ciascun articolo; nella fase 6 si sono estratti 15 topic composti da 12 parole. Il \emph{tuning} dei parametri è stato stabilito sulla base di diverse prove empiriche.
+
+L'output originale di ciascuna prova è lungo decine di pagine e sarebbe scomodo riproporlo per intero: occorre un modo efficiente di rappresentarlo. Un esempio di risultato originario è il seguente
+\begin{verbatim}
+Topic X:
+1) vit
+[['vita', 60]]
+   
+2) prezz
+[['prezzo', 12], ['prezzi', 5]]
+
+3) parl
+[['parlare', 14], ['parlato', 12], ['parlamento', 11], 
+['parla', 10], ['parliamo', 5], ['parlano', 4], ...
+
+4) stat
+[['stato', 221], ['stati', 97], ['stata', 88], ['state', 32], ['statuto', 1]]
+
+\end{verbatim}
+
+Come si nota ci sono 4 tipologie di radici stemmizzate:
+\begin{enumerate}
+\item Quelle che si associano senza dubbio alla parola originaria, come \emph{vit}: scriveremo semplicemente \emph{vita} senza specificare la classe;
+\item Quelle che si riferiscono a diverse parole, ma il cui significato è il medesimo, come \emph{prezz}: scriveremo in questo caso, l'occorrenza più frequente e cioè \emph{prezz\textbf{o}} che intenderemo come rappresentante della classe;
+\item Quelle che si riferiscono a diverse parole, ma che hanno significati differenti, come \emph{parl}: scriveremo \emph{parl\textbf{are}}/\emph{parl\textbf{amento}};
+\item Quelle la cui parola originaria resta comunque dubbia, come \emph{stat}: scriveremo \emph{stat\textbf{o}}, ma l'occorrenza si riferisce al concetto di Stato inteso come nazione o al participio passato del verbo essere? Non è dato saperlo, ma purtroppo questo è un problema intrinseco della procedura che non potrà essere risolto.
+\end{enumerate}
+In presenza di occorrenze molto numerose ignoreremo quelle sporadiche (come nel caso di \emph{stat\textbf{o}}, a cui non abbiamo affiancato la parola \emph{statuto} perché compare una volta sola). A patto di sacrificare il numero di occorrenze, che segnaleremo se degno di nota, in questo modo potremo visualizzare per intero il risultato dell'analisi.
+
+Passiamo agli output.
+
+\subsection{Repubblica} 
+Statistiche\footnote{Per \emph{Totale parole} si intende il conteggio delle parole stemmizzate, ovvero il conteggio viene effettuato quando gli articoli hanno già subito il processo di pulitura e di rimozione delle stopwords.} 
+\begin{verbatim}
+Totale articoli: 448 
+Totale parole: 125038 
+Media parole per articolo: circa 279 
+Mediana parole per articolo: 257  
+Massimo numero di parole per articolo: 1032 
+Minimo numero di parole per articolo: 20
+\end{verbatim}
+
+L'output è il seguente:
+\begin{enumerate}
+\item \textbf{Topic 1}: stat\textbf{o}, lavor\textbf{o}/lavor\textbf{atori}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, president\textbf{e}, mil\textbf{a}/mil\textbf{ano}, donn\textbf{e}, ital\textbf{ia}, figl\textbf{i}, politic\textbf{a}, eur\textbf{o}, bambin\textbf{i}, sindac\textbf{o}/sindac\textbf{ati};
+
+\item \textbf{Topic 2}: part\textbf{e}/part\textbf{ito}/part\textbf{ire}, lavor\textbf{o}/lavor\textbf{atori}, ital\textbf{ia}, coalizion\textbf{e}, politic\textbf{a}, vot\textbf{o}, social/social\textbf{e}, milion\textbf{i}, govern\textbf{o}, success\textbf{ivo}, poss\textbf{ono}, person\textbf{e};
+
+\item \textbf{Topic 3}: president\textbf{e}, polit\textbf{ica}, vot\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}
+, alcun\textbf{i}, dem, deput\textbf{ato}, coalizion\textbf{e}, poss\textbf{ono},  micciché, parl\textbf{are}/parl\textbf{amento}, maggior\textbf{e}/maggior\textbf{anza};
+
+\item \textbf{Topic 4}: president\textbf{e}, lavor\textbf{o}/lavor\textbf{atori}, alcun\textbf{i}, parl\textbf{are}/parl\textbf{amento}, maggior\textbf{e}/maggior\textbf{anza}, banc\textbf{a}, deput\textbf{ato}, vot\textbf{o}, dem, eur\textbf{o}, micciché, commission\textbf{e};
+   
+\item \textbf{Topic 5} mil\textbf{a}/mil\textbf{ano}, eur\textbf{o}, pag\textbf{are}, bambin\textbf{i}, rom\textbf{a}, success\textbf{ivo}, figl\textbf{i}, comun\textbf{e}/ comun\textbf{icazione}/comun\textbf{ista}, procur\textbf{a}, condivid\textbf{i}, person\textbf{e}, tribunal\textbf{e};
+
+\item \textbf{Topic 6}: ital\textbf{ia}, eur\textbf{o}, giovan\textbf{i}, social/social\textbf{e}, paes\textbf{e}, med\textbf{ia}/med\textbf{io}, pag\textbf{are}, arrest\textbf{ato}, milion\textbf{i}, omicid\textbf{i}, person\textbf{e}, poliz\textbf{ia}
+
+\item \textbf{Topic 7}: mil\textbf{a}/mil\textbf{ano}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, eur\textbf{o}, coalizion\textbf{e}, stat\textbf{o}, unit\textbf{i}, occup\textbf{azione}, dett\textbf{o}, pag\textbf{are}, ex, figl\textbf{i}, punt\textbf{o};
+   
+\item \textbf{Topic 8}: person\textbf{e}, condizion\textbf{i}, migrant\textbf{i}, ricerc\textbf{a}, milion\textbf{i}, rom\textbf{i}, san, success\textbf{ivo}, unit\textbf{i}, rohingya, francesc\textbf{o}, sal\textbf{ute}/sal\textbf{uto};
+   
+\item \textbf{Topic 9}:  francesc\textbf{o}, rohingya, \textbf{e}/ comun\textbf{icazione}/comun\textbf{ista},  pap\textbf{a}, bambin\textbf{i}, san, paes\textbf{e}, bangladesh, myanmar, birman\textbf{i}, autor\textbf{ità}, pontef\textbf{ice};
+
+\item \textbf{Topic 10}: condivid\textbf{i}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, procur\textbf{a}, repubbl\textbf{ica}, giornal\textbf{isti}, commission\textbf{e}, dichiar\textbf{ato}/dichiar\textbf{azioni}, indagin\textbf{i}, legg\textbf{e}/legg\textbf{ere}, ex, eur\textbf{o}, libr\textbf{i}
+
+\item \textbf{Topic 11}: donn\textbf{e}, mar\textbf{ia}/ mar\textbf{e}/ mar\textbf{ito}, rom\textbf{a}, lavor\textbf{o}/lavor\textbf{atori}, de, pap\textbf{a}, colp\textbf{ito}, francesc\textbf{o}, denunc\textbf{ia}, mort\textbf{e}, rohingya, parol\textbf{e};
+\item \textbf{Topic 12}:procur\textbf{a}, sindac\textbf{o}/sindac\textbf{ati}, indagin\textbf{i}, ricerc\textbf{a}/ricerc\textbf{atori}, chiest\textbf{o}, denunc\textbf{ia}, assoc\textbf{iazione}, torino, legg\textbf{e}/legg\textbf{ere}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, person\textbf{e}, comun\textbf{e}/ comun\textbf{icazione}/comun\textbf{ista};
+
+\item \textbf{Topic 13}:forz\textbf{a}/forz\textbf{e}, rom\textbf{a}, poliz\textbf{ia}, cap\textbf{o}/cap\textbf{ire}, presidente\textbf{e}, scuol\textbf{a}, mil\textbf{a}/mil\textbf{ano}, present\textbf{ato}/present\textbf{e}, presid\textbf{io}, altern\textbf{anza}, attent\textbf{ato}, partecip\textbf{ato};
+   
+\item \textbf{Topic 14}:  success\textbf{ivo}, ricerc\textbf{a}, precedent\textbf{e}, trov\textbf{ato}, vit\textbf{a}, ben\textbf{e}, numer\textbf{o}, mond\textbf{o}, univers\textbf{ità}, apert\textbf{o}, equipagg\textbf{io}, amant\textbf{e};
+
+\item \textbf{Topic 15}: pag\textbf{are}, eur\textbf{o}, pap\textbf{a}, lavor\textbf{o}, giudic\textbf{e}, rohingya, omicidio, vit\textbf{a}, francesc\textbf{o}, scuol\textbf{a}, alcun\textbf{i}, bar\textbf{i};
+\end{enumerate}
+
+I tempi di esecuzione sono stati i seguenti:
+\begin{itemize}
+\item LDA con Spark:  1350 secondi;
+\item LSI: 4 secondi
+\end{itemize}
+L'intero processo di elaborazione è durato circa 25 minuti.
+
+
+
+
+\subsection{Il Corriere} 
+Statistiche
+\begin{verbatim}
+Totale articoli: 924 
+Totale parole: 224121 
+Media parole per articolo: circa 243 
+Mediana parole per articolo: 223  
+Massimo numero di parole per articolo: 1104 
+Minimo numero di parole per articolo: 15
+\end{verbatim}
+L'output è il seguente:
+\begin{enumerate}
+\item \textbf{Topic 1}: stat\textbf{o},  part\textbf{e}/part\textbf{ito}/part\textbf{ire}/ part\textbf{ita}, lavor\textbf{o}, mil\textbf{ano}/mil\textbf{a}, donn\textbf{a}, ital\textbf{ia}, ragazz\textbf{i}, figl\textbf{io}, person\textbf{e}, polit\textbf{ica}, port\textbf{a}, parl\textbf{a}/parl\textbf{amento};
+
+
+\item \textbf{Topic 2}: stat\textbf{o}, donn\textbf{a}, ragazz\textbf{i}, poliz\textbf{ia}, accus\textbf{a}, uom\textbf{o}, omicid\textbf{io}, figl\textbf{io}, procur\textbf{a}, ferm\textbf{ato}, carabinieri, uccis\textbf{o};
+
+\item \textbf{Topic 3}: part\textbf{e}/part\textbf{ito}/part\textbf{ire}/ part\textbf{ita}, ital\textbf{ia}, polit\textbf{ica}, pd, renz\textbf{i}, parl\textbf{a}/parl\textbf{amento}, vot\textbf{o}, berluscon\textbf{i}, president\textbf{e}, ser\textbf{ie}/ser\textbf{a}, rom\textbf{a}, stat\textbf{o}
+
+
+\item \textbf{Topic 4}:lavor\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ita}, pd, govern\textbf{o}, renz\textbf{i}, pens\textbf{are}, legg\textbf{e}/legg\textbf{ere}, vot\textbf{o}, ministr\textbf{o}, stat\textbf{o}, polit\textbf{ica}, president\textbf{e};
+
+  
+\item \textbf{Topic 5}  mil\textbf{ano}/mil\textbf{a}, part\textbf{e}/part\textbf{ito}/part\textbf{ita}, lavor\textbf{o}, eur\textbf{o}, stat\textbf{o}, centr\textbf{o}, president\textbf{e}, novembr\textbf{e}, italian\textbf{a}, govern\textbf{o}, cost\textbf{a}, vend\textbf{ita};
+   
+	
+\item \textbf{Topic 6}: ital\textbf{ia}, paes\textbf{e}, rom\textbf{a}, president\textbf{e}, stat\textbf{o}, ministr\textbf{o}, donn\textbf{a}, forz\textbf{a}/forz\textbf{e}, pubblic\textbf{o}/pubblic\textbf{a}, poss\textbf{ono}, success\textbf{o},  sub\textbf{ito};
+   
+
+\item \textbf{Topic 7}:  figl\textbf{io}, vit\textbf{a}, donn\textbf{a}, mil\textbf{ano}/mil\textbf{a}, parl\textbf{a}/parl\textbf{amento}, renz\textbf{i}, italian\textbf{a}, polit\textbf{a}, berluscon\textbf{i}, vol\textbf{o}/vol\textbf{uto}, pd, numer\textbf{o};
+   
+   
+\item \textbf{Topic 8}: parl\textbf{a}/parl\textbf{amento}, polit\textbf{ica}, renz\textbf{i}, berluscon\textbf{i}, dett\textbf{o},
+ vol\textbf{o}/vol\textbf{uto}, pens\textbf{a}, person\textbf{e}, nom\textbf{e}, pd, milion\textbf{i}, leader;
+
+
+\item \textbf{Topic 9}:  accus\textbf{a}, ser\textbf{ie}/ser\textbf{a}, ragazz\textbf{i}, enne, poliz\textbf{ia}, ex, sessual\textbf{e}, figl\textbf{io}, giudic\textbf{e}, rapport\textbf{o}, iniz\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}/ part\textbf{ita};
+   
+\item \textbf{Topic 10}: ragazz\textbf{i}, donn\textbf{a}, trov\textbf{ato}, violenz\textbf{a}, giovan\textbf{i}, ital\textbf{ia},parl\textbf{a}/parl\textbf{amento}, auto, polit\textbf{ica}, scuol\textbf{a}, ser\textbf{ie}/ser\textbf{a}, amic\textbf{i};
+
+
+
+\item \textbf{Topic 11}: ser\textbf{ie}/ser\textbf{a}, vit\textbf{a}, stat\textbf{o}, mil\textbf{ano}/mil\textbf{a}, ultim\textbf{i}, napol\textbf{i}, italian\textbf{a}, classif\textbf{ica}, inter, pass\textbf{ato}/pass\textbf{o}, ben\textbf{e}, gioc\textbf{o};
+
+
+\item \textbf{Topic 12}: scuol\textbf{a}, vol\textbf{o}/vol\textbf{uto}, ragazz\textbf{i}, ital\textbf{ia}, pubblic\textbf{o}/pubblic\textbf{a}, pens\textbf{are}, figl\textbf{io}, stat\textbf{o}, sent\textbf{ito}, già, prov\textbf{a}, insegn\textbf{ante}
+
+   
+\item \textbf{Topic 13}:  legg\textbf{e}/legg\textbf{ere}, figl\textbf{io}, president\textbf{e}, milion\textbf{i}, trov\textbf{o}, govern\textbf{o}, commission\textbf{e}, bilanc\textbf{io}, mort\textbf{e}, econom\textbf{ia}, parl\textbf{a}/parl\textbf{amento}, genitor\textbf{i};
+
+
+\item \textbf{Topic 14}: vit\textbf{a}, legg\textbf{e}/legg\textbf{ere}, pass\textbf{ato}, milion\textbf{i}, ragazz\textbf{i}, govern\textbf{o}, strad\textbf{a}, mett\textbf{ere}, bilanc\textbf{io}, aut\textbf{o}, mort\textbf{e}, giovan\textbf{i}
+
+\item \textbf{Topic 15}: port\textbf{a}, figl\textbf{io}, mort\textbf{e}, lavor\textbf{o}, auto, ex, person\textbf{e}, ben\textbf{e}, madr\textbf{e}, eur\textbf{o}, poss\textbf{ono}, fer\textbf{iti};
+
+\end{enumerate}
+
+I tempi di esecuzione sono stati i seguenti:
+\begin{itemize}
+\item LDA con Spark:  2804 secondi;
+\item LSI: 8 secondi
+\end{itemize}
+L'intero processo di elaborazione è durato circa 47 minuti.
+
+
+\subsection{La Stampa}
+Statistiche
+\begin{verbatim}
+Totale articoli: 176 
+Totale parole: 47229 
+Media parole per articolo: circa 268 
+Mediana parole per articolo: 253  
+Massimo numero di parole per articolo: 1077 
+Minimo numero di parole per articolo: 62
+\end{verbatim}
+
+L'output è il seguente:
+\begin{enumerate}
+\item \textbf{Topic 1}: stat\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, ital\textbf{ia}, mil\textbf{a}/mil\textbf{ano}, paes\textbf{e}, govern\textbf{o}, eur\textbf{o}, milion\textbf{i}, pd, commission\textbf{e}, russ\textbf{ia}, città;
+
+\item \textbf{Topic 2}: part\textbf{e}/part\textbf{ito}/part\textbf{ire}, govern\textbf{o}, pd, renz\textbf{i}, commission\textbf{e}, decision\textbf{e}, ue, vot\textbf{o}, sinistr\textbf{a}, accord\textbf{o}, may, pisapia;
+
+   
+\item \textbf{Topic 3}: ue, paes\textbf{e}, accord\textbf{o}, unit\textbf{i}, may, decision\textbf{e}, europe\textbf{a}, regn\textbf{o}, britann\textbf{ico}, union\textbf{e}, russ\textbf{ia}, merc\textbf{ato};
+   
+   
+\item \textbf{Topic 4} eur\textbf{o}, ue, europe\textbf{a}, milion\textbf{i}, may, regn\textbf{o}, accord\textbf{o}, unit\textbf{i}, negoz\textbf{iati}, stat\textbf{o}, britann\textbf{ico}, premier;
+
+
+\item \textbf{Topic 5}: mil\textbf{a}/mil\textbf{ano}, ital\textbf{ia}, men\textbf{o}, lavor\textbf{o}, paes\textbf{e}, figl\textbf{io}, diminu\textbf{zione}, rispett\textbf{o}, piazz\textbf{a}, pag\textbf{are}, alcun\textbf{i}, chiar\textbf{a};
+   
+\item \textbf{Topic 6}: ital\textbf{ia}, russ\textbf{ia}, piazz\textbf{a}, pd, mosc\textbf{a}, vot\textbf{o}, sinistr\textbf{a}, paes\textbf{e}, città, usa, palazz\textbf{o}, regol\textbf{e};
+   
+\item \textbf{Topic 7}: paes\textbf{e}, figl\textbf{io}, pd, parl\textbf{are}/parl\textbf{amento}, vit\textbf{a}, prezz\textbf{o}, alcun\textbf{i}, tagl\textbf{i}, dett\textbf{o}, russ\textbf{ia}, ius, legg\textbf{e};
+
+
+\item \textbf{Topic 8}:  città, pass\textbf{ato}, piazz\textbf{a}, torin\textbf{o}, alcun\textbf{i}, part\textbf{e}/part\textbf{ito}, san, donn\textbf{e}, ospedal\textbf{e}, mond\textbf{o}, palazz\textbf{o}, appendin\textbf{o};
+
+
+\item \textbf{Topic 9}: milion\textbf{i}, città, paes\textbf{e}, mond\textbf{o}, ultim\textbf{i}, capital\textbf{e}, alcun\textbf{i}, parc\textbf{o}, sir\textbf{ia}, dollar\textbf{i}, punt\textbf{o}, prezz\textbf{o};
+
+
+\item \textbf{Topic 10}: person\textbf{e}, parl\textbf{are}/parl\textbf{amento}, lavor\textbf{o}, altro, robot, dett\textbf{o}, vol\textbf{eva}/vol\textbf{i}, cont\textbf{o}, govern\textbf{o}, pass\textbf{ato}, ser\textbf{a}/ser\textbf{ie}, san;
+
+\item \textbf{Topic 11}:president\textbf{e}, san, mil\textbf{a}/mil\textbf{ano}, pass\textbf{ato}, piazz\textbf{a}, acqua, berluscon\textbf{i}, ogni, ex, cert\textbf{o}, ser\textbf{a}/ser\textbf{ie}, sir\textbf{ia};
+
+\item \textbf{Topic 12}: govern\textbf{o}, sir\textbf{ia}, unit\textbf{i}, possibil\textbf{ità}, comun\textbf{e}, ottobre, unic\textbf{o}, nord, colp\textbf{ito}, prezz\textbf{o}, camp\textbf{o}, centr\textbf{o};
+  
+\item \textbf{Topic 13}:   parl\textbf{are}/parl\textbf{amento}, bambin\textbf{i}, mond\textbf{o}, persone, città, italian\textbf{a}, milion\textbf{i}, cont\textbf{o}, lavor\textbf{o}, punt\textbf{o}, poch\textbf{hi}, giovan\textbf{i};
+
+
+\item \textbf{Topic 14}: port\textbf{ato}, figl\textbf{io}, dett\textbf{o}, renz\textbf{i}, parl\textbf{are}/parl\textbf{amento}, madr\textbf{e}, famigl\textbf{ia}, piazz\textbf{a}, europe\textbf{a}, affid\textbf{ata}, organizz\textbf{azione}, ue
+
+\item \textbf{Topic 15}: eur\textbf{o}, dett\textbf{o}, piazz\textbf{a}, russ\textbf{ia}, tagl\textbf{i}, san, donn\textbf{e}, mosc\textbf{a}, fond\textbf{o}, figl\textbf{io}, renz\textbf{i}, acqua.
+
+\end{enumerate}
+
+I tempi di esecuzione sono stati i seguenti:
+\begin{itemize}
+\item LDA con Spark:  525 secondi;
+\item LSI: 2 secondi
+\end{itemize}
+L'intero processo di elaborazione è durato circa 9 minuti.
+
+\subsection{Il Giornale}
+Statistiche
+\begin{verbatim}
+Totale articoli: 186 
+Totale parole: 40967 
+Media parole per articolo: circa 220 
+Mediana parole per articolo: 176  
+Massimo numero di parole per articolo: 873 
+Minimo numero di parole per articolo: 40
+\end{verbatim}
+
+L'output è il seguente:
+\begin{enumerate}
+\item \textbf{Topic 1}:  stat\textbf{o}, part\textbf{e}/part\textbf{ito}, pd, ital\textbf{ia}, punt\textbf{o}, eur\textbf{o}, figl\textbf{ia}, lavor\textbf{o}, renz\textbf{i}, person\textbf{e}, pass\textbf{ato}, berluscon\textbf{i};
+
+
+\item \textbf{Topic 2}:  pd, part\textbf{e}/part\textbf{ito}, renz\textbf{i}, matte\textbf{o}, pers\textbf{o}, poss\textbf{ono}, pass\textbf{ato}, leader, elezion\textbf{i}, centrodestra, lavor\textbf{o}, ius
+
+\item \textbf{Topic 3}: ser\textbf{ie}/ser\textbf{a}, punt\textbf{o}, mil\textbf{a}/mil\textbf{ano}, rom\textbf{a}, de, dett\textbf{o}, pag\textbf{are}, vip, sub\textbf{ito}, berluscon\textbf{i}, squadr\textbf{a}, camp\textbf{o}
+
+
+\item \textbf{Topic 4} punt\textbf{o}, ital\textbf{ia}, ultim\textbf{a}, ogni, mar\textbf{ia}/mar\textbf{e}/mar\textbf{ito}, gioc\textbf{o}, nonost\textbf{ante}, davver\textbf{o}, berluscon\textbf{i}, bal\textbf{o}, talent\textbf{o}, europe\textbf{o}
+   
+
+\item \textbf{Topic 5}: part\textbf{e}/part\textbf{ito}, pass\textbf{ato}, qualc\textbf{he}, cert\textbf{o}, aul\textbf{a}, numer\textbf{o}, pens\textbf{a}, depress\textbf{i}, deput\textbf{ati}, padr\textbf{e}, sent\textbf{e}, ser\textbf{ie}/ser\textbf{a};
+
+   
+\item \textbf{Topic 6}: lavor\textbf{o}, spieg\textbf{a}, leader, raccont\textbf{a}, famigl\textbf{ia}, tass\textbf{e}, paes\textbf{e}, fragil\textbf{ità}, plag\textbf{iata}, sett\textbf{e}, showgirl, person\textbf{e};
+   
+   
+\item \textbf{Topic 7}:  punt\textbf{o}, present\textbf{e}, provinc\textbf{ia}, davant\textbf{i}, vien\textbf{e}, tratt\textbf{a}, suon\textbf{o}, squadr\textbf{a}, già, alto, bolzano, entrat\textbf{e};
+   
+\item \textbf{Topic 8}:  alcun\textbf{i}, pap\textbf{a}, cardinal\textbf{e}, chies\textbf{a}, port\textbf{a}, magic\textbf{a}, mueller, ser\textbf{ie}/ser\textbf{a}, cerc\textbf{a}/cerc\textbf{hio}, scism\textbf{a}, berluscon\textbf{i}, vend\textbf{ita};
+ 
+\item \textbf{Topic 9}: present\textbf{e},  spieg\textbf{a}, provinc\textbf{ia}, entrat\textbf{e}, ital\textbf{ia}, ser\textbf{ie}/ser\textbf{a}, alto, bolzano, riport\textbf{a}, numer\textbf{o}, riguard\textbf{a}, viv\textbf{ere};
+  
+
+\item \textbf{Topic 10}: provinc\textbf{ia}, giovan\textbf{e}, dat\textbf{o}/dat\textbf{a}, pubblic\textbf{o}, spos\textbf{ato}, bell\textbf{a}, alto, bolz\textbf{ano}, giudic\textbf{e}, ragazz\textbf{i}, famigl\textbf{ia}, rodriguez;
+
+
+\item \textbf{Topic 11}:figl\textbf{ia}, padr\textbf{e}, pd, music\textbf{a}, cecilia, dev\textbf{e}, uomo, suon\textbf{o}, violin\textbf{o}, vien\textbf{e}, violenz, ignazio
+   
+
+   
+\item \textbf{Topic 12}:  berlusconi, viene, music\textbf{a}, ital\textbf{ia}, vot\textbf{o}, rom\textbf{a}, port\textbf{a}, person\textbf{e}, suon\textbf{o}, violin\textbf{o}, silv\textbf{io}, però;
+
+
+\item \textbf{Topic 13}:   rom\textbf{a}, scuol\textbf{a}, numer\textbf{o}, riport\textbf{a}, giovan\textbf{e}, napol\textbf{i}, bambin\textbf{i}, spos\textbf{ato}, nulla, stor\textbf{ia}, figl\textbf{ia}, davant\textbf{i}
+
+
+\item \textbf{Topic 14}: figl\textbf{ia}, spos\textbf{ato}, giovan\textbf{e}, ragazz\textbf{i}, famigl\textbf{ia}, pd, padr\textbf{e}, dat\textbf{o}, entrat\textbf{e}, messagg\textbf{io}, consigl\textbf{io}, cent\textbf{o};
+   
+\item \textbf{Topic 15}: person\textbf{e}, nott\textbf{e}, provinc\textbf{ia}, poliz\textbf{ia}, alcun\textbf{i}, part\textbf{e}/part\textbf{ito}, davanti, spieg\textbf{are}, silv\textbf{io}, novembre, ogni, alto.
+\end{enumerate}
+
+I tempi di esecuzione sono stati i seguenti:
+\begin{itemize}
+\item LDA con Spark:  596 secondi;
+\item LSI: 4 secondi
+\end{itemize}
+L'intero processo di elaborazione è durato circa 10 minuti.
+
+
+
+\subsection{Fanpage} 
+Statistiche
+\begin{verbatim}
+Totale articoli: 920 
+Totale parole: 181466 
+Media parole per articolo: circa 197 
+Mediana parole per articolo: 176  
+Massimo numero di parole per articolo: 1230 
+Minimo numero di parole per articolo: 60
+\end{verbatim}
+
+L'output è il seguente:
+\begin{enumerate}
+\item \textbf{Topic 1}: stat\textbf{o}, donn\textbf{a}, figl\textbf{io}, uom\textbf{o}, mort\textbf{e}, enne, ragazz\textbf{a}/ragazz\textbf{o}, poliz\textbf{ia}, bambin\textbf{i}, trov\textbf{ato}, vittim\textbf{a}, arrest\textbf{ato};
+
+\item \textbf{Topic 2}: ital\textbf{ia}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, pd, polit\textbf{ica}, renz\textbf{i}, elezion\textbf{i}, forz\textbf{a}/forz\textbf{e}, president\textbf{e}, nord, eur\textbf{o}, leader, prossim\textbf{e};
+
+\item \textbf{Topic 3}: figl\textbf{io}, donn\textbf{a}, bambin\textbf{i}, genitor\textbf{i}, mar\textbf{ito}/mar\textbf{ia}, padr\textbf{e}, condann\textbf{ato}, pd, abus\textbf{i}, mamm\textbf{a}, cap\textbf{o},cap\textbf{ire}, polit\textbf{ica};
+
+   
+\item \textbf{Topic 4} nord, neve, donn\textbf{a}, figl\textbf{io}, temperatur\textbf{e}, piogg\textbf{e}, centr\textbf{o}, region\textbf{i}, sud, fredd\textbf{o}, metr\textbf{i}, cal\textbf{o};
+   
+
+\item \textbf{Topic 5}: lavor\textbf{o}/lavor\textbf{atori}, bambin\textbf{i}, figl\textbf{io}, port\textbf{ato}, vit\textbf{a}, medic\textbf{i}, genitor\textbf{i}, azi\textbf{enda}, person\textbf{e}, ultim\textbf{o}, milion\textbf{i}, scuol\textbf{a};
+
+\item \textbf{Topic 6}: enne, uom\textbf{o}, giovan\textbf{e}, ragazz\textbf{a}, vittim\textbf{a}, carabinier\textbf{i}, raccont\textbf{ato}, denunc\textbf{ia}, accus\textbf{a}, condann\textbf{a}, sessual\textbf{e}, ex
+
+   
+\item \textbf{Topic 7}: donn\textbf{a}, lavor\textbf{o}, fer\textbf{ite}, incident\textbf{e}, person\textbf{e}, poliz\textbf{ia}, ore, dett\textbf{o}, mogl\textbf{ie}, present\textbf{ato}/present\textbf{i}, legg\textbf{e}/legg\textbf{ere}, colp\textbf{ito};
+   
+   
+\item \textbf{Topic 8}:  ragazz\textbf{a}, donn\textbf{a}, vit\textbf{a}, giovan\textbf{a}, madr\textbf{e}, figl\textbf{io}, vittim\textbf{a}, famigl\textbf{ia}, decis\textbf{o}, trov\textbf{ato}, indagin\textbf{e}, continu\textbf{a};
+
+  
+\item \textbf{Topic 9}: bambin\textbf{i}, stat\textbf{o}, bimb\textbf{o}, raccont\textbf{ato}, scuol\textbf{a}, violenz\textbf{a}, genitor\textbf{i}, denunc\textbf{ia}, donn\textbf{a}, giovan\textbf{e}, vittim\textbf{a}, sessual\textbf{e};
+
+
+\item \textbf{Topic 10}: poliz\textbf{ia},  fer\textbf{ite}, person\textbf{e}, incident\textbf{e}, bimb\textbf{o}, bambin\textbf{i}, figl\textbf{io}, ragazz\textbf{a}, ore, fuoc\textbf{o}, mattin\textbf{a}, genitor\textbf{i}
+
+
+\item \textbf{Topic 11}:) ragazz\textbf{a}, stat\textbf{o}, lavor\textbf{o}, uom\textbf{o}, figl\textbf{io}, decis\textbf{o}, ex, president\textbf{e}, mar\textbf{ito}/mar\textbf{ia}/mar\textbf{e}, vit\textbf{a}, poliz\textbf{ia}, eur\textbf{o};
+
+\item \textbf{Topic 12}: bosc\textbf{hi}, banc\textbf{a}, president\textbf{e}, etrur\textbf{ia}, dichiar\textbf{ato}, ex, oper\textbf{a}/oper\textbf{azione}, alcun\textbf{i}, stat\textbf{o}, legg\textbf{e}/legg\textbf{ere}, incontr\textbf{o}, person\textbf{e};
+
+\item \textbf{Topic 13}:  ragazz\textbf{a}, dett\textbf{o}, vit\textbf{a}, bambin\textbf{i}, medic\textbf{i}, port\textbf{ato}, pd, ospedal\textbf{e}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, elezion\textbf{i}, genitor\textbf{i}, renz\textbf{i}
+
+\item \textbf{Topic 14}: trov\textbf{ato},  part\textbf{e}/part\textbf{ito}/part\textbf{ire}, poliz\textbf{ia}, mort\textbf{e}, eur\textbf{o}, genitor\textbf{i}, madr\textbf{e}, alcun\textbf{i}, local\textbf{i}, violenz\textbf{a}, arrest\textbf{ato}, pd;
+
+\item \textbf{Topic 15}: enne, polizia, lavor\textbf{o}, mort\textbf{e}, arrest\textbf{ato}, president\textbf{e}, dichiar\textbf{ato}, vit\textbf{a}, bosc\textbf{hi}, pd, legg\textbf{e}, ospedal\textbf{e};
+
+\end{enumerate}
+
+I tempi di esecuzione sono stati i seguenti:
+\begin{itemize}
+\item LDA con Spark:  2743 secondi;
+\item LSI: 7 secondi
+\end{itemize}
+L'intero processo di elaborazione è durato circa 46 minuti.
+
+\section{Considerazioni e commenti}
+
+% Le tre 'S' del giornalismo
+
+% Le probabilità degli output
+
+% Miglioramenti: Diversi run dell'LDA? La questione dei pesi delle parole. Numero dinamico di parole nei topic con l'uso delle probabilità
+
+% Accavallamento dei concetti dei cluster e primo e ultimo cluster
 
 \clearpage
 
@@ -637,14 +1299,17 @@ Innanzitutto come estrattore dei topic di ciascun documento, era necessario util
 % Appendice A
 \chapter{Scraping da un social network}
 \chaptermark{Appendice A}
-È generalmente più semplice reperire informazioni da un sito piuttosto che da un social network. Questo perché generalmente i social registrano informazioni molto personali la cui divulgazione potrebbe essere dannosa per la privacy dell'utente ed avere conseguenze infauste sia per il gestore del sito che per l'utente stesso. Pertanto lo scraping dei social network non avviene nelle stesse modalità descritte per i siti classici ed è necessario seguire una procedura differente  allo scopo di tutelare la riservatezza di chi fruisce dei servizi del sito. In generale ciò vuol dire che, per gli esterni, non è sempre possibile avere accesso a tutta l'informazione contenuta nel social network che si sta analizzando, ma si può solo esaminarne una parte.
+È generalmente più semplice reperire informazioni da un sito piuttosto che da un social network. Questo perché i social registrano informazioni molto personali la cui divulgazione potrebbe essere dannosa per la privacy dell'utente ed avere conseguenze infauste sia per il gestore del sito che per l'utente stesso. Pertanto lo scraping dei social network non avviene nelle stesse modalità descritte per i siti classici ed è necessario seguire una procedura differente  allo scopo di tutelare la riservatezza di chi fruisce dei servizi del sito. In generale ciò vuol dire che, per gli esterni, non è sempre possibile avere accesso a tutta l'informazione contenuta nel social network che si sta analizzando, ma si può solo esaminarne una parte.
 
 Scegliamo di analizzare la modalità di scraping un social network estremamente diffuso: Facebook.
-La scelta è motivata dal fatto che Facebook, nel 2017, ha all'attivo 2 miliardi di utenti iscritti ed è il terzo sito più visitato al mondo [], per cui la quantità di informazione prodotta e analizzabile è veramente molta. Esso costituisce, inoltre, un buon rappresentante per le procedure di scraping, in quanto, con opportune modifiche, la seguente si può adattare anche ad altri social network come Twitter ed Instagram. In generale, l'ecosistema informatico dei social network e molto complesso ed è presunzione avere la presenza di riuscire a dare una visione completa del tutto in un'appendice anche di uno solo dei social. La procedura presentata sarà una semplificazione, che ciononostante permetterà di reperire moltissime e utilissime informazioni da analizzare (ad esempio il contenuto dei post); per ulteriori approfondimenti si rimanda a [][].
+
+La scelta è motivata dal fatto che Facebook, nel 2017, ha all'attivo 2 miliardi di utenti iscritti ed è il terzo sito più visitato al mondo \cite{Ale17}, per cui la quantità di informazione prodotta e analizzabile è veramente molta. Esso costituisce, inoltre, un buon rappresentante per le procedure di scraping, in quanto, con opportune modifiche, la seguente si può adattare anche ad altri social network come Twitter ed Instagram. In generale, l'ecosistema informatico dei social network e molto complesso ed è presunzione voler dare una visione completa in un'appendice, anche di uno solo dei social. La procedura presentata sarà una semplificazione, che ciononostante permetterà di reperire moltissime e utilissime informazioni da analizzare (ad esempio il contenuto dei post); per ulteriori approfondimenti si rimanda a \cite{Rus13}.
 
 \section{Autenticazione}
-Il primo passo per lo scraping di Facebook è la creazione di un account. Successivamente occorre effettuare l'autenticazione sul sito degli sviluppatori [] e la creazione di una nuova app durante la quale Facebook chiederà alcuni permessi. Si nota già la prima differenza con lo scraping da siti classici: in questo caso lo scraping deve essere supervisionato dal sito su cui si sta eseguendo, le informazioni devono essere filtrate sulla base del livello di privacy e lo scraper deve essere riconosciuto per poter operare, anzi l'operazione di scraping viene vista come una vera e propria applicazione creata all'interno della piattaforma Facebook.
+Il primo passo per lo scraping di Facebook è la creazione di un account. Successivamente occorre effettuare l'autenticazione sul sito degli sviluppatori (\cite{FacDev}) e la creazione di una nuova app durante la quale Facebook chiederà alcuni permessi. Si nota già la prima differenza con lo scraping da siti classici: in questo caso lo scraping deve essere supervisionato dal sito su cui si sta eseguendo, le informazioni devono essere filtrate sulla base del livello di privacy e lo scraper deve essere riconosciuto per poter operare, anzi l'operazione di scraping viene vista come una vera e propria applicazione creata all'interno della piattaforma Facebook.
+
 Ciò fatto occorre selezionare la voce \emph{``Tool di esplorazione per la API Graph``}, nella cui schermata successiva viene fornito il token di accesso. Questo token è un codice alfanumerico di circa un centinaio di caratteri ed è la chiave di autenticazione dello scraper.
+
 Per mettere in comunicazione l'ambiente Facebook con Python occorre, innanzitutto richiamare la libreria \emph{facebook} tramite il comando \textbf{import} e successivamente inizializzare un connettore con il comando \emph{facebook.GraphAPI}.
 
 Il token di accesso non dura per sempre, il tempo a disposizione per la raccolta informazioni è di circa due ore. È chiaramente possibile richiederne un altro o aggiornare il precedente in automatico.
@@ -662,9 +1327,9 @@ import facebook
 g = facebook.GraphAPI(access_token=token.string, version='2.7')
 \end{verbatim}
 
-Prendiamo a modello la pagina di \emph{Repubblica}, supponendo di voler aggiungere all'analisi del capitolo 5 anche un'analisi dei post e dei commenti pubblicati sulla pagina ufficiale e di avere, dunque, necessità di caricare questi dati.
+Prendiamo a modello la pagina social di \emph{Repubblica}, supponendo di voler aggiungere all'analisi del capitolo 5 anche un'analisi dei post e dei commenti pubblicati sulla pagina ufficiale e di avere, dunque, necessità di caricare questi dati.
 
-Occorre, innanzitutto, reperire il codice identificativo della pagina: per far ciò, ci sono siti specifici come [].
+Occorre, innanzitutto, reperire il codice identificativo della pagina: per far ciò, ci sono siti specifici come \cite{FinID}.
 
 Eseguiamo il seguente comando
 
@@ -700,7 +1365,7 @@ Il cui risultato (parziale) è il seguente:
 
 Con questo comando abbiamo chiesto che ci venissero mostrate informazioni riguardanti il sito, la sua descrizione, i post ecc., il formato è, come anticipato, di tipo JSON.
 
-Per ciascun messaggio il grafo continua, tuttavia registrando il codice id di ciascuno, possiamo accedervi ed estrapolare i commenti con il comando
+Per ciascun messaggio il grafo continua, tuttavia registrando il codice \emph{id} di ciascuno, possiamo accedervi ed estrapolare i commenti con il comando
 
 \begin{verbatim}
 g.get_object(id = id_post, fields = 'message, comments')
@@ -727,21 +1392,19 @@ per cui, individuando il percorso da seguire, ci accorgiamo che basta scrivere
 \begin{verbatim}
 g.get_object(id = id.post, fields = 'message, comments')['message']
 \end{verbatim}
-per i post e
+per i post, e
 \begin{verbatim}
 grafo = g.get_object(id = id.post, fields = 'message,comments')
 grafo['comments']['data']['message']
 \end{verbatim}
 per i commenti.
 
+Anche in questo caso occorre salvare il risultato ed impostare una procedura per la gestione dei duplicati. Valgono le medesime soluzioni viste in precedenza per MongoDB.
 
-% Richiamare il codice . Gestione dei duplicati senza le impostazioni di Scrapy
 
 % Appendice B
 \chapter{Richiami di teoria.}
 \chaptermark{Teoria}
-
-% Statistiche sufficienti, minimali, distribuzioni in particolare quella di Dirichlet e multinomiale,  famiglia esponenziale 
 
 In questa appendice saranno richiamate le principali nozioni utili alla comprensione dei modelli illustrati nel capitolo 2. 
 
@@ -815,7 +1478,6 @@ $$
 \forall x \in \mathbb{R}, F(x) := \mathbb{P}(]-\infty, x]) \equiv \mathbb{P}(X\le x)  
 $$
 \end{definition}
-% Generalizzare a distribuzioni multiple. Media e Varianza?
 
 Esaminiamo le due funzioni di distribuzione principali a cui ci riferiamo nei modelli: la distribuzione Multinomiale e quella di Dirichlet. La prima è una distribuzione discreta, la seconda è assolutamente continua ed entrambi sono distribuzioni multiple. Definiamo innanzitutto questi ultimi concetti prima di scrivere esplicitamente le distribuzioni.
 
@@ -836,7 +1498,7 @@ F(x) = \int_{-\infty}^x f(t)dt \hspace{1cm} \forall x \in \mathbb{R}
 $$
 \end{definition}
 
-Le definizioni di variabile aleatoria e funzione di ripartizione, sono state date nel caso  monodimensionale che è il più semplice e il meno generale. Tali definizioni, però, si estendono con facilità anche a più dimensioni e si ottengono così le  variabili aleatorie multiple. Intuitivamente, le variabili aleatorie avranno come codominio $\mathbb{R}^n$,  Non entreremo nei dettagli di questa estensione e delle problematiche che solleva rispetto al caso di dimensione singola. Per approfondimenti rimandiamo a [].
+Le definizioni di variabile aleatoria e funzione di ripartizione, sono state date nel caso  monodimensionale che è il più semplice e il meno generale. Tali definizioni, però, si estendono con facilità anche a più dimensioni e si ottengono così le  variabili aleatorie multiple. Intuitivamente, le variabili aleatorie avranno come codominio $\mathbb{R}^n$,  Non entreremo nei dettagli di questa estensione e delle problematiche che solleva rispetto al caso di dimensione singola. Per approfondimenti rimandiamo a \cite{Dal03}.
 
 Una variabile aleatoria $X$ che si distribuisca come una Multinomiale, si scrive $X\sim Mu(\nu, \theta_1, \theta_2, \cdots, \theta_k)$ ed ha funzione di massa pari a
 $$
@@ -879,14 +1541,13 @@ $$
 $$
 
 $$
-T(x) = \log x % grassetto 
+T(\mathbf{x}) = \log \mathbf{x} % grassetto 
 $$
 $$
-B(\theta) = \left(\sum_k \log \Gamma(\theta_k) - \log \Gamma\left(\sum_k \theta_k \right) \right)
+B(\theta) = \left(\sum_k \log \Gamma(\theta_k) - \log \Gamma\left(\sum_k \theta_k \right) \right).
 $$
-% Da verificare
+
 \section{Statistica di base}
-%  Dimostrazione che Dirichlet è coniugata alla multinomiale. Famiglia esponenziale e teorema di ... per la limitatezza della statistica sufficiente
 
 È centrale la nozione di esperimento statistico, definito dalla seguente
 \begin{definition}
@@ -923,7 +1584,7 @@ dove $\gamma: \Omega \Rightarrow \mathbb{R}$ e $\varphi: I \times \mathcal{T} \r
 
 La statistica sufficiente, dunque, concentra in essa una sintesi dell'intera informazione dell'esperimento circa l'ipotesi da determinare.
 
-Il teorema di Pitman-Koopman-Darmois [], asserisce che le famiglie esponenziali sono le sole per cui le statistiche sufficienti restano limitate anche se la numerosità del campione tende all'infinito. Questa è una proprietà anche della distribuzione di Dirichlet in quanto abbiamo visto in precedenza che essa appartiene alla famiglia esponenziale.
+Il teorema di Pitman-Koopman-Darmois \cite{Koo36}, asserisce che le famiglie esponenziali sono le sole per cui le statistiche sufficienti restano limitate anche se la numerosità del campione tende all'infinito. Questa è una proprietà anche della distribuzione di Dirichlet in quanto abbiamo visto in precedenza che essa appartiene alla famiglia esponenziale.
  
 Resta un ultimo concetto da chiarire: quello di modello bayesiano. Tale aggettivo viene usato riguardo ad ogni metodo di analisi statistica in cui si presuppone un'assegnazione di probabilità a ogni evento incerto. Nel caso dell'esperimento statistico, lo spazio a cui ci si riferisce da un punto di vista del modello di impostazione bayesiana, è il seguente: $(I \times\Omega, \mathcal{F}_{I \times\Omega}, \mathbb{P}_{I \times\Omega})$, ossia anche lo spazio delle ipotesi è probabilizzato. In risposta ad ogni problema inferenziale, nel modello bayesiano, si otterrà una legge di probabilità. Lo schema operativo è dettato dal teorema 1, che riproponiamo adesso in versione continua e con una notazione leggermente differente ma più congeniale alla spiegazione che ne daremo in seguito.
 
@@ -935,7 +1596,7 @@ dove $f_{\theta}$ è la densità associata a $\mathbb{P}_{\theta}$, $\pi(\cdot)$ v
 
 Una tale impostazione ha carattere dinamico: assegnata una probabilità a priori, da questa si ottiene una a posteriori, la quale può essere reinserita di nuovo nel meccanismo come una densità a priori dato un nuovo esperimento e così via, aggiornando continuamente al crescere dell'informazione.
 
-In quest'ottica, la seguente definizione riveste particolare importanza
+In quest'ottica, la seguente definizione (per ulteriori dettagli \cite{Pic09}) riveste particolare importanza
 \begin{definition}
 Dato il modello $e = \left\{(\Omega, \mathcal{F}, \mathbb{P}_{\theta}), \theta \in I \right\}$, una classe di distribuzione su $I$ si dice \emph{coniugata} al modello se, prendendo in tale classe la distribuzione iniziale, anche la distribuzione iniziale, qualunque sia $\omega \in \Omega$, vi appartiene.
 \end{definition}
@@ -948,6 +1609,7 @@ $$
 $$
 \sim \prod_{k = 1}^m \theta_k^{ x_k + \alpha_k - 1} = Dir(x + \alpha)
 $$
+per cui è verificato il coniugio
 
 %\section{Decomposizione spettrale}
 
@@ -960,12 +1622,8 @@ $$
 
 % È il caso di inserire un'altra appendice con l'algebra lineare e l'algoritmo EM all'interno? Magari per allungare il brodo...
 
-% Ringraziamenti
-\chapter*{Ringraziamenti}
 
 % Bibliografia
-% Aggiungere anche una Sitografia
-
 \clearpage
 \addcontentsline{toc}{chapter}{Bibliografia e Sitografia}
 \begin{thebibliography}{100} % 100 is a random guess of the total number of references
@@ -973,32 +1631,81 @@ $$
 \addtolength{\leftmargin}{0.2in} % sets up alignment with the following line.
 \setlength{\itemindent}{-0.2in}
 
+\bibitem[Ale17]{Ale17} Alexa, \emph{The top 500 sites on the web} \href{https://www.alexa.com/topsites/global;0}{https://www.alexa.com/topsites/global;0}, 2017
+
+\bibitem[BioEN]{BioEN} Biografie di Albert Einstein ed Isaac Newton, \href{https://it.wikipedia.org/wiki/Albert\_Einstein}{https://it.wikipedia.org/wiki/Albert\_Einstein}; \href{https://it.wikipedia.org/wiki/Isaac\_Newton}{https://it.wikipedia.org/wiki/Isaac\_Newton}
+
+\bibitem[BeaSp]{BeaSp} BeautifulSoup libreria Python, \href{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}
+
 \bibitem[Ble03]{Ble03} Blei David M., Ng Andrew Y., Jordan Michael I. \emph{Latent Dirichlet Allocation},  Journal of Machine Learning Research, pp. 993-1022, 2003.
 
 \bibitem[Con12]{Con12} P.L. Conti, D. Marella, \emph{Campionamento da popolazioni finite}, Springer, 2012
 
+\bibitem[CorRSS]{CorRSS} Indirizzo Feed RSS de \emph{Il Corriere della Sera}, \href{http://xml.corriereobjects.it/rss/homepage.xml}{http://xml.corriereobjects.it/rss/homepage.xml}
+
 \bibitem[Der90]{Der90} Deerwester S., Dumais, S. T., Furnas, G. W., Landauer, T. K.,  Harshman, R., \emph{Indexing by latent semantic analysis}, Journal of the American Society for Information Science 41(6), 391-407, 1990.
 
-\bibitem[Hof99]{Hof99} Hofmann, T. , \emph{Probabilistic latent semantic indexing}, Proceedings of the
-Twenty-Second Annual International SIGIR Conference, 1999.
+\bibitem[FacDev]{FacDev} Facebook for Developers, \href{https://developers.facebook.com/}{https://developers.facebook.com/}
+
+\bibitem[FanRSS]{FanRSS} Indirizzo Feed RSS di \emph{Fanpage}, \href{https://www.fanpage.it/feed/}{https://www.fanpage.it/feed/}
+
+\bibitem[FinID]{FinID} Esempio di servizio di reperimento ID di Facebook, \emph{Find my Facebook id} \href{https://findmyfbid.com/}{https://findmyfbid.com/}
+
+\bibitem[Dal03]{Dal03} G. Dall'Aglio , \emph{Calcolo delle probabilità}, Zanichelli, 1999.
+
+\bibitem[Dar11]{Dar11} W. M. Darling , \emph{A Theoretical and Practical Implementation.Tutorial on Topic Modeling and Gibbs Sampling}, University of Guelph, 2011.
+
+\bibitem[Hof99]{Hof99} Hofmann, T. , \emph{Probabilistic latent semantic indexing}, Proceedings of the Twenty-Second Annual International SIGIR Conference, 1999.
+
+\bibitem[IlGRSS]{IlGRSS} Indirizzo Feed RSS de \emph{Il Giornale}, \href{http://www.ilgiornale.it/feed.xml}{http://www.ilgiornale.it/feed.xml}
 
 \bibitem[IntLS]{IntLS} Internet Live Stats, \emph{Twitter Usage Statistics}, \href{http://www.internetlivestats.com/twitter-statistics/}{http://www.internetlivestats.com/twitter-statistics/}
+
+\bibitem[Koo36]{Koo36} B. O. Koopman, \emph{On Distribution admitting a sufficient statistic}, American Mathematical Society, 1936.
+
+\bibitem[LaSRSS]{LaSRSS} Indirizzo Feed RSS di \emph{La Stampa}, \href{http://www.lastampa.it/rss.xml}{http://www.lastampa.it/rss.xml}
 
 \bibitem[Lym03]{Lym03} P. Lyman, H. R. Varian, K. Swearingen, P. Charles, N. Good, L.L. Jordan, and J. Pal, \emph{How much information?}, \href{http://www2.sims.berkeley.edu/research/projects/
 how-much-info-2003}{http://www2.sims.berkeley.edu/research/projects/
 how-much-info-2003}, 2003
 
+\bibitem[NaLTK]{NaLTK} nltk, documentazione della libreria Python, \href{http://www.nltk.org/}{http://www.nltk.org/}
+
+\bibitem[MonDB]{MonDB} MongoDB,  \href{https://www.mongodb.com/it}{https://www.mongodb.com/it}
+
+\bibitem[Pic09]{Pic09} L. Piccinato, \emph{Metodi per le decisioni statistiche}, Springer, 2009.
+
+\bibitem[PyMDB]{PyMDB} PyMongo, documentazione della libreria Python,  \href{https://api.mongodb.com/python/current/}{https://api.mongodb.com/python/current/}
+
+\bibitem[PySpk]{PySpk} Pyspark, documentazione della libreria Python,  \href{http://spark.apache.org/docs/latest/api/python/}{http://spark.apache.org/docs/latest/api/python/}
+
+\bibitem[QuoSfH]{QuoSfH} Quora, risposta alla domanda 'Is Apache Spark faster than Hadoop processing?', \href{https://www.quora.com/Is-Apache-Spark-faster-than-Hadoop-processing}{https://www.quora.com/Is-Apache-Spark-faster-than-Hadoop-processing}
+
+\bibitem[QuoSvP]{QuoSvP} Quora, risposta alla domanda 'What is the difference between using Spark in Scala and Python?', \href{https://www.quora.com/What-is-the-difference-between-using-Spark-in-Scala-and-Python}{https://www.quora.com/What-is-the-difference-between-using-Spark-in-Scala-and-Python}
+
 \bibitem[Rad17]{Rad17} The Radicati Group Inc. \emph{Email Statistics Report, 2017-2021}, \href{http://www.radicati.com}{http://www.radicati.com/wp/wp-content/uploads/2017/01/Email-Statistics-Report-2017-2021-Executive-Summary.pdf}, 2017
+
+\bibitem[RepRSS]{RepRSS} Indirizzo Feed RSS di \emph{Repubblica}, \href{http://www.repubblica.it/rss/homepage/rss2.0.xml}{http://www.repubblica.it/rss/homepage/rss2.0.xml}
 
 \bibitem[Roe12]{Roe12} C. Roe, \emph{The growth of unstructured data: what to do with all those zettabytes?}, \href{http://www.dataversity.net/the-growth-of-unstructured-data-what-are-we-going-to-do-with-all-those-zettabytes/}{http://www.dataversity.net/the-growth-of-unstructured-data-what-are-we-going-to-do-with-all-those-zettabytes/}, 2012
 
+\bibitem[Rus13]{Rus13} M. Russell, \emph{Mining the Social Web, 2nd Edition}, O'Reilly Media Research, 2013.
+
 \bibitem[San15]{San15} Sandy Ryza, Uri Laserson, Josh Wills, Sean Owen \emph{Advanced Analytics with Spark}, O'Reilly Media Research, 2015.
 
-\bibitem[Sal88]{Sal88} G. Salton, C. Bucley, \emph{Term-weighting approaches in automatic text
+\bibitem[Sal88]{Sal88} G. Salton, \emph{Term-weighting approaches in automatic text
 retrieval}, Inform. Process. Man. 24(5), 513-523. , 1988
+
+\bibitem[Scrpy]{Scrpy} Scrapy, \href{https://scrapy.org/}{https://scrapy.org/} 
+
+\bibitem[SckLn]{SckLn} Scikit-Learn, Libreria Python, \href{http://scikit-learn.org/stable/}{http://scikit-learn.org/stable/}
+
 \bibitem[Zha16]{Zha16} C.X. Zhai, S. Massung \emph{Text Data Management and Analysis: A Practical Introduction to Information Retrieval and Text Mining }, Acm Books, 2016.
 
 \end{thebibliography}
+
+% Ringraziamenti
+\chapter*{Ringraziamenti}
 
 
 \end{document}
