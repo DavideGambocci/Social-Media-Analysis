@@ -12,6 +12,7 @@
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{midpage}
 
 \makeatletter
     \def\thebibliography#1{\chapter*{Bibliografia e Sitografia\@mkboth
@@ -36,7 +37,7 @@
 
 \pagestyle{fancy}
 \lhead{Davide Gambocci}
-\lfoot{Analisi dei social media}
+\lfoot{Analisi mediante topic model}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
@@ -46,9 +47,11 @@
 %%%% Aggiustare le formule con il grassetto 
 
 % Dedica
+\begin{midpage}
 \begin {flushright}
-\emph{}
+\emph{A Sabrina}
 \end {flushright}
+\end{midpage}
 \clearpage 
 
 
@@ -96,9 +99,10 @@ Nota: talvolta gli output sono stati modificati per facilitarne l'impaginazione.
 
 Secondo uno studio dell'Università di Berkeley \cite{Lym03}, nel 2003 sono stati prodotti ``...  \emph{25 TB\footnote{1 Terabyte = 1000 Gigabyte} di file di testo relativi ai giornali, 10 TB relativi alle riviste in genere ... e 195 TB di documenti d'ufficio. Si stima che siano state inviate 610 miliardi di e-mail, per un totale di 11000 T}B ``; nel 2010 il solo numero di mail è salito alla enorme cifra di $107\times 10^{12}$ secondo \cite{Roe12} e, venendo a dati più recenti, si stima che nel 2017 la media di e-mail inviate sia stata di 269 miliardi al giorno \cite{Rad17}. Nel 2003, inoltre, non era ancora affermata la realtà social, per cui nel conteggio dell'informazione prodotta oggi dobbiamo aggiungere anche file testuali di nuova generazione come \emph{post}, \emph{commenti} e \emph{tweet}: di questi ultimi, nel 2017, ne sono stati prodotti circa 300 miliardi (\cite{IntLS}). 
 
-% Possiamo aggiungere ancora qualcos'altro?
+Insomma la crescita dei documenti testuali è stata esponenziale a tutti i livelli: ciò solleva diverse riflessioni e questioni a proposito di tematiche importanti ed attuali. Con l'obiettivo di voler implementare un algoritmo in grado di eseguire tutte le fasi dell'analisi testuale di file provenienti dalla rete (dall'estrazione dei dati all'applicazione di topic model), dobbiamo avere una panoramica di tali questioni e comprendere quali sono le possibili applicazioni e i limiti della procedura che costruiremo. Innanzitutto, è evidente che una così massiccia produzione di dati, può contenere informazioni di indubbio valore per diverse tipologie di analisi, da quelle di mercato a indagini di tipo sociologico. Un altro punto interessante è l'immediatezza con cui questi dati sono reperibili: in passato, per molte analisi, raccogliere i dati necessari poteva essere un'operazione che comportava lunghe attese.
 
-Insomma la crescita è stata esponenziale in tutte le direzioni: ciò solleva diverse riflessioni e questioni a proposito di diverse tematiche importanti ed attuali. Con l'obiettivo di voler implementare un algoritmo in grado di eseguire tutte le fasi dell'analisi testuale di file provenienti dalla rete (dall'estrazione dei dati all'applicazione di topic model), dobbiamo avere una panoramica di tali questioni e comprendere quali sono le possibili applicazioni e i limiti della procedura che costruiremo. Innanzitutto, è evidente che una così massiccia produzione di dati, può contenere informazioni di indubbio valore per diverse tipologie di analisi, da quelle di mercato a indagini di tipo sociologico. Un altro punto interessante è l'immediatezza con cui questi dati sono reperibili: in passato, per molte analisi, raccogliere i dati necessari poteva essere un'operazione che comportava lunghe attese. Chiaramente, e lo sottolineeremo anche in seguito, non è detto che tutti i dati siano di ottima qualità, anche se, spesso, ciò dipende anche dal tipo di analisi che si vuole condurre. Un tale flusso di dati, consente in molti casi analisi accurate anche se non risolve certamente tutti i problemi, al contrario, l'aspetto interessante è che ne genera di nuovi, legati soprattutto alla gestione e al processing di questi enormi flussi di dati.
+Chiaramente, e lo sottolineeremo anche in seguito, non è detto che tutti i dati siano di ottima qualità, anche se, spesso, ciò dipende anche dal tipo di analisi che si vuole condurre. Un tale flusso di dati, consente in molti casi analisi accurate anche se non risolve certamente tutti i problemi, al contrario, l'aspetto interessante è che ne genera di nuovi, legati soprattutto alla loro gestione e al loro \emph{processing}.
+
 
 \section{I \emph{big data} e l'analisi testuale}
 \sectionmark{Big Data}
@@ -168,9 +172,20 @@ I contenuti testuali presenti in rete, come abbiamo visto, sono moltissimi e dis
 
 Nel caso esaminato, ci preoccuperemo di enucleare gli argomenti principali di ciascuna testata giornalistica analizzata, allo scopo di classificarla sulla base degli argomenti trattati. 
 
-Come più volte sottolineato, l'algoritmo si può adattare anche ad altri contesti: basta, ad esempio, modificare la sorgente dei dati acquisiti (nell'appendice finale si vedrà come estrarre anche dati dai social). Gli studi che si possono condurre sono svariati, con applicazioni che vanno dalla \emph{sentiment analysis} alle ricerche in campo sociologico. 
+Come più volte sottolineato, l'algoritmo si può adattare anche ad altri contesti nel campo dei social media: basta, ad esempio, modificare la sorgente dei dati acquisiti (nell'appendice finale si vedrà come estrarre anche dati dai social). Gli studi che si possono condurre sono svariati, con applicazioni che vanno dalla \emph{sentiment analysis} alle ricerche in campo sociologico. Esempi di applicazioni esistenti ne abbiamo già forniti. 
 
-Noi ci occuperemo, come più volte ribadito, solo della procedura. Anche le conclusioni del caso di studio saranno solo indicative e non hanno valore di una ricerca scientifica rigorosa.
+Un esempio rilevante di applicazioni già sviluppate che devono confrontarsi con l'enorme flusso di dati provenienti dalla rete e con la necessità di classificarli, è costituito dai  \emph{motori di ricerca}. Essi devono costantemente analizzare dati voluminosi dalla rete per renderli disponibili all'utenza. L'uso dei topic model in quest'ambito (specialmente quelli che verranno trattati in seguito) è estremamente diffuso. 
+
+La nostra procedura, tuttavia, opera diversamente da un motore di ricerca in quanto non si occupa di tabulare i dati per renderli facilmente cercabili, ma si preoccupa di voler estrarre i temi centrali da un testo.
+
+Anche applicazioni specifiche come \emph{Google News} (\cite{GooN}), sebbene partano dai nostri stessi presupposti, funzionano da aggregatori di notizie, mentre lo scopo nostro è quello di analizzarne i contenuti e non solamente di confrontarli. Inoltre il tipo di dato analizzabile, con opportune generalizzazioni (come quella mostrata in appendice), non è necessariamente costituito da articoli di giornale.
+
+Insomma, la ricerca in questo ambito è molto attiva, il tema dell'analisi dei dati dalla rete è molto sentito e speriamo, con i nostri accorgimenti, di dare anche noi un piccolo contributo in questa direzione.
+
+% App video LDA
+
+
+% Noi ci occuperemo, come più volte ribadito, solo della procedura. Anche le conclusioni del caso di studio saranno solo indicative e non hanno valore di una ricerca scientifica rigorosa.
 \clearpage
 
 % Capitolo 2
@@ -208,15 +223,18 @@ In generale e per completezza la mancanza di struttura non consente la gestione 
 % Linguaggio SQL? Teoria degli insiemi e così via...
 
 \section{Sistemi di gestione distribuiti e Apache Spark.}
-
+\sectionmark{Spark.}
 La scelta di utilizzare Apache Spark (di seguito solo Spark) come shell da cui lanciare gli script per l'analisi, si fonda soprattutto sulla capacità di gestire diversi compiti in parallelo. In generale, sebbene su modeste quantità di dati non si ottiene un guadagno sensibile  rispetto ad altri programmi in termini di tempo di esecuzione, per la gestione di big data con Spark si ottengono risultati ragguardevoli rispetto ad altri software (\cite{QuoSfH}). 
 
-La scelta di operare con linguaggio Python (che motiveremo in seguito), rallenta notevolmente (\cite{QuoSvP}) l'esecuzione rispetto all'utilizzo con il linguaggio nativo Scala, che meglio si adatta ad un ambiente Java, ma, ciononostante, rispetto ad altri software i tempi di esecuzione sono comunque di molto inferiori. 
+Operare con linguaggio Python (scelta che motiveremo in seguito), rallenta notevolmente (\cite{QuoSvP}) l'esecuzione rispetto all'utilizzo con il linguaggio nativo Scala, che meglio si adatta ad un ambiente Java, ma, ciononostante, rispetto ad altri software i tempi di esecuzione sono comunque di molto inferiori. 
 
 Poiché un aspetto importante dell'analisi è rappresentato dall'ambiente informatico in cui essa si sviluppa, parleremo più diffusamente di Spark, descrivendo le principali caratteristiche di interesse che ritroveremo sia direttamente che indirettamente nello svolgimento.
 
 \subsection{Struttura e funzionamento di Spark}
 \subsectionmark{Spark}
+Apache Spark è stato sviluppato all'Università di Berkeley ed è stato rilasciato nel 2014.
+%cite?
+
 Essenzialmente Spark è un sistema di computazione cluster distribuito e ad alte prestazioni. In figura 2.1 possiamo vederne i principali costituenti.
 
 \begin{figure}
@@ -226,9 +244,7 @@ Essenzialmente Spark è un sistema di computazione cluster distribuito e ad alte 
 \label{fig:subfig}
 \end{figure}
 
-Di particolare interesse è \emph{MLlib} che sta per \emph{Machine Learning Library} ed è una libreria che contiene diversi algoritmi per il machine learning. In essa troviamo anche alcuni algoritmi di topic modeling, tra cui quello che esegue l'LDA e di cui parleremo diffusamente più avanti.
-
-% Bisogna parlare anche di SQL Spark
+Di particolare interesse sono\emph{Spark SQL}, che rappresenta il modulo che consente di lavorare con dati strutturati, e \emph{MLlib} che sta per \emph{Machine Learning Library} ed è una libreria che contiene diversi algoritmi per il machine learning. In quest'ultima troviamo anche alcuni algoritmi di topic modeling, tra cui quello che esegue l'LDA e di cui parleremo diffusamente più avanti.
 
 Tutte queste aree sono sottese, in figura, da \emph{Apache Spark}, il cui core controlla le esecuzioni di ciascuna componente. Vediamo nel dettaglio il modo in cui Spark esegue le istruzioni nella figura 2.2 .
 
@@ -263,7 +279,8 @@ Tutte le trasformazioni vengono eseguite come \emph{Direct Acyclic Graphs}, ovve
 
 È appena il caso di ricordare che, ogni volta che è necessario, il DAG si può ricostruire a partire dal Driver, conserva, cioè, la struttura resiliente.
 
-\section{Il linguaggio Python e le sue librerie}
+\section[Il linguaggio Python e le sue librerie]{Il linguaggio Python e le sue librerie
+	\sectionmark{Python}}
 \sectionmark{Python}
 
 Il linguaggio Python è certamente tra i più usati nel campo dell'analisi dei dati. Il suo maggiore punto di forza consiste nella enorme quantità di librerie che consentono di eseguire con pochi comandi pressoché qualsiasi procedura analitica e statistica; inoltre consente di interfacciarsi a diversi tipi di software. Proprio per questo, nella nostra analisi, il linguaggio Python rappresenta il nerbo di collegamento tra i diversi moduli di cui è costituita la procedura realizzata. Approfondiamo caso per caso le librerie prese in considerazione.
@@ -632,9 +649,9 @@ La differenza principale tra i due modelli presi in esame consiste nel fatto che
 
 Risulta altresì chiaro che il modello LSI è molto semplificato e meno generale dell'LDA:  come in ogni scenario, però, occorre valutare sapientemente lo strumento che conviene utilizzare in una determinata situazione. Non sempre lo strumento più generale si rivela la scelta migliore; può capitare, ad esempio, che risulti troppo oneroso in termini di complessità computazionale rispetto ad un modello più semplificato, pur restituendo un output non dissimile da quest'ultimo (lo abbiamo visto nell'esempio di applicazione per entrambi). Nel prossimo capitolo daremo una giustificazione della procedura adottata nel nostro algoritmo, che fonde LDA e LSI sulla base delle loro caratteristiche.
 
-L'LSI e l'LDA possono entrambe essere utilizzate per procedure di apprendimento supervisionato e non. Nel nostro caso li utilizzeremo solo come algoritmi di cluster \emph{non} supervisionato, in quanto non assumeremo di dover clusterizzare le parole in topic prestabiliti.
+L'LSI e l'LDA possono entrambe essere utilizzate per procedure di apprendimento non supervisionato.
 
-Un'ultima riflessione sui metodi di tipo \emph{bag-of-words}. In \cite{Ble03} troviamo un'importante considerazione a proposito della facoltà di trascurare l'ordine delle parole (e nel caso dei corpus anche quello dei documenti). Il ragionamento che ha condotto alla ideazione dell'LDA parte dal teorema di De Finetti \cite{} che afferma la distribuzione congiunta di una sequenza di variabili aleatorie infinitamente scambiabili possiede una rappresentazione  in termini di mistura, condizionatamente ad un parametro latente: per questo se si vuole avere una rappresentazione della scambiabilità sia per i documenti che per le parole, dobbiamo considerare una mistura che va bene per entrambi. Ribadiamo che la scambiabilità non implica indipendenza e identica distribuzione, quanto piuttosto indipendenza e identica distribuzione \emph{condizionatamente} ad un parametro latente. Per questo, se condizionata, la distribuzione congiunta delle variabili aleatorie si può notevolmente semplificare. 
+Un'ultima riflessione sui metodi di tipo \emph{bag-of-words}. In \cite{Ble03} troviamo un'importante considerazione a proposito della facoltà di trascurare l'ordine delle parole (e nel caso dei corpus anche quello dei documenti). Il ragionamento che ha condotto alla ideazione dell'LDA parte dal teorema di De Finetti \cite{DeFin} che afferma la distribuzione congiunta di una sequenza di variabili aleatorie infinitamente scambiabili possiede una rappresentazione  in termini di mistura, condizionatamente ad un parametro latente: per questo se si vuole avere una rappresentazione della scambiabilità sia per i documenti che per le parole, dobbiamo considerare una mistura che va bene per entrambi. Ribadiamo che la scambiabilità non implica indipendenza e identica distribuzione, quanto piuttosto indipendenza e identica distribuzione \emph{condizionatamente} ad un parametro latente. Per questo, se condizionata, la distribuzione congiunta delle variabili aleatorie si può notevolmente semplificare. 
 
 Nel caso dell'LDA questo consente di elevarsi ad un livello più alto rispetto al pLSI, ovvero di estendere anche a corpus di documenti il modello e la procedura.
 \clearpage
@@ -785,14 +802,40 @@ Il testo così processato può finalmente essere analizzato dai modelli di topic e
 
 Il modello LDA è già stato discusso nell'ambito delle sue caratteristiche teoriche; l'algoritmo viene richiamato dalla libreria \emph{MLlib} tramite \emph{pyspark}. È all'LDA che spetta il processo del grosso dei file di testo, pertanto è in questa sede che occorre sperimentare i vantaggi della parallelizzazione che si ottengono con Spark. L'algoritmo dell'LDA estrae i principali concetti presenti in un testo ripulito, elencando un certo numero fissato a priori di parole per ciascun concetto. In sostanza abbiamo due parametri liberi: il numero dei topic, poniamo $k$, e il numero delle parole per ciascun topic, poniamo $n$. Il loro valore deve essere fissato prima di lanciare l'esecuzione e dipende fortemente dal tipo di file che si sta analizzando. Se ad esempio ci occupiamo di analizzare un racconto in formato testuale, il numero di topic $k$ potrebbe essere elevato, viceversa, nel caso di un testo di breve estensione è più opportuno regolare il numero di topic su un valore più contenuto. Per quanto riguarda il parametro che indica il numero di parole per ogni topic, valgono in generale ragionamenti analoghi, anche se l'esperienza mostra un numero $n$ compreso tra 10 e 20 generalmente consente di comprendere sufficientemente a fondo il concetto analizzato. È su base empirica che si effettua questa regolazione, detto \emph{tuning}, dei parametri: occorre effettuare diverse prove per comprendere i valori ottimali nel caso specifico che si sta analizzando. 
 
-% Parlare dell'implementazione in Spark
+Nello specifico, le parti fondamentali del codice Spark sono le seguenti
+\begin{verbatim}
+data = sc.textFile(file_path).zipWithIndex().map( lambda cleanwords_idd: 
+       Row(idd = cleanwords_idd[1], cleanwords = cleanwords_idd[0].split(" ")))
 
-Poiché l'obiettivo finale è quello di una classificazione di un intero corpus di argomenti secondo i temi in essa trattati, dobbiamo immaginare che diversi output del genere vengano memorizzati, ciascuno per ogni documento che viene sottoposto all'LDA. Il file completo di tutti questi output viene passato all'ultimo blocco del codice, quello che applicherà la metodologia LSI, non prima però che venga effettuata un'ultima operazione.
+docDF = spark.createDataFrame(data)
+\end{verbatim}
+
+Con cui abbiamo creato un RDD. Il comando \emph{textFile} legge il file di testo, ovvero il corpo dell'articolo, all'indirizzo \emph{file\_path} specifico, e indicizza i termini con il comando \emph{zipWithIndex}, il quale associa ad ogni parola un numero (numeri uguali a parole uguali); infine, con la trasformazione \emph{map} si crea una matrice Term-Document e il comando \emph{createDataFrame} genera un dataframe a partire da \emph{data}. Successivamente abbiamo
+
+\begin{verbatim}
+Vector = CountVectorizer(inputCol="cleanwords", outputCol="vectors")
+model = Vector.fit(docDF)
+result = model.transform(docDF)
+corpus = result.select("idd", "vectors").rdd.map(lambda x_y: [x_y[0],
+																					Vectors.fromML(x_y[1])]).cache()
+\end{verbatim}
+ovvero inizializziamo il \emph{CountVectorizer} che trasforma una collection di testo  in un vettore di \emph{token}  e lo applichiamo al nostro dataframe. Il risultato è il modello di trasformazione che occorre al dataframe, un passaggio intermedio che permette di generare il \emph{corpus}, che sarà l'input dell'LDA. Quest'ultimo si ottiene come RDD selezionando con un'altra trasformazione gli input di interesse.
+
+Infine si esegue
+\begin{verbatim}
+ ldaModel = LDA.train(corpus, k = 2, maxIterations = 100, optimizer='em') 
+\end{verbatim}   
+		
+Da cui si ricavano i topic.
+
+% Come sono fatti questi oggetti???
+
+Il file completo di tutti questi topic raccolti viene passato all'ultimo blocco del codice, quello che applicherà la metodologia LSI, non prima però che venga effettuata un'ultima operazione.
 
 Essa consiste nella rimozione di ulteriori categorie di parole. Per comprendere la necessità di quest'ulteriore scrematura, dobbiamo fare qualche passo avanti. Ci aspettiamo che l'output finale sia composto da diversi cluster di parole, ciascuno dei quali può simboleggiare un concetto importante nella collezione. 
 Ciascun termine proviene da da un cluster di parole ottenuto mediante la precedente operazione con l'LDA.
 
-Si nota che sopravvivono parole come 'quas' (che sta per 'quasi') o 'fa' (dal verbo 'fare'). Queste categorie di forme verbali e avverbi sono molto comuni a tutti i documenti e dunque è plausibile che molti cluster finali siano 'contaminati' dalla presenza di queste parole che non portano con sé significato. Si immagini ad esempio un cluster di soli avverbi: quale contenuto potrebbe significare? Eppure, si sperimenta, che cluster di questo tipo tendono effettivamente a formarsi dato il numero di occorrenze elevato in molti topic di queste categorie di parole. Ecco perché queste parole vanno eliminate con l'uso di un'ulteriore operazione di \emph{stopwords removing} eseguita con un dizionario \emph{ad hoc}. A questo punto si può invocare il modello LSI per la clusterizzazione finale: l'algoritmo opererà con le modalità già descritte il precedenza.
+Si nota che nei cluster sopravvivono parole come 'quas' (che sta per 'quasi') o 'fa' (dal verbo 'fare'). Queste categorie di forme verbali e avverbi sono molto comuni a tutti i documenti e dunque è plausibile che molti cluster finali siano 'contaminati' dalla presenza di queste parole che non portano con sé significato. Si immagini ad esempio un cluster di soli avverbi: quale contenuto potrebbe significare? Eppure, si sperimenta, che cluster di questo tipo tendono effettivamente a formarsi dato il numero di occorrenze elevato in molti topic di queste categorie di parole. Ecco perché queste parole vanno eliminate con l'uso di un'ulteriore operazione di \emph{stopwords removing} eseguita con un dizionario \emph{ad hoc}. A questo punto si può invocare il modello LSI per la clusterizzazione finale: l'algoritmo opererà con le modalità già descritte il precedenza.
 
 L'output sarà simile al seguente:
 \begin{verbatim}
@@ -859,7 +902,15 @@ Ci si può chiedere, a questo punto, se fosse stato possibile eseguire due volte 
 
 Un ultimo punto importante è chiarire per quale motivo non abbiamo adoperato un altro algoritmo generativo come il pLSI al posto dell'LDA. Anche questa modifica sarebbe lecita, tuttavia abbiamo visto quale sia la limitazione del pLSI a livello di collection. Nel nostro caso, avendo usato l'LDA, la procedura impostata è più facilmente generalizzabile e possiamo modificarla opportunamente e applicarla, in teoria, anche a collection di collection, senza tener conto delle restrizioni che il pLSI imporrebbe.
 
-In conclusione, presentiamo uno schema pratico dell'intero sistema distribuito...
+La figura 4.1 riassume in uno schema pratico l'intero sistema distribuito
+
+\begin{figure}
+\centering
+\includegraphics[width=.9\textwidth]{Schema}
+\caption{Schema riassuntivo}
+\label{fig:subfig}
+\end{figure}
+
 
 
 % Capitolo 5
@@ -867,7 +918,7 @@ In conclusione, presentiamo uno schema pratico dell'intero sistema distribuito..
 \chaptermark{Case Study}
 A conclusione del sistema distribuito sviluppato, presentiamo il seguente studio.
 
-I testi analizzati, come avevamo anticipato, sono costituiti da articoli di giornale e l'obiettivo è quello di  enucleare i temi principali di ciascuna testata giornalistica analizzata durante la finestra di raccolta notizie.
+I testi analizzati, come avevamo anticipato, sono costituiti da articoli di giornale e l'obiettivo è quello di operare una classificazione non supervisionata dei contenuti, ovvero di  enucleare i temi principali di ciascuna testata giornalistica analizzata durante la finestra temporale di raccolta notizie.
 
 
 Abbiamo selezionato 5 testate: la scelta è in gran misura arbitraria, tuttavia è necessario che due requisiti siano soddisfatti:
@@ -884,7 +935,9 @@ Quest'ultima è pubblicata esclusivamente in rete, è interamente gratuita e costi
 
 I siti da cui sono stati tratti gli articoli, non sono quelli principali dei singoli giornali, bensì quelli che contengono i Feed RSS, i cui indirizzi sono rispettivamente \cite{RepRSS}, \cite{CorRSS}, \cite{LaSRSS}, \cite{IlGRSS}, \cite{FanRSS}.
 
-La scelta di considerare i Feed RSS è giustificata dalla semplicità maggiore con cui si può effettuare il parsing della pagina principale. In più le notizie pubblicate sulla mainpage non differiscono da quelle che si trovano sotto forma di Feed.
+La scelta di considerare i Feed RSS è giustificata dalla semplicità maggiore con cui si può effettuare il parsing della pagina principale. In più le notizie pubblicate sulla mainpage di ciascun quotidiano non differiscono da quelle che si trovano sotto forma di Feed. 
+
+È importante considerare che alcune testate possiedono sezioni per diverse tematiche (cronaca sportiva, rosa, finanza), nel nostro caso ci siamo limitati allo scraping della pagina principale, ovvero della vetrina notizie che ogni giornale compone, supponendo trattarsi di quelle di maggior rilievo per quella testata.
 
 Su MongoDB gli articoli vengono salvate in diverse collection, ciascuna relativa ad una testata. I file salvati hanno comunque la stessa struttura, costituita da 
 \begin{enumerate}
@@ -918,13 +971,15 @@ Un esempio di articolo salvato è il seguente
 		 link: https://www.fanpage.it/in-cina-il-primo...}
 \end{verbatim}
 
+Di esso accorperemo le voci \emph{title, text, tags, resume} a formare un'unica stringa di testo che rappresenterà il nostro documento da analizzare.
+
 Il periodo di raccolta, per tutti i quotidiani, è partito il 17 Novembre 2017 ed è terminato il 16 Dicembre dello stesso anno. 
 
 Osserviamo che il periodo di raccolta non è esteso; come abbiamo anticipato, le conclusioni che possiamo trarne sono solo indicative: uno studio rigoroso, in generale, dovrebbe tener conto di un periodo di raccolta più ampio.
 
-In questo lasso di tempo abbiamo, comunque, raccolto e analizzato circa duemilacinquecento articoli, ovvero mediamente 500 articoli per testata. Se intendessimo analizzare dieci testate su un periodo di osservazione lungo un anno, dovremmo gestire circa 60 mila articoli: in quest'ottica, il sistema distribuito, la scelta del database e, in generale, l'impostazione di tutto l'algoritmo sono pienamente giustificati.
+In questo lasso di tempo abbiamo, comunque, raccolto e analizzato oltre duemilacinquecento articoli, ovvero mediamente 500 articoli per testata. Se intendessimo analizzare dieci testate su un periodo di osservazione lungo un anno, dovremmo gestire circa 60 mila articoli: in quest'ottica, il sistema distribuito, la scelta del database e, in generale, l'impostazione di tutto l'algoritmo sono pienamente giustificati.
 
-Lo scraper è stato avviato ogni giorno durante il mese di raccolta. Su ciascun sito di raccolta sovente accadeva di trovare articoli risalenti al giorno precedente, per cui le impostazioni di salvataggio contemplavano la possibilità di avere dei doppi ed evitava di salvarli confrontando il titolo (cfr. Cap. 2): di due articoli con lo stesso titolo viene conservato il più recente, in modo da aggiornare alcuni contenuti dinamici come il numero di condivisioni sui social.
+Lo scraper è stato avviato ogni giorno durante il mese di raccolta. Su ciascun sito di  sovente accadeva di trovare articoli risalenti al giorno precedente, per cui le impostazioni di salvataggio contemplavano la possibilità di avere dei doppi e si evitava di salvarli confrontando il titolo (cfr. Cap. 2): di due articoli con lo stesso titolo viene conservato il più recente, in modo da aggiornare alcuni contenuti dinamici come il numero di condivisioni sui social.
 
 In generale, il numero degli articoli è un parametro variabile che dipende da diversi fattori. Esso, insieme ad altri valori indicativi circa l'analisi, sarà indicato ogni volta che un output sarà esposto.
 
@@ -934,25 +989,25 @@ L'intera procedura è stata eseguita su un computer con le seguenti caratteristic
 \item RAM: 4.00 GB
 \item CPU: 1.80 GHz
 \end{itemize}
-Chiaramente le specifiche temporali sono relative al tipo supporto hardware che si utilizza, per cui, ad esempio, con il doppio o il quadruplo di \emph{core} con medesime caratteristiche a disposizione il tempo di esecuzione dimezza, diventa un quarto, ecc.
+Chiaramente le specifiche temporali sono relative al tipo supporto hardware che si utilizza, per cui, ad esempio, con il doppio o il quadruplo di \emph{core} con medesime caratteristiche, il tempo di esecuzione dimezza, diventa un quarto, ecc.
 
 \section{Output finale}
 
 Prima di passare ad illustrare l'output, facciamo un breve riassunto dell'impostazione del sistema, elencando i punti principali e descrivendo le operazioni eseguite durante ciascuna fase per il completamento dello studio finale:
 
 \begin{enumerate}
-\item \emph{Fase di Scraping}: durante il periodo di raccolta, vengono prelevati i contenuti testuali dai siti prescelti;
-\item \emph{Fase di memorizzazione}: che va di pari passo allo scraping. Tutte le informazioni vengono salvate nel formato mostrato in precedenza e si presta attenzione ai possibili doppi estratti;
+\item \emph{Fase di Scraping}: durante il periodo di raccolta, vengono prelevati i contenuti testuali dai siti di Feed RSS prescelti;
+\item \emph{Fase di memorizzazione}: che va di pari passo allo scraping. Tutte le informazioni vengono salvate nel formato mostrato in precedenza e si presta attenzione ai possibili doppi estratti confrontando il titolo;
 \item \emph{Fase di Pulitura}: in cui si trasferisce il contenuto di ciascuna collection nel database in un file di tipo JSON e lo si sottopone ad una procedura di omogeneizzazione dei caratteri e ripulitura da segni grafici diversi dal quelli alfabetici (segni di interpunzione, numeri, \emph{backslash}, ecc.), in modo da eliminare anche il residuo del linguaggio HTML di ciascuna notizia;
-\item \emph{Fase di NLP}: in cui si applica una procedura di rimozione delle stopwords e si esegue lo stemming delle parole rimaste;
-\item \emph{LDA con Spark}: in cui si richiama la console Spark e si esegue l'algoritmo LDA sugli articoli. Si definisce un corpus costituito dai topic estratti;
+\item \emph{Fase di NLP}: in cui si applica una procedura di rimozione delle \emph{stopwords} e si esegue lo \emph{stemming} delle parole rimaste;
+\item \emph{LDA con Spark}: in cui si richiama la console Spark e si esegue l'algoritmo LDA sugli articoli. Si definisce un corpus costituito dai topic estratti e si applica una nuova rimozione delle \emph{stopwords};
 \item \emph{LSI sul corpus}: in cui si esegue l'LSI e si ottiene il risultato finale.
 \item \emph{Fase di salvataggio}: in cui viene salvato l'output.
 \end{enumerate}
 
 In particolare, riguardo ai penultimi ultimi due punti, è necessario specificare i parametri utilizzati: nella fase 5 si sono estratti 2 topic composti da 12 parole per ciascun articolo; nella fase 6 si sono estratti 15 topic composti da 12 parole. Il \emph{tuning} dei parametri è stato stabilito sulla base di diverse prove empiriche.
 
-L'output originale di ciascuna prova è lungo decine di pagine e sarebbe scomodo riproporlo per intero: occorre un modo efficiente di rappresentarlo. Un esempio di risultato originario è il seguente
+L'output originale di ciascuna prova è lungo decine di pagine e sarebbe scomodo riproporlo per intero: occorre un modo efficiente di rappresentarlo. Un esempio di risultato in forma originale è il seguente
 \begin{verbatim}
 Topic X:
 1) vit
@@ -975,14 +1030,27 @@ Come si nota ci sono 4 tipologie di radici stemmizzate:
 \item Quelle che si associano senza dubbio alla parola originaria, come \emph{vit}: scriveremo semplicemente \emph{vita} senza specificare la classe;
 \item Quelle che si riferiscono a diverse parole, ma il cui significato è il medesimo, come \emph{prezz}: scriveremo in questo caso, l'occorrenza più frequente e cioè \emph{prezz\textbf{o}} che intenderemo come rappresentante della classe;
 \item Quelle che si riferiscono a diverse parole, ma che hanno significati differenti, come \emph{parl}: scriveremo \emph{parl\textbf{are}}/\emph{parl\textbf{amento}};
-\item Quelle la cui parola originaria resta comunque dubbia, come \emph{stat}: scriveremo \emph{stat\textbf{o}}, ma l'occorrenza si riferisce al concetto di Stato inteso come nazione o al participio passato del verbo essere? Non è dato saperlo, ma purtroppo questo è un problema intrinseco della procedura che non potrà essere risolto.
+\item Quelle la cui parola originaria resta comunque dubbia, come \emph{stat}: scriveremo \emph{stat\textbf{o}}, ma se l'occorrenza si riferisca al concetto di Stato inteso come nazione o al participio passato del verbo essere non è dato saperlo. Purtroppo questo è un problema intrinseco della procedura che non potrà essere risolto in questa sede.
 \end{enumerate}
-In presenza di occorrenze molto numerose ignoreremo quelle sporadiche (come nel caso di \emph{stat\textbf{o}}, a cui non abbiamo affiancato la parola \emph{statuto} perché compare una volta sola). A patto di sacrificare il numero di occorrenze, che segnaleremo se degno di nota, in questo modo potremo visualizzare per intero il risultato dell'analisi.
+In presenza di occorrenze molto numerose ignoreremo quelle sporadiche anche se il significato differisce (come nel caso di \emph{stat\textbf{o}}, a cui non abbiamo affiancato la parola \emph{statuto} perché compare una volta sola). A patto di sacrificare la visione del numero di occorrenze, che segnaleremo se degno di nota,  potremo in questo modo visualizzare per intero e senza difficoltà il risultato dell'analisi.
 
-Passiamo agli output.
+A questo punto dovremmo verificare che l'output del nostro sistema è effettivamente coerente: proviamo con un caso controllato con la collection di nome \emph{Sport} che raccoglie 50 articoli sportivi recenti relativi al campionato calcistico italiano (Serie A), in particolare degli ultimi eventi sportivi\footnote{Settimana dall'1 al 6 Gennaio 2018}. Dato il numero di articoli ridotto, solo in questo caso abbiamo 3 topic finali di 10 parole:
+
+\begin{enumerate}
+\item \textbf{Topic 1}:  port\textbf{a}, inter, spalletti, fiorentina, simeone, chiesa, icardi, allen\textbf{atore}, squadr\textbf{a}, ultim\textbf{e};
+   
+\item \textbf{Topic 2}:  chi\textbf{evo}, ser\textbf{ie}, udines\textbf{e}, radovanovic, tomovic, allen\textbf{atore}, vittor\textbf{ia}, oddo, part\textbf{ita}, napoli;
+  
+
+\item \textbf{Topic 3}: allen\textbf{atore}, grupp\textbf{o}, port\textbf{a}, segn\textbf{a}, lavor\textbf{o}, ultim\textbf{e}, meret, salvezz\textbf{a}, adess\textbf{o}, oddo.
+\end{enumerate}
+
+I cui temi sono perfettamente in linea con le aspettative.
+
+Passiamo agli output del nostro studio.
 
 \subsection{Repubblica} 
-Statistiche\footnote{Per \emph{Totale parole} si intende il conteggio delle parole stemmizzate, ovvero il conteggio viene effettuato quando gli articoli hanno già subito il processo di pulitura e di rimozione delle stopwords.} 
+Statistiche\footnote{Per \emph{Totale parole} si intende il conteggio delle parole stemmizzate, ovvero il conteggio che viene effettuato quando gli articoli hanno già subito il processo di pulitura e di rimozione delle stopwords.} 
 \begin{verbatim}
 Totale articoli: 448 
 Totale parole: 125038 
@@ -1009,16 +1077,16 @@ L'output è il seguente:
 
 \item \textbf{Topic 7}: mil\textbf{a}/mil\textbf{ano}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, eur\textbf{o}, coalizion\textbf{e}, stat\textbf{o}, unit\textbf{i}, occup\textbf{azione}, dett\textbf{o}, pag\textbf{are}, ex, figl\textbf{i}, punt\textbf{o};
    
-\item \textbf{Topic 8}: person\textbf{e}, condizion\textbf{i}, migrant\textbf{i}, ricerc\textbf{a}, milion\textbf{i}, rom\textbf{i}, san, success\textbf{ivo}, unit\textbf{i}, rohingya, francesc\textbf{o}, sal\textbf{ute}/sal\textbf{uto};
+\item \textbf{Topic 8}: person\textbf{e}, condizion\textbf{i}, migrant\textbf{i}, ricerc\textbf{a}, milion\textbf{i}, rom\textbf{a}, san, success\textbf{ivo}, unit\textbf{i}, rohingya, francesc\textbf{o}, sal\textbf{ute}/sal\textbf{uto};
    
 \item \textbf{Topic 9}:  francesc\textbf{o}, rohingya, \textbf{e}/ comun\textbf{icazione}/comun\textbf{ista},  pap\textbf{a}, bambin\textbf{i}, san, paes\textbf{e}, bangladesh, myanmar, birman\textbf{i}, autor\textbf{ità}, pontef\textbf{ice};
 
 \item \textbf{Topic 10}: condivid\textbf{i}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, procur\textbf{a}, repubbl\textbf{ica}, giornal\textbf{isti}, commission\textbf{e}, dichiar\textbf{ato}/dichiar\textbf{azioni}, indagin\textbf{i}, legg\textbf{e}/legg\textbf{ere}, ex, eur\textbf{o}, libr\textbf{i}
 
 \item \textbf{Topic 11}: donn\textbf{e}, mar\textbf{ia}/ mar\textbf{e}/ mar\textbf{ito}, rom\textbf{a}, lavor\textbf{o}/lavor\textbf{atori}, de, pap\textbf{a}, colp\textbf{ito}, francesc\textbf{o}, denunc\textbf{ia}, mort\textbf{e}, rohingya, parol\textbf{e};
-\item \textbf{Topic 12}:procur\textbf{a}, sindac\textbf{o}/sindac\textbf{ati}, indagin\textbf{i}, ricerc\textbf{a}/ricerc\textbf{atori}, chiest\textbf{o}, denunc\textbf{ia}, assoc\textbf{iazione}, torino, legg\textbf{e}/legg\textbf{ere}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, person\textbf{e}, comun\textbf{e}/ comun\textbf{icazione}/comun\textbf{ista};
+\item \textbf{Topic 12}: procur\textbf{a}, sindac\textbf{o}/sindac\textbf{ati}, indagin\textbf{i}, ricerc\textbf{a}/ricerc\textbf{atori}, chiest\textbf{o}, denunc\textbf{ia}, assoc\textbf{iazione}, torino, legg\textbf{e}/legg\textbf{ere}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}, person\textbf{e}, comun\textbf{e}/ comun\textbf{icazione}/comun\textbf{ista};
 
-\item \textbf{Topic 13}:forz\textbf{a}/forz\textbf{e}, rom\textbf{a}, poliz\textbf{ia}, cap\textbf{o}/cap\textbf{ire}, presidente\textbf{e}, scuol\textbf{a}, mil\textbf{a}/mil\textbf{ano}, present\textbf{ato}/present\textbf{e}, presid\textbf{io}, altern\textbf{anza}, attent\textbf{ato}, partecip\textbf{ato};
+\item \textbf{Topic 13}: forz\textbf{a}/forz\textbf{e}, rom\textbf{a}, poliz\textbf{ia}, cap\textbf{o}/cap\textbf{ire}, presidente\textbf{e}, scuol\textbf{a}, mil\textbf{a}/mil\textbf{ano}, present\textbf{ato}/present\textbf{e}, presid\textbf{io}, altern\textbf{anza}, attent\textbf{ato}, partecip\textbf{ato};
    
 \item \textbf{Topic 14}:  success\textbf{ivo}, ricerc\textbf{a}, precedent\textbf{e}, trov\textbf{ato}, vit\textbf{a}, ben\textbf{e}, numer\textbf{o}, mond\textbf{o}, univers\textbf{ità}, apert\textbf{o}, equipagg\textbf{io}, amant\textbf{e};
 
@@ -1031,8 +1099,6 @@ I tempi di esecuzione sono stati i seguenti:
 \item LSI: 4 secondi
 \end{itemize}
 L'intero processo di elaborazione è durato circa 25 minuti.
-
-
 
 
 \subsection{Il Corriere} 
@@ -1055,7 +1121,7 @@ L'output è il seguente:
 \item \textbf{Topic 3}: part\textbf{e}/part\textbf{ito}/part\textbf{ire}/ part\textbf{ita}, ital\textbf{ia}, polit\textbf{ica}, pd, renz\textbf{i}, parl\textbf{a}/parl\textbf{amento}, vot\textbf{o}, berluscon\textbf{i}, president\textbf{e}, ser\textbf{ie}/ser\textbf{a}, rom\textbf{a}, stat\textbf{o}
 
 
-\item \textbf{Topic 4}:lavor\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ita}, pd, govern\textbf{o}, renz\textbf{i}, pens\textbf{are}, legg\textbf{e}/legg\textbf{ere}, vot\textbf{o}, ministr\textbf{o}, stat\textbf{o}, polit\textbf{ica}, president\textbf{e};
+\item \textbf{Topic 4}: lavor\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ita}, pd, govern\textbf{o}, renz\textbf{i}, pens\textbf{are}, legg\textbf{e}/legg\textbf{ere}, vot\textbf{o}, ministr\textbf{o}, stat\textbf{o}, polit\textbf{ica}, president\textbf{e};
 
   
 \item \textbf{Topic 5}  mil\textbf{ano}/mil\textbf{a}, part\textbf{e}/part\textbf{ito}/part\textbf{ita}, lavor\textbf{o}, eur\textbf{o}, stat\textbf{o}, centr\textbf{o}, president\textbf{e}, novembr\textbf{e}, italian\textbf{a}, govern\textbf{o}, cost\textbf{a}, vend\textbf{ita};
@@ -1064,17 +1130,15 @@ L'output è il seguente:
 \item \textbf{Topic 6}: ital\textbf{ia}, paes\textbf{e}, rom\textbf{a}, president\textbf{e}, stat\textbf{o}, ministr\textbf{o}, donn\textbf{a}, forz\textbf{a}/forz\textbf{e}, pubblic\textbf{o}/pubblic\textbf{a}, poss\textbf{ono}, success\textbf{o},  sub\textbf{ito};
    
 
-\item \textbf{Topic 7}:  figl\textbf{io}, vit\textbf{a}, donn\textbf{a}, mil\textbf{ano}/mil\textbf{a}, parl\textbf{a}/parl\textbf{amento}, renz\textbf{i}, italian\textbf{a}, polit\textbf{a}, berluscon\textbf{i}, vol\textbf{o}/vol\textbf{uto}, pd, numer\textbf{o};
+\item \textbf{Topic 7}:  figl\textbf{io}, vit\textbf{a}, donn\textbf{a}, mil\textbf{ano}/mil\textbf{a}, parl\textbf{a}/parl\textbf{amento}, renz\textbf{i}, italian\textbf{a}, polit\textbf{ica}, berluscon\textbf{i}, vol\textbf{o}/vol\textbf{uto}, pd, numer\textbf{o};
    
    
-\item \textbf{Topic 8}: parl\textbf{a}/parl\textbf{amento}, polit\textbf{ica}, renz\textbf{i}, berluscon\textbf{i}, dett\textbf{o},
- vol\textbf{o}/vol\textbf{uto}, pens\textbf{a}, person\textbf{e}, nom\textbf{e}, pd, milion\textbf{i}, leader;
+\item \textbf{Topic 8}: parl\textbf{a}/parl\textbf{amento}, polit\textbf{ica}, renz\textbf{i}, berluscon\textbf{i}, dett\textbf{o}, vol\textbf{o}/vol\textbf{uto}, pens\textbf{a}, person\textbf{e}, nom\textbf{e}, pd, milion\textbf{i}, leader;
 
 
-\item \textbf{Topic 9}:  accus\textbf{a}, ser\textbf{ie}/ser\textbf{a}, ragazz\textbf{i}, enne, poliz\textbf{ia}, ex, sessual\textbf{e}, figl\textbf{io}, giudic\textbf{e}, rapport\textbf{o}, iniz\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}/ part\textbf{ita};
+\item \textbf{Topic 9}:  accus\textbf{a}, ser\textbf{ie}/ser\textbf{a}, ragazz\textbf{i}, enne\footnote{Deriva dall'uso di scrivere, ad esempio, \emph{16enne} in luogo di \emph{sedicenne} e così via...}, poliz\textbf{ia}, ex, sessual\textbf{e}, figl\textbf{io}, giudic\textbf{e}, rapport\textbf{o}, iniz\textbf{o}, part\textbf{e}/part\textbf{ito}/part\textbf{ire}/part\textbf{ita};
    
-\item \textbf{Topic 10}: ragazz\textbf{i}, donn\textbf{a}, trov\textbf{ato}, violenz\textbf{a}, giovan\textbf{i}, ital\textbf{ia},parl\textbf{a}/parl\textbf{amento}, auto, polit\textbf{ica}, scuol\textbf{a}, ser\textbf{ie}/ser\textbf{a}, amic\textbf{i};
-
+\item \textbf{Topic 10}: ragazz\textbf{i}, donn\textbf{a}, trov\textbf{ato}, violenz\textbf{a}, giovan\textbf{i}, ital\textbf{ia}, parl\textbf{a}/parl\textbf{amento}, auto, polit\textbf{ica}, scuol\textbf{a}, ser\textbf{ie}/ser\textbf{a}, amic\textbf{i};
 
 
 \item \textbf{Topic 11}: ser\textbf{ie}/ser\textbf{a}, vit\textbf{a}, stat\textbf{o}, mil\textbf{ano}/mil\textbf{a}, ultim\textbf{i}, napol\textbf{i}, italian\textbf{a}, classif\textbf{ica}, inter, pass\textbf{ato}/pass\textbf{o}, ben\textbf{e}, gioc\textbf{o};
@@ -1131,7 +1195,7 @@ L'output è il seguente:
 \item \textbf{Topic 7}: paes\textbf{e}, figl\textbf{io}, pd, parl\textbf{are}/parl\textbf{amento}, vit\textbf{a}, prezz\textbf{o}, alcun\textbf{i}, tagl\textbf{i}, dett\textbf{o}, russ\textbf{ia}, ius, legg\textbf{e};
 
 
-\item \textbf{Topic 8}:  città, pass\textbf{ato}, piazz\textbf{a}, torin\textbf{o}, alcun\textbf{i}, part\textbf{e}/part\textbf{ito}, san, donn\textbf{e}, ospedal\textbf{e}, mond\textbf{o}, palazz\textbf{o}, appendin\textbf{o};
+\item \textbf{Topic 8}:  città, pass\textbf{ato}, piazz\textbf{a}, torin\textbf{o}, alcun\textbf{i}, part\textbf{e}/part\textbf{ito}, san, donn\textbf{e}, ospedal\textbf{e}, mond\textbf{o}, palazz\textbf{o}, appendin\textbf{o}\footnote{Riferito a Chiara Appendino, sindaco di Torino.};
 
 
 \item \textbf{Topic 9}: milion\textbf{i}, città, paes\textbf{e}, mond\textbf{o}, ultim\textbf{i}, capital\textbf{e}, alcun\textbf{i}, parc\textbf{o}, sir\textbf{ia}, dollar\textbf{i}, punt\textbf{o}, prezz\textbf{o};
@@ -1139,7 +1203,7 @@ L'output è il seguente:
 
 \item \textbf{Topic 10}: person\textbf{e}, parl\textbf{are}/parl\textbf{amento}, lavor\textbf{o}, altro, robot, dett\textbf{o}, vol\textbf{eva}/vol\textbf{i}, cont\textbf{o}, govern\textbf{o}, pass\textbf{ato}, ser\textbf{a}/ser\textbf{ie}, san;
 
-\item \textbf{Topic 11}:president\textbf{e}, san, mil\textbf{a}/mil\textbf{ano}, pass\textbf{ato}, piazz\textbf{a}, acqua, berluscon\textbf{i}, ogni, ex, cert\textbf{o}, ser\textbf{a}/ser\textbf{ie}, sir\textbf{ia};
+\item \textbf{Topic 11}: president\textbf{e}, san, mil\textbf{a}/mil\textbf{ano}, pass\textbf{ato}, piazz\textbf{a}, acqua, berluscon\textbf{i}, ogni, ex, cert\textbf{o}, ser\textbf{a}/ser\textbf{ie}, sir\textbf{ia};
 
 \item \textbf{Topic 12}: govern\textbf{o}, sir\textbf{ia}, unit\textbf{i}, possibil\textbf{ità}, comun\textbf{e}, ottobre, unic\textbf{o}, nord, colp\textbf{ito}, prezz\textbf{o}, camp\textbf{o}, centr\textbf{o};
   
@@ -1199,7 +1263,7 @@ L'output è il seguente:
 \item \textbf{Topic 10}: provinc\textbf{ia}, giovan\textbf{e}, dat\textbf{o}/dat\textbf{a}, pubblic\textbf{o}, spos\textbf{ato}, bell\textbf{a}, alto, bolz\textbf{ano}, giudic\textbf{e}, ragazz\textbf{i}, famigl\textbf{ia}, rodriguez;
 
 
-\item \textbf{Topic 11}:figl\textbf{ia}, padr\textbf{e}, pd, music\textbf{a}, cecilia, dev\textbf{e}, uomo, suon\textbf{o}, violin\textbf{o}, vien\textbf{e}, violenz, ignazio
+\item \textbf{Topic 11}: figl\textbf{ia}, padr\textbf{e}, pd, music\textbf{a}, cecilia, dev\textbf{e}, uomo, suon\textbf{o}, violin\textbf{o}, vien\textbf{e}, violenz, ignazio
    
 
    
@@ -1263,7 +1327,7 @@ L'output è il seguente:
 \item \textbf{Topic 10}: poliz\textbf{ia},  fer\textbf{ite}, person\textbf{e}, incident\textbf{e}, bimb\textbf{o}, bambin\textbf{i}, figl\textbf{io}, ragazz\textbf{a}, ore, fuoc\textbf{o}, mattin\textbf{a}, genitor\textbf{i}
 
 
-\item \textbf{Topic 11}:) ragazz\textbf{a}, stat\textbf{o}, lavor\textbf{o}, uom\textbf{o}, figl\textbf{io}, decis\textbf{o}, ex, president\textbf{e}, mar\textbf{ito}/mar\textbf{ia}/mar\textbf{e}, vit\textbf{a}, poliz\textbf{ia}, eur\textbf{o};
+\item \textbf{Topic 11}: ragazz\textbf{a}, stat\textbf{o}, lavor\textbf{o}, uom\textbf{o}, figl\textbf{io}, decis\textbf{o}, ex, president\textbf{e}, mar\textbf{ito}/mar\textbf{ia}/mar\textbf{e}, vit\textbf{a}, poliz\textbf{ia}, eur\textbf{o};
 
 \item \textbf{Topic 12}: bosc\textbf{hi}, banc\textbf{a}, president\textbf{e}, etrur\textbf{ia}, dichiar\textbf{ato}, ex, oper\textbf{a}/oper\textbf{azione}, alcun\textbf{i}, stat\textbf{o}, legg\textbf{e}/legg\textbf{ere}, incontr\textbf{o}, person\textbf{e};
 
@@ -1282,15 +1346,73 @@ I tempi di esecuzione sono stati i seguenti:
 \end{itemize}
 L'intero processo di elaborazione è durato circa 46 minuti.
 
-\section{Considerazioni e commenti}
+\section{Conclusioni}
 
-% Le tre 'S' del giornalismo
+% Possiamo visualizzare le informazioni circa i tempi di esecuzione in funzione del numero di articoli (per l'LDA) e del numero di topic (per l'LSI) esaminati mediante il seguente grafico.
 
-% Le probabilità degli output
+% Esecuzione
+% Magari solo LDA
 
-% Miglioramenti: Diversi run dell'LDA? La questione dei pesi delle parole. Numero dinamico di parole nei topic con l'uso delle probabilità
+% Da esso si evince, anche se con pochi dati, una relazione di tipo lineare per il tempo di esecuzione. Le equazioni delle rette consentono di quantificare di quanto un articolo rallenta... 
 
-% Accavallamento dei concetti dei cluster e primo e ultimo cluster
+% Può essere utile riguardare le relazioni rispetto non agli articoli o ai topic, ma al numero di parole  esaminate.
+
+Per quanto riguarda l'output, osserviamo diversi fenomeni relativi ai topic:
+
+\begin{itemize}
+\item \emph{Primo cluster}: il primo cluster di parole ricopre un ruolo particolare, in quanto contiene i termini con il numero di occorrenze maggiore. Essa rappresenta una sorta di 'contenitore' delle parole-chiave dell'intero corpus. Al primo posto, per tutti, c'è la parola \emph{stato}, probabilmente è l'ambiguità di significato di questo termine che gli conferisce il numero spropositato di occorrenze che possiede. Potrebbe essere utile eliminare tale parola durante una precedente procedura di stemming;
+
+\item \emph{Ripetizione}: molte parole sono ripetute in diversi topic  e, similmente, alcuni topic contigui possiedono quasi le stesse parole (es. \emph{Repubblica}: Topic 3 e 4).
+
+\item \emph{Sovrapposizione}: alcuni topic contengono due diversi macroargomenti fusi al loro interno (es. \emph{La Stampa}: Topic 12 in cui sembra si fondano argomenti di politica estera e informazioni meteo d'attualità);
+
+\item \emph{Interpretazione}: per alcuni topic è facile comprendere il tema di cui trattano (es. \emph{Corriere}: Topic 11, in cui si parla di cronache sportive), per altri non sembra possibile (es. \emph{Repubblica}: Topic 15). Alcuni topic accorpano parole che si rifanno a tematiche del tutto generali (es. \emph{Fanpage}: Topic 3, 7, 8 in cui emerge il tema della violenza sulle donne), altri entrano addirittura nello specifico di alcune particolari vicende (es. Repubblica: Topic 9, in cui è palese la vicenda della visita del Papa in Myanmar).
+
+\end{itemize}
+
+Il fenomeno del \emph{Primo Cluster} sono causati dalla riduzione che l'LSI opera. Ai primi posti dunque si collocano quei temi che spiegano una maggiore varianza (e che spesso hanno dunque un numero maggiore di occorenze). La \emph{Sovrapposizione} e la similitudine di topic contigui può essere causata dal fatto che abbiamo prestabilito la lunghezza delle parole nel topic, oppure, nel primo caso, dal fatto che due argomenti interferiscono magari per mezzo di una parole di collegamento. L'interpretazione è generalmente possibile anche se ci possono essere casi in cui non si evince facilmente (o non è possibile inferire) il tema centrale.
+
+Dalla nostra analisi non supervisionata possiamo trarre alcune conclusioni.
+
+Innanzitutto si evince lo schema giornalistico delle 3 'S', e si vede che i temi principali trattati sono , \emph{in primis}, politico-economici, e poi d'attualità e di cronaca (soprattutto nera e giudiziaria).
+
+\emph{Repubblica} e \emph{Il Corriere}, testate di rilievo nazionale e le cui notizie raccolte sono un gran numero,  trattano di argomenti principalmente di matrice politico-economica. Non mancano, nella prima, vicende collegate all'attualità internazionale e all'istruzione, quest'ultimo tema presente anche nel \emph{Corriere} che, inoltre, possiede un topic di cronaca sportiva che non si trova negli altri giornali.
+
+\emph{Il Giornale}, anch'esso di diffusione nazionale ma di cui abbiamo un minor numero di notizie a disposizione per l'analisi, è quasi interamente polarizzato verso la politica.
+
+\emph{La Stampa}, di cui abbiamo un numero di notizie simile a quello de \emph{Il Giornale}, tratta di diverse tematiche, dalla politica all'attualità. Nel topic 8 si evince con sufficiente chiarezza la sua matrice territoriale.
+
+Infine \emph{Fanpage}, possiede caratteristiche che spiccano nel contesto dei giornali analizzati. Ultimo per fondazione e con diffusione esclusivamente on-line, i temi trattati sono diversi: il tema politico è sempre ai primi posti, ma non è quello più affrontato. Principalmente le vicende di attualità, soprattutto cronaca nera, si contendono il gran numero di topic. Fa eccezione il topic 4, l'unico in tutte le testate in cui si evince nettamente che il tema trattato sono le informazioni metereologiche.
+
+Il fatto che alcuni temi non emergano nettamente nei topic esaminati, non vuol dire che i giornali non le trattino affatto. Probabilmente, con un numero maggiore di topic a disposizione e numerosi altri articoli in memoria, anche altre tematiche potrebbero emergere: tutto ciò che possiamo affermare è solamente che i temi principali degli articoli raccolti si rifanno a quelli estratti.
+
+\section{Commenti finali}
+
+Ci siamo preoccupati operare un'analisi non supervisionata dei contenuti, clusterizzando le tematiche principali con i topic model i file testuali appartenenti all'universo dei social media. Il risultato permette già di osservare l'emergere di alcuni schemi, come la regola giornalistica delle 3 'S', o le diverse polarizzazioni tematiche dei quotidiani che pubblicano su carta stampata e online. Abbiamo esaminato, inoltre, elementi tipici dell'output , elencando i fenomeni più comuni che si manifestano dalla procedura e cercando di fornire qualche spiegazione in merito. 
+
+Possiamo ora fare delle considerazioni conclusive e indicare possibili sviluppi.
+
+Il caso di studio esaminato, costituisce un semplice esempio finale di applicazione del sistema distribuito, la cui implementazione, ribadiamo, è il vero tema centrale dell'elaborato. L'output è costituito, come abbiamo visto, da topic formati da parole estratte dai documenti.
+
+A seconda del risultato che si desidera, si può procedere in diversi modi. 
+
+Si può voler definire un concetto di somiglianza tra quotidiani e verificare quali si assomigliano per tematiche trattate e quali, invece, sono  dissimili; si può volere, per ogni topic, assegnare un \emph{label} che ne indichi sinteticamente il contenuto, oppure si possono associare i topic a diverse aree tematiche (nel caso del giornalismo possono essere Politica, Economia, Cronaca, ecc.), cioè operare un'analisi \emph{supervisionata} dei topic. 
+
+Il concetto di analisi supervisionata mediante LDA è stato affrontato ed esistono degli algoritmi, evoluzioni dell'LDA e in particolare l'sLDA \cite{Ble10}, in grado di operare una tale classificazione.
+
+Anche il concetto di \emph{distanza}, tra due file testuali è stato sviluppato: mediante i topic estratti si viene a costituire una sorta di 'codice genetico' di ciascun documento e diversi documenti possono essere messi in relazione sulla base di un concetto appropriato di distanza\footnote{Tipicamente per l'LDA viene utilizzata la \emph{divergenza di Jensen-Shannon}, \cite{Sch99}} che misura le somiglianze tra i codici.
+
+Un modo molto naive di assegnare un titolo sintetico a ciascun topic è quello di definire dei dizionari di parole-chiave (ad esempio si può associare \emph{Economia} a parole come 'lavoro', 'euro', 'milioni', ecc.), così facendo si può capire quali sono i temi trattati da ciascun topic e si può operare una sorta di intuitiva analisi supervisionata (anche se la dicitura è impropria perché un topic potrebbe possedere parole che appartengono a diverse classi).
+
+Ci siamo limitati a suggerire solamente queste possibili estensioni, tuttavia ciò consente di lasciare al nostro sistema una grande generalità di impiego nell'ambito dell'analisi dei social media, impiego che può essere poi specificato con modifiche esterne a seconda del particolare caso di studio.
+
+Per quanto riguarda l'algoritmo in sé, possiamo suggerire, invece, diverse modifiche sulla base delle esigenze di studio.
+
+Un aspetto importante è stato il fissaggio iniziale del numero di topic e del numero di parole di ciascun topic, per il quale ci siamo basati su prove empiriche. Tuttavia è possibile impostare la scelta e del numero di topic e delle parole che lo compongono sulla base di valori di soglia delle probabilità associate ai termini durante l'impiego dei topic model.
+
+Un altro punto degno di nota è rappresentato dal testo specifico da esaminare. Nel nostro caso di studio, abbiamo fuso, per ciascun articolo raccolto, il suo titolo, il corpo del testo e i tags se presenti. Si potrebbe \emph{pesare} ciascuna componente, in modo da dare rilievo, ad esempio, alle parole presenti in un titolo e nei tags raddoppiando le loro occorrenze: così facendo sarebbe più semplice per i topic model rilevare i termini chiave.
+
+Infine, si potrebbe lanciare più volte l'LDA e fondere i risultati ottenuti: questo darebbe peso maggiore alle parole più rilevanti, ma avrebbe un notevole costo computazionale.
 
 \clearpage
 
@@ -1639,9 +1761,18 @@ per cui è verificato il coniugio
 
 \bibitem[Ble03]{Ble03} Blei David M., Ng Andrew Y., Jordan Michael I. \emph{Latent Dirichlet Allocation},  Journal of Machine Learning Research, pp. 993-1022, 2003.
 
+\bibitem[Ble10]{Ble10} Blei David M., J. D. McAuliffe \emph{Supervised topic models},  Arxiv, 2010.
+
+https://papers.nips.cc/paper/3328-supervised-topic-models.pdf
 \bibitem[Con12]{Con12} P.L. Conti, D. Marella, \emph{Campionamento da popolazioni finite}, Springer, 2012
 
 \bibitem[CorRSS]{CorRSS} Indirizzo Feed RSS de \emph{Il Corriere della Sera}, \href{http://xml.corriereobjects.it/rss/homepage.xml}{http://xml.corriereobjects.it/rss/homepage.xml}
+
+\bibitem[Dal03]{Dal03} G. Dall'Aglio , \emph{Calcolo delle probabilità}, Zanichelli, 1999.
+
+\bibitem[Dar11]{Dar11} W. M. Darling , \emph{A Theoretical and Practical Implementation.Tutorial on Topic Modeling and Gibbs Sampling}, University of Guelph, 2011.
+
+\bibitem[DeFin]{DeFin} B. de Finetti, \emph{De Finetti's Theorem}, \href{https://www.encyclopediaofmath.org/index.php?title=De_Finetti_theorem}{https://www.encyclopediaofmath.org/index.php?title=De\_Finetti\_theorem}, Encyclopedia of Mathematics.
 
 \bibitem[Der90]{Der90} Deerwester S., Dumais, S. T., Furnas, G. W., Landauer, T. K.,  Harshman, R., \emph{Indexing by latent semantic analysis}, Journal of the American Society for Information Science 41(6), 391-407, 1990.
 
@@ -1651,9 +1782,8 @@ per cui è verificato il coniugio
 
 \bibitem[FinID]{FinID} Esempio di servizio di reperimento ID di Facebook, \emph{Find my Facebook id} \href{https://findmyfbid.com/}{https://findmyfbid.com/}
 
-\bibitem[Dal03]{Dal03} G. Dall'Aglio , \emph{Calcolo delle probabilità}, Zanichelli, 1999.
+\bibitem[GooN]{GooN} Google News, \href{https://news.google.com/news/}{https://news.google.com/news/}
 
-\bibitem[Dar11]{Dar11} W. M. Darling , \emph{A Theoretical and Practical Implementation.Tutorial on Topic Modeling and Gibbs Sampling}, University of Guelph, 2011.
 
 \bibitem[Hof99]{Hof99} Hofmann, T. , \emph{Probabilistic latent semantic indexing}, Proceedings of the Twenty-Second Annual International SIGIR Conference, 1999.
 
@@ -1664,6 +1794,10 @@ per cui è verificato il coniugio
 \bibitem[Koo36]{Koo36} B. O. Koopman, \emph{On Distribution admitting a sufficient statistic}, American Mathematical Society, 1936.
 
 \bibitem[LaSRSS]{LaSRSS} Indirizzo Feed RSS di \emph{La Stampa}, \href{http://www.lastampa.it/rss.xml}{http://www.lastampa.it/rss.xml}
+
+\bibitem[Lin16]{Lin16} Lin Liu, Lin Tang, Wen Dong, Shaowen Yao and Wei Zhoucorresponding, \emph{An overview of topic modeling and its current applications in bioinformatics} \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5028368/
+}{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5028368/}, SpringerOpen, 2016
+
 
 \bibitem[Lym03]{Lym03} P. Lyman, H. R. Varian, K. Swearingen, P. Charles, N. Good, L.L. Jordan, and J. Pal, \emph{How much information?}, \href{http://www2.sims.berkeley.edu/research/projects/
 how-much-info-2003}{http://www2.sims.berkeley.edu/research/projects/
@@ -1693,8 +1827,13 @@ how-much-info-2003}, 2003
 
 \bibitem[San15]{San15} Sandy Ryza, Uri Laserson, Josh Wills, Sean Owen \emph{Advanced Analytics with Spark}, O'Reilly Media Research, 2015.
 
+
+\bibitem[San17]{San17} Vicenda sottomarino \emph{San Juan}, \href{https://it.wikipedia.org/wiki/ARA_San_Juan_(S-42)}{https://it.wikipedia.org/wiki/ARA\_San\_Juan\_(S-42)},  2017.
+
 \bibitem[Sal88]{Sal88} G. Salton, \emph{Term-weighting approaches in automatic text
 retrieval}, Inform. Process. Man. 24(5), 513-523. , 1988
+
+\bibitem[Sch99]{Sch99} H. Schütze, C. D. Manning \emph{Foundations of Statistical Natural Language Processing}, MIT Press, 1999.
 
 \bibitem[Scrpy]{Scrpy} Scrapy, \href{https://scrapy.org/}{https://scrapy.org/} 
 
@@ -1706,6 +1845,21 @@ retrieval}, Inform. Process. Man. 24(5), 513-523. , 1988
 
 % Ringraziamenti
 \chapter*{Ringraziamenti}
+Ringrazio il mio Relatore, il Professor Umberto Ferraro Petrillo, per avermi consentito di confrontarmi con un problema di ampio respiro, molto attuale e per mezzo del quale ho imparato molto.
+
+Parimenti ringrazio il mio Correlatore, il Professor Agostino di Ciaccio, per i suoi preziosi suggerimenti che hanno portato, in particolare, alla fusione delle due metodologie di topic model.
+
+Rinnovo i ringraziamenti, espressi nella precedente tesi, a tutte le persone che mi sono state vicino anche in questo percorso. Ad esse se ne aggiungono di nuove.
+
+Ringrazio di cuore i miei i colleghi, in particolare Francesco Curia e Michele Cianfriglia, per avermi dato preziosi consigli durante questi anni, ma anche per i bei momenti insieme.
+
+Ringrazio mio padre perché, per mia fortuna, non teme di alzarsi presto la mattina...
+\\
+\\
+Alla persona cui è dedicato l'intero lavoro va il mio ringraziamento più grande: evito di spiegarne i motivi, anche perché la lista sarebbe lunga almeno il doppio di questa tesi.  
+
+
+
 
 
 \end{document}
